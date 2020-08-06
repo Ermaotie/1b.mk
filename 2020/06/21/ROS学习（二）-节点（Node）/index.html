@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-loading-bar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"1b.mk","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="重新返回去熟悉操作，加深印象。这次将更条理地，细致地梳理遇到的一系列问题。 Package 结构 package src example_node.cpp   … package.xml CMakList.txt    工作流程 ${workspace}&#x2F;src 下使用命令 catkin_create_pkg $&amp;#123;pkg_name&amp;#125; $&amp;#123;dependencis&amp;#12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS学习（二）----节点（Node）">
+<meta property="og:url" content="https://1b.mk/2020/06/21/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%8A%82%E7%82%B9%EF%BC%88Node%EF%BC%89/index.html">
+<meta property="og:site_name" content="One battle of milk">
+<meta property="og:description" content="重新返回去熟悉操作，加深印象。这次将更条理地，细致地梳理遇到的一系列问题。 Package 结构 package src example_node.cpp   … package.xml CMakList.txt    工作流程 ${workspace}&#x2F;src 下使用命令 catkin_create_pkg $&amp;#123;pkg_name&amp;#125; $&amp;#123;dependencis&amp;#12">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://1b.mk/2020/06/21/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%8A%82%E7%82%B9%EF%BC%88Node%EF%BC%89/images/2311292133.png">
+<meta property="og:image" content="https://1b.mk/2020/06/21/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%8A%82%E7%82%B9%EF%BC%88Node%EF%BC%89/images/1204245160.png">
+<meta property="article:published_time" content="2020-06-21T14:22:34.000Z">
+<meta property="article:modified_time" content="2020-08-06T15:11:59.140Z">
+<meta property="article:author" content="二茂铁Fe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://1b.mk/2020/06/21/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%8A%82%E7%82%B9%EF%BC%88Node%EF%BC%89/images/2311292133.png">
+
+<link rel="canonical" href="https://1b.mk/2020/06/21/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%8A%82%E7%82%B9%EF%BC%88Node%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ROS学习（二）----节点（Node） | One battle of milk</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">One battle of milk</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一瓶牛奶</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/Ermaotie" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/21/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%8A%82%E7%82%B9%EF%BC%88Node%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One battle of milk">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ROS学习（二）----节点（Node）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-21 22:22:34" itemprop="dateCreated datePublished" datetime="2020-06-21T22:22:34+08:00">2020-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:11:59" itemprop="dateModified" datetime="2020-08-06T23:11:59+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h5 id="重新返回去熟悉操作，加深印象。"><a href="#重新返回去熟悉操作，加深印象。" class="headerlink" title="重新返回去熟悉操作，加深印象。"></a>重新返回去熟悉操作，加深印象。</h5><p>这次将更条理地，细致地梳理遇到的一系列问题。<br><img src="./images/2311292133.png" alt="1592790092(1).png"></p>
+<h1 id="Package-结构"><a href="#Package-结构" class="headerlink" title="Package 结构"></a>Package 结构</h1><ul>
+<li>package<ul>
+<li>src<ul>
+<li>example_node.cpp</li>
+</ul>
+</li>
+<li>…</li>
+<li>package.xml</li>
+<li>CMakList.txt</li>
+</ul>
+</li>
+</ul>
+<h1 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h1><ol>
+<li>${workspace}/src 下使用命令 <code>catkin_create_pkg $&#123;pkg_name&#125; $&#123;dependencis&#125;</code></li>
+<li>进入package(后用pkg代替）编写文件。（cpp || py）</li>
+<li>编辑 <strong>package.xml &amp;&amp; CMakList.txt</strong></li>
+<li><code>catkin_make</code></li>
+</ol>
+<h1 id="流程中的一些细节问题"><a href="#流程中的一些细节问题" class="headerlink" title="流程中的一些细节问题"></a>流程中的一些细节问题</h1><h2 id="2-编写cpp"><a href="#2-编写cpp" class="headerlink" title="2. 编写cpp"></a>2. 编写cpp</h2><h3 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h3><p>默认两个参数：    <strong>int argc, char**argv</strong><br>初始化时会用到： <code>ros::init(argc,argv,&quot;node_name&quot;);</code></p>
+<h3 id="回调参数"><a href="#回调参数" class="headerlink" title="回调参数"></a>回调参数</h3><p>ConstPtr&amp; 与 Ptr&amp; 的区别：<br>ConstPtr 常类型msg ，减少传值次数。<br><a target="_blank" rel="noopener" href="https://answers.ros.org/question/212857/what-is-constptr/">https://answers.ros.org/question/212857/what-is-constptr/</a></p>
+<h2 id="3-编辑package-xml-amp-amp-CMakeList-txt"><a href="#3-编辑package-xml-amp-amp-CMakeList-txt" class="headerlink" title="3.编辑package.xml &amp;&amp; CMakeList.txt"></a>3.编辑package.xml &amp;&amp; CMakeList.txt</h2><h3 id="使用了msg文件"><a href="#使用了msg文件" class="headerlink" title="使用了msg文件"></a>使用了msg文件</h3><h4 id="由于ROS通过message-generation-对-msg文件编译以及-message-runtime-在节点中运行有关-msg文件。所以需要在package-xml中加入编译依赖及运行依赖"><a href="#由于ROS通过message-generation-对-msg文件编译以及-message-runtime-在节点中运行有关-msg文件。所以需要在package-xml中加入编译依赖及运行依赖" class="headerlink" title="由于ROS通过message_generation 对.msg文件编译以及 message_runtime 在节点中运行有关.msg文件。所以需要在package.xml中加入编译依赖及运行依赖"></a>由于ROS通过message_generation 对.msg文件编译以及 message_runtime 在节点中运行有关.msg文件。所以需要在<strong>package.xml</strong>中加入编译依赖及运行依赖</h4><pre><code>&lt;build_depend&gt;message_generation&lt;/build_depend&gt;
+ &lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;</code></pre>
+<h4 id="同时需要修改-CMakeList-txt"><a href="#同时需要修改-CMakeList-txt" class="headerlink" title="同时需要修改 CMakeList.txt"></a>同时需要修改 <strong>CMakeList.txt</strong></h4><h5 id="在catkin-make编译找依赖包的位置，写入”message-generation”"><a href="#在catkin-make编译找依赖包的位置，写入”message-generation”" class="headerlink" title="在catkin_make编译找依赖包的位置，写入”message_generation”"></a>在catkin_make编译找依赖包的位置，写入”message_generation”</h5><pre><code>find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+  message_generation
+)</code></pre>
+<h5 id="在添加编译msg的步骤（generate-message-即在devel下生成对应的-demo-h"><a href="#在添加编译msg的步骤（generate-message-即在devel下生成对应的-demo-h" class="headerlink" title="在添加编译msg的步骤（generate_message(), 即在devel下生成对应的  demo.h"></a>在添加编译msg的步骤（generate_message(), 即在devel下生成对应的  <strong>demo.h</strong></h5><pre><code>add_message_files(
+  FILES
+  demo.msg
+)
+generate_messages(DEPENDENCIES std_msgs)</code></pre>
+<h5 id="添加Node运行时依赖-message-runtime"><a href="#添加Node运行时依赖-message-runtime" class="headerlink" title="添加Node运行时依赖 message_runtime"></a>添加Node运行时依赖 <strong>message_runtime</strong></h5><pre><code>catkin_package(
+ CATKIN_DEPENDS roscpp std_msgs message_runtime
+)</code></pre>
+<h5 id="若需编译为二进制文件"><a href="#若需编译为二进制文件" class="headerlink" title="若需编译为二进制文件"></a>若需编译为二进制文件</h5><pre><code># 仅为demo， 前两行为 将cpp文件编译为
+
+# 添加 二进制文件         二进制文件名    cpp文件位置
+add_executable(fbnq_subscriber src/topic_subscriber.cpp)
+# add_executable是对于构建之后要创建的可执行文件的选项。
+
+# 二进制文件引用         二进制文件名         对应上面填写的
+target_link_libraries(fbnq_subscriber $&#123;catkin_LIBRARIES&#125;)
+# target_link_libraries是在创建特定的可执行文件之前将库和可执行文件进行链接的 选项。 
+
+# 添加依赖                    二进制文件名         依赖编译后的message
+add_dependencies(fbnq_subscriber $&#123;PROJECT_NAME&#125;_generate_messages_cpp)
+# add_dependencies是一个首选项，是在构建库和可执行文件之前创建依赖消息和dynamic reconfigure的设置。</code></pre>
+<h6 id="需要注意俩个add-dependencies添加的依赖是不一样的"><a href="#需要注意俩个add-dependencies添加的依赖是不一样的" class="headerlink" title="需要注意俩个add_dependencies添加的依赖是不一样的"></a>需要注意俩个<strong>add_dependencies</strong>添加的依赖是不一样的</h6><p><img src="./images/1204245160.png" alt="微信截图_20200622093823.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/17/%E6%97%A7%E7%AC%94%E8%AE%B0%E6%9C%AC%E5%AE%89%E8%A3%85Ubuntu/" rel="prev" title="旧笔记本安装Ubuntu">
+      <i class="fa fa-chevron-left"></i> 旧笔记本安装Ubuntu
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89-action/" rel="next" title="ROS学习（三）----action">
+      ROS学习（三）----action <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E8%BF%94%E5%9B%9E%E5%8E%BB%E7%86%9F%E6%82%89%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%8A%A0%E6%B7%B1%E5%8D%B0%E8%B1%A1%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">重新返回去熟悉操作，加深印象。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Package-%E7%BB%93%E6%9E%84"><span class="nav-number"></span> <span class="nav-text">Package 结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number"></span> <span class="nav-text">工作流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82%E9%97%AE%E9%A2%98"><span class="nav-number"></span> <span class="nav-text">流程中的一些细节问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BC%96%E5%86%99cpp"><span class="nav-number"></span> <span class="nav-text">2. 编写cpp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#main%E5%87%BD%E6%95%B0"><span class="nav-number"></span> <span class="nav-text">main函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E8%B0%83%E5%8F%82%E6%95%B0"><span class="nav-number"></span> <span class="nav-text">回调参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BC%96%E8%BE%91package-xml-amp-amp-CMakeList-txt"><span class="nav-number"></span> <span class="nav-text">3.编辑package.xml &amp;&amp; CMakeList.txt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%BA%86msg%E6%96%87%E4%BB%B6"><span class="nav-number"></span> <span class="nav-text">使用了msg文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%B1%E4%BA%8EROS%E9%80%9A%E8%BF%87message-generation-%E5%AF%B9-msg%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E4%BB%A5%E5%8F%8A-message-runtime-%E5%9C%A8%E8%8A%82%E7%82%B9%E4%B8%AD%E8%BF%90%E8%A1%8C%E6%9C%89%E5%85%B3-msg%E6%96%87%E4%BB%B6%E3%80%82%E6%89%80%E4%BB%A5%E9%9C%80%E8%A6%81%E5%9C%A8package-xml%E4%B8%AD%E5%8A%A0%E5%85%A5%E7%BC%96%E8%AF%91%E4%BE%9D%E8%B5%96%E5%8F%8A%E8%BF%90%E8%A1%8C%E4%BE%9D%E8%B5%96"><span class="nav-number"></span> <span class="nav-text">由于ROS通过message_generation 对.msg文件编译以及 message_runtime 在节点中运行有关.msg文件。所以需要在package.xml中加入编译依赖及运行依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E6%97%B6%E9%9C%80%E8%A6%81%E4%BF%AE%E6%94%B9-CMakeList-txt"><span class="nav-number"></span> <span class="nav-text">同时需要修改 CMakeList.txt</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8catkin-make%E7%BC%96%E8%AF%91%E6%89%BE%E4%BE%9D%E8%B5%96%E5%8C%85%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%8C%E5%86%99%E5%85%A5%E2%80%9Dmessage-generation%E2%80%9D"><span class="nav-number">1.</span> <span class="nav-text">在catkin_make编译找依赖包的位置，写入”message_generation”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8%E6%B7%BB%E5%8A%A0%E7%BC%96%E8%AF%91msg%E7%9A%84%E6%AD%A5%E9%AA%A4%EF%BC%88generate-message-%E5%8D%B3%E5%9C%A8devel%E4%B8%8B%E7%94%9F%E6%88%90%E5%AF%B9%E5%BA%94%E7%9A%84-demo-h"><span class="nav-number">2.</span> <span class="nav-text">在添加编译msg的步骤（generate_message(), 即在devel下生成对应的  demo.h</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0Node%E8%BF%90%E8%A1%8C%E6%97%B6%E4%BE%9D%E8%B5%96-message-runtime"><span class="nav-number">3.</span> <span class="nav-text">添加Node运行时依赖 message_runtime</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8B%A5%E9%9C%80%E7%BC%96%E8%AF%91%E4%B8%BA%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">若需编译为二进制文件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BF%A9%E4%B8%AAadd-dependencies%E6%B7%BB%E5%8A%A0%E7%9A%84%E4%BE%9D%E8%B5%96%E6%98%AF%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84"><span class="nav-number">4.1.</span> <span class="nav-text">需要注意俩个add_dependencies添加的依赖是不一样的</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="二茂铁Fe"
+      src="/images/avatar.ico">
+  <p class="site-author-name" itemprop="name">二茂铁Fe</p>
+  <div class="site-description" itemprop="description">二茂铁Fe的小屋</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Ermaotie" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Ermaotie" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Meise1015@gmail.com" title="E-Mail → mailto:Meise1015@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">二茂铁Fe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'd590612609f66b66e523',
+      clientSecret: '46ef29e4b3a98cccf3339c8362c3f39e9a7baa05',
+      repo        : '1b.mk',
+      owner       : 'Ermaotie',
+      admin       : ['Ermaotie'],
+      id          : '377646314d80efe6db80945ad6528f17',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
