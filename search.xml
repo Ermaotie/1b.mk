@@ -4,6 +4,45 @@
   
     
     <entry>
+      <title>Q-learning</title>
+      <link href="/2020/10/08/Q-learning/"/>
+      <url>/2020/10/08/Q-learning/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>背包问题</title>
+      <link href="/2020/10/08/BagProblems/"/>
+      <url>/2020/10/08/BagProblems/</url>
+      
+        <content type="html"><![CDATA[<h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>背包容量j一定，现有一些物品，分别对应有质量w和体积v，求背包可容纳物品重量最大的方案。</p><ol><li><p>0-1背包问题<br>列举的物品均只有一件。<br>状态转移方程：<br>Dp[i][j] = max{Dp[i-1][j-item.v]+item.w, Dp[i-1][j]}</p><h5 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h5><p>因为计算i行，只用到i-1行的数据，因此可以只用一个数组，而在更新数据时，应从j到0，避免同一物品被用多次。</p></li><li><p>完全背包问题<br>列举的物品有无穷多件。<br>转换为优化方案，状态转移时，从0到j。</p></li><li><p>多重背包问题<br>界于0-1与完全背包之间，列举的物品可以有不同的数量，不同的质量和体积。</p></li></ol><ul><li>将属性相同的物体可以视为不同物体，转换为0-1背包问题<br>  缺点：时间复杂度较大<br>改进方案：</li><li>将属性相同的物体以2的c次幂分组绑定，视为不同物体，最终质量和为所有原物体的质量和。再转换为0-1背包。</li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>匈牙利算法</title>
+      <link href="/2020/09/03/searchextremum/"/>
+      <url>/2020/09/03/searchextremum/</url>
+      
+        <content type="html"><![CDATA[<p>匈牙利算法用来解决一种特殊的指派问题。</p><h3 id="Layman对指派问题的解释"><a href="#Layman对指派问题的解释" class="headerlink" title="Layman对指派问题的解释"></a>Layman对指派问题的解释</h3><p>你有三个工人：吉姆，史提夫和艾伦。 你需要其中一个清洁浴室，另一个打扫地板，第三个洗窗，但他们每个人对各项任务要求不同数目数量的钱。 以最低成本的分配工作的方式是什么？ 可以用工人做工的成本矩阵来表示该问题。例如：</p><table class="wikitable" border="1"><tbody><tr><th></th><th>清洁浴室</th><th>打扫地板</th><th>洗窗</th></tr><tr><th>吉姆</th><td>$2</td><td>$3</td><td>$3</td></tr><tr><th>史提夫</th><td>$3</td><td>$2</td><td>$3</td></tr><tr><th>艾伦</th><td>$3</td><td>$3</td><td>$2</td></tr></tbody></table><p>当把匈牙利方法应用于上面的表格时，会给出最低成本：为6美元，让吉姆清洁浴室、史提夫打扫地板、艾伦清洗窗户就可以达到这一结果。</p><h3 id="数学表示"><a href="#数学表示" class="headerlink" title="数学表示"></a>数学表示</h3><p>设价值矩阵c（n×n）,分配矩阵x（n×n）</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>微信订阅华工教务处通知</title>
       <link href="/2020/08/08/subscribe/"/>
       <url>/2020/08/08/subscribe/</url>

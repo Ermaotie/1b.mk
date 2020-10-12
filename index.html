@@ -190,6 +190,236 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/10/08/Q-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/08/Q-learning/" class="post-title-link" itemprop="url">Q-learning</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-08 22:16:33" itemprop="dateCreated datePublished" datetime="2020-10-08T22:16:33+08:00">2020-10-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/10/08/BagProblems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/08/BagProblems/" class="post-title-link" itemprop="url">背包问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-08 21:28:55 / 修改时间：22:11:04" itemprop="dateCreated datePublished" datetime="2020-10-08T21:28:55+08:00">2020-10-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h1><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>背包容量j一定，现有一些物品，分别对应有质量w和体积v，求背包可容纳物品重量最大的方案。</p>
+<ol>
+<li><p>0-1背包问题<br>列举的物品均只有一件。<br>状态转移方程：<br>Dp[i][j] = max{Dp[i-1][j-item.v]+item.w, Dp[i-1][j]}</p>
+<h5 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h5><p>因为计算i行，只用到i-1行的数据，因此可以只用一个数组，而在更新数据时，应从j到0，避免同一物品被用多次。</p>
+</li>
+<li><p>完全背包问题<br>列举的物品有无穷多件。<br>转换为优化方案，状态转移时，从0到j。</p>
+</li>
+<li><p>多重背包问题<br>界于0-1与完全背包之间，列举的物品可以有不同的数量，不同的质量和体积。</p>
+</li>
+</ol>
+<ul>
+<li>将属性相同的物体可以视为不同物体，转换为0-1背包问题<br>  缺点：时间复杂度较大<br>改进方案：</li>
+<li>将属性相同的物体以2的c次幂分组绑定，视为不同物体，最终质量和为所有原物体的质量和。再转换为0-1背包。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/09/03/searchextremum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/03/searchextremum/" class="post-title-link" itemprop="url">匈牙利算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-03 10:29:47 / 修改时间：10:43:58" itemprop="dateCreated datePublished" datetime="2020-09-03T10:29:47+08:00">2020-09-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>匈牙利算法用来解决一种特殊的指派问题。</p>
+<h3 id="Layman对指派问题的解释"><a href="#Layman对指派问题的解释" class="headerlink" title="Layman对指派问题的解释"></a>Layman对指派问题的解释</h3><p>你有三个工人：吉姆，史提夫和艾伦。 你需要其中一个清洁浴室，另一个打扫地板，第三个洗窗，但他们每个人对各项任务要求不同数目数量的钱。 以最低成本的分配工作的方式是什么？ 可以用工人做工的成本矩阵来表示该问题。例如：</p>
+<table class="wikitable" border="1">
+
+<tbody><tr>
+<th>
+</th>
+<th>清洁浴室
+</th>
+<th>打扫地板
+</th>
+<th>洗窗
+</th></tr>
+<tr>
+<th>吉姆
+</th>
+<td>$2
+</td>
+<td>$3
+</td>
+<td>$3
+</td></tr>
+<tr>
+<th>史提夫
+</th>
+<td>$3
+</td>
+<td>$2
+</td>
+<td>$3
+</td></tr>
+<tr>
+<th>艾伦
+</th>
+<td>$3
+</td>
+<td>$3
+</td>
+<td>$2
+</td></tr></tbody></table>
+
+<p>当把匈牙利方法应用于上面的表格时，会给出最低成本：为6美元，让吉姆清洁浴室、史提夫打扫地板、艾伦清洗窗户就可以达到这一结果。</p>
+<h3 id="数学表示"><a href="#数学表示" class="headerlink" title="数学表示"></a>数学表示</h3><p>设价值矩阵c（n×n）,分配矩阵x（n×n）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/08/08/subscribe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -805,333 +1035,6 @@ rosrun map_server map_saver -f ~/map
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89-action/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89-action/" class="post-title-link" itemprop="url">ROS学习（三）----action</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-25 15:20:05" itemprop="dateCreated datePublished" datetime="2020-06-25T15:20:05+08:00">2020-06-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:13:32" itemprop="dateModified" datetime="2020-08-06T23:13:32+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在了解了service与topic这两种较为简单的通信之后，继续学习一种新的交互方式—-action</p>
-<h1 id="文件构成"><a href="#文件构成" class="headerlink" title="文件构成"></a>文件构成</h1><p>action文件以**.action**为后缀，其内容与service相似，多了过程中的反馈（Feedback）</p>
-<pre><code># demo.action
-# define goal
-int32 demo_goal
----
-# define result
-int[] demo_res
----
-# define feedback
-int[] demo_fb</code></pre>
-<h1 id="编译action"><a href="#编译action" class="headerlink" title="编译action"></a>编译action</h1><p>编译action文件为头文件时，</p>
-<p><strong>CMakeList.txt</strong>中需要添加activelib 及 activelib_msgs</p>
-<pre><code>find_package(....
-generate_message(activelib_msgs...
-catkin_package(LIBRARIES ...
-               CATKIN_DEPENDS actionlib actionlib_msgs roscpp std_msgs ...
-               DEPENDS BOOST
-               )</code></pre>
-<h1 id="cpp中调用action文件与actionlib"><a href="#cpp中调用action文件与actionlib" class="headerlink" title="cpp中调用action文件与actionlib"></a>cpp中调用action文件与actionlib</h1><pre><code>// 以demo.action为例
-#include&lt;demoAction.h&gt;
-
-//调用actionlib
-
-//server端
-#include&lt;actionlib/simple_action_server.h&gt;
-
-//client端
-#include&lt;actionlib/simple_action_client.h&gt; // action library header files
-#inclued&lt;actionlib/terminal_state.h&gt; //action_goals status files</code></pre>
-<h1 id="需要注意的细节"><a href="#需要注意的细节" class="headerlink" title="需要注意的细节"></a>需要注意的细节</h1><ol>
-<li><p>Client<br> // Action Client Declaration (Action Name: ros_tutorial_action)<br>   actionlib::SimpleActionClient&lt;ros_tutorials_action::FibonacciAction&gt; ac(“ros_tutorial_action”, true);<br>//client 端不需要节点句柄， true表示不需要ros::spin();,因此循环等待服务为：</p>
-<p> ac.waitForServer()</p>
-</li>
-<li><p>Server<br>// 句柄需在action_sercer 创建之前被创建<br>ros::NodeHandle nh_;  // Node handle declaration<br>actionlib::SimpleActionServer&lt;ros_tutorials_action::FibonacciAction&gt; as_;</p>
-</li>
-</ol>
-<p>// 初始化as_时，会自动获取client发出action文件中的goal的地址</p>
-<pre><code>public:
-  // Initialize action server (Node handle, action name, action callback function)
-  FibonacciAction(std::string name) :
-    as_(nh_, name, boost::bind(&amp;FibonacciAction::executeCB, this, _1), false),
-    action_name_(name)
-  &#123;
-    as_.start();
-  &#125;
-......</code></pre>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/30e79d2a8f7d">bind绑定函数</a></p>
-<p>关于请求的细节：</p>
-<pre><code>// 确认请求存在且非preempted
-// Preempted - Processing of the goal was canceled by either another goal, 
-//             or a cancel request sent to the action server
-
-for(int i=1; i&lt;=goal-&gt;order; i++)
-    &#123;
-      // Confirm action cancellation from action client
-      if (as_.isPreemptRequested() || !ros::ok())
-      &#123;
-        // Notify action cancellation
-        ROS_INFO(&quot;%s: Preempted&quot;, action_name_.c_str());
-        // Action cancellation and consider action as failure and save to variable
-        as_.setPreempted();
-        success = false;
-        break;
-      &#125;</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/21/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%8A%82%E7%82%B9%EF%BC%88Node%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/21/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%8A%82%E7%82%B9%EF%BC%88Node%EF%BC%89/" class="post-title-link" itemprop="url">ROS学习（二）----节点（Node）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-21 22:22:34" itemprop="dateCreated datePublished" datetime="2020-06-21T22:22:34+08:00">2020-06-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:11:59" itemprop="dateModified" datetime="2020-08-06T23:11:59+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h5 id="重新返回去熟悉操作，加深印象。"><a href="#重新返回去熟悉操作，加深印象。" class="headerlink" title="重新返回去熟悉操作，加深印象。"></a>重新返回去熟悉操作，加深印象。</h5><p>这次将更条理地，细致地梳理遇到的一系列问题。<br><img src="./images/2311292133.png" alt="1592790092(1).png"></p>
-<h1 id="Package-结构"><a href="#Package-结构" class="headerlink" title="Package 结构"></a>Package 结构</h1><ul>
-<li>package<ul>
-<li>src<ul>
-<li>example_node.cpp</li>
-</ul>
-</li>
-<li>…</li>
-<li>package.xml</li>
-<li>CMakList.txt</li>
-</ul>
-</li>
-</ul>
-<h1 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h1><ol>
-<li>${workspace}/src 下使用命令 <code>catkin_create_pkg $&#123;pkg_name&#125; $&#123;dependencis&#125;</code></li>
-<li>进入package(后用pkg代替）编写文件。（cpp || py）</li>
-<li>编辑 <strong>package.xml &amp;&amp; CMakList.txt</strong></li>
-<li><code>catkin_make</code></li>
-</ol>
-<h1 id="流程中的一些细节问题"><a href="#流程中的一些细节问题" class="headerlink" title="流程中的一些细节问题"></a>流程中的一些细节问题</h1><h2 id="2-编写cpp"><a href="#2-编写cpp" class="headerlink" title="2. 编写cpp"></a>2. 编写cpp</h2><h3 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h3><p>默认两个参数：    <strong>int argc, char**argv</strong><br>初始化时会用到： <code>ros::init(argc,argv,&quot;node_name&quot;);</code></p>
-<h3 id="回调参数"><a href="#回调参数" class="headerlink" title="回调参数"></a>回调参数</h3><p>ConstPtr&amp; 与 Ptr&amp; 的区别：<br>ConstPtr 常类型msg ，减少传值次数。<br><a target="_blank" rel="noopener" href="https://answers.ros.org/question/212857/what-is-constptr/">https://answers.ros.org/question/212857/what-is-constptr/</a></p>
-<h2 id="3-编辑package-xml-amp-amp-CMakeList-txt"><a href="#3-编辑package-xml-amp-amp-CMakeList-txt" class="headerlink" title="3.编辑package.xml &amp;&amp; CMakeList.txt"></a>3.编辑package.xml &amp;&amp; CMakeList.txt</h2><h3 id="使用了msg文件"><a href="#使用了msg文件" class="headerlink" title="使用了msg文件"></a>使用了msg文件</h3><h4 id="由于ROS通过message-generation-对-msg文件编译以及-message-runtime-在节点中运行有关-msg文件。所以需要在package-xml中加入编译依赖及运行依赖"><a href="#由于ROS通过message-generation-对-msg文件编译以及-message-runtime-在节点中运行有关-msg文件。所以需要在package-xml中加入编译依赖及运行依赖" class="headerlink" title="由于ROS通过message_generation 对.msg文件编译以及 message_runtime 在节点中运行有关.msg文件。所以需要在package.xml中加入编译依赖及运行依赖"></a>由于ROS通过message_generation 对.msg文件编译以及 message_runtime 在节点中运行有关.msg文件。所以需要在<strong>package.xml</strong>中加入编译依赖及运行依赖</h4><pre><code>&lt;build_depend&gt;message_generation&lt;/build_depend&gt;
- &lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;</code></pre>
-<h4 id="同时需要修改-CMakeList-txt"><a href="#同时需要修改-CMakeList-txt" class="headerlink" title="同时需要修改 CMakeList.txt"></a>同时需要修改 <strong>CMakeList.txt</strong></h4><h5 id="在catkin-make编译找依赖包的位置，写入”message-generation”"><a href="#在catkin-make编译找依赖包的位置，写入”message-generation”" class="headerlink" title="在catkin_make编译找依赖包的位置，写入”message_generation”"></a>在catkin_make编译找依赖包的位置，写入”message_generation”</h5><pre><code>find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  std_msgs
-  message_generation
-)</code></pre>
-<h5 id="在添加编译msg的步骤（generate-message-即在devel下生成对应的-demo-h"><a href="#在添加编译msg的步骤（generate-message-即在devel下生成对应的-demo-h" class="headerlink" title="在添加编译msg的步骤（generate_message(), 即在devel下生成对应的  demo.h"></a>在添加编译msg的步骤（generate_message(), 即在devel下生成对应的  <strong>demo.h</strong></h5><pre><code>add_message_files(
-  FILES
-  demo.msg
-)
-generate_messages(DEPENDENCIES std_msgs)</code></pre>
-<h5 id="添加Node运行时依赖-message-runtime"><a href="#添加Node运行时依赖-message-runtime" class="headerlink" title="添加Node运行时依赖 message_runtime"></a>添加Node运行时依赖 <strong>message_runtime</strong></h5><pre><code>catkin_package(
- CATKIN_DEPENDS roscpp std_msgs message_runtime
-)</code></pre>
-<h5 id="若需编译为二进制文件"><a href="#若需编译为二进制文件" class="headerlink" title="若需编译为二进制文件"></a>若需编译为二进制文件</h5><pre><code># 仅为demo， 前两行为 将cpp文件编译为
-
-# 添加 二进制文件         二进制文件名    cpp文件位置
-add_executable(fbnq_subscriber src/topic_subscriber.cpp)
-# add_executable是对于构建之后要创建的可执行文件的选项。
-
-# 二进制文件引用         二进制文件名         对应上面填写的
-target_link_libraries(fbnq_subscriber $&#123;catkin_LIBRARIES&#125;)
-# target_link_libraries是在创建特定的可执行文件之前将库和可执行文件进行链接的 选项。 
-
-# 添加依赖                    二进制文件名         依赖编译后的message
-add_dependencies(fbnq_subscriber $&#123;PROJECT_NAME&#125;_generate_messages_cpp)
-# add_dependencies是一个首选项，是在构建库和可执行文件之前创建依赖消息和dynamic reconfigure的设置。</code></pre>
-<h6 id="需要注意俩个add-dependencies添加的依赖是不一样的"><a href="#需要注意俩个add-dependencies添加的依赖是不一样的" class="headerlink" title="需要注意俩个add_dependencies添加的依赖是不一样的"></a>需要注意俩个<strong>add_dependencies</strong>添加的依赖是不一样的</h6><p><img src="./images/1204245160.png" alt="微信截图_20200622093823.png"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/17/%E6%97%A7%E7%AC%94%E8%AE%B0%E6%9C%AC%E5%AE%89%E8%A3%85Ubuntu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/17/%E6%97%A7%E7%AC%94%E8%AE%B0%E6%9C%AC%E5%AE%89%E8%A3%85Ubuntu/" class="post-title-link" itemprop="url">旧笔记本安装Ubuntu</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-17 18:21:59" itemprop="dateCreated datePublished" datetime="2020-06-17T18:21:59+08:00">2020-06-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:10:15" itemprop="dateModified" datetime="2020-08-06T23:10:15+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><ol>
-<li>制作安装盘</li>
-<li>安装<h1 id="所需物品"><a href="#所需物品" class="headerlink" title="所需物品"></a>所需物品</h1></li>
-<li>8G以上 U盘</li>
-<li>一台旧笔记本</li>
-</ol>
-<h1>制作安装盘</h1>
-## pre:
-下载镜像: [点击链接][1]
-使用uiso9_pe烧录到U盘：
-1. [点击下载][2]
-2. 选择好镜像文件后，选择**“写入硬盘映像”**
-
-<h1>安装</h1>
-1. 插入U盘，修改BIOS
-2. 按引导一步一步进行，全部清除原分区
-3. 等待
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1203,7 +1106,7 @@ add_dependencies(fbnq_subscriber $&#123;PROJECT_NAME&#125;_generate_messages_cpp
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1325,6 +1228,8 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
 
 
 
+
+  
 
   
 
