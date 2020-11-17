@@ -190,6 +190,131 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89-%E5%8F%82%E6%95%B0%E4%B8%8Elaunch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89-%E5%8F%82%E6%95%B0%E4%B8%8Elaunch/" class="post-title-link" itemprop="url">ROS学习（四）----参数与launch</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-25 16:31:49" itemprop="dateCreated datePublished" datetime="2020-06-25T16:31:49+08:00">2020-06-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:14:13" itemprop="dateModified" datetime="2020-08-06T23:14:13+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h1><p>launch是一个xml语法的文件</p>
+<h1 id="功能："><a href="#功能：" class="headerlink" title="功能："></a>功能：</h1><p>方便启动多个节点，设置参数</p>
+<h1 id="基本构成"><a href="#基本构成" class="headerlink" title="基本构成"></a>基本构成</h1><ul>
+<li>&lt;launch&gt;<ul>
+<li>&lt;node&gt;</li>
+<li>&lt;param&gt;</li>
+<li>&lt;arg&gt;</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<p>xml中缩进没有实际意义，但为了表达清楚各标签间关系，使用缩进。</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><node></h1><p>demo: 运行”package-name”中”executable-name”的二进制文件，</p>
+<ul>
+<li>ROS中注册节点名为”node-name”（会自动修改ros::init()中的内容）</li>
+</ul>
+<pre><code>&lt;node pkg=&quot;package-name&quot;type=&quot;executable-name&quot; name=&quot;node-name&quot; /&gt;</code></pre>
+<h2 id="其他常用参数"><a href="#其他常用参数" class="headerlink" title="其他常用参数"></a><node>其他常用参数</h2><ul>
+<li><p>output = “screen”：将节点的标准输出打印到终端屏幕，默认输出为日志文档；</p>
+</li>
+<li><p>respawn = “true”：复位属性，该节点停止时，会自动重启，默认为false；</p>
+</li>
+<li><p>required = “true”：必要节点，当该节点终止时，launch文件中的其他节点也被终止；</p>
+</li>
+<li><p>ns = “namespace”：命名空间，为节点内的相对名称添加命名空间前缀；</p>
+</li>
+<li><p>args = “arguments”：节点需要的输入参数。</p>
+</li>
+</ul>
+<h2 id="参数标签"><a href="#参数标签" class="headerlink" title="参数标签"></a>参数标签</h2><ol>
+<li>&lt;param&gt;<br>parameter是ROS系统运行中的参数，存储在参数服务器中。在launch文件中通过<param>元素加载parameter；launch文件执行后，parameter就加载到ROS的参数服务器上了。每个活跃的节点都可以通过 **ros::param::get()**接口来获取parameter的值，用户也可以在终端中通过rosparam命令获得parameter的值。</li>
+</ol>
+<p>&lt;param&gt;的使用方法如下：</p>
+<pre><code>&lt;param name=&quot;output_frame&quot; value=&quot;odom&quot;/&gt;</code></pre>
+<p>运行launch文件后，output_frame这个parameter的值就设置为odom，并且加载到ROS参数服务器上了。但是在很多复杂的系统中，参数的数量很多，如果这样一个一个的设置会非常麻烦，ROS也为我们提供了另外一种类似的参数加载方式——<rosparam>：</p>
+<pre><code>&lt;rosparamfile=&quot;$(find 2dnav_pr2)/config/costmap_common_params.yaml&quot; command=&quot;load&quot; ns=&quot;local_costmap&quot; /&gt;</code></pre>
+<p>&lt;rosparam&gt;可以帮助我们将一个yaml格式文件中的参数全部加载到ROS参数服务器中，需要设置command属性为“load”，还可以选择设置命名空间“ns”。</p>
+<ol start="2">
+<li><p>&lt;arg&gt;<br>&lt;arg&gt; 为launch文件内部参数。<br>设置argument使用<arg>标签元素，语法如下：</p>
+ <arg name=”arg-name” default=”arg-value”/>
+
+</li>
+</ol>
+<p>launch文件中需要使用到argument时，可以使用如下方式调用：</p>
+<pre><code>&lt;paramname=&quot;foo&quot; value=&quot;$(arg arg-name)&quot; /&gt;
+&lt;node name=&quot;node&quot; pkg=&quot;package&quot; type=&quot;type &quot;args=&quot;$(arg arg-name)&quot; /&gt;</code></pre>
+<h2 id="其他标签"><a href="#其他标签" class="headerlink" title="其他标签"></a>其他标签</h2><ol>
+<li><p>引用其他launch文件（嵌套复用）<br>在复杂的系统当中，launch文件往往有很多，这些launch文件之间也会存在依赖关系。如果需要直接复用一个已有launch文件中的内容，可以使用<include>标签包含其他launch文件，这和C语言中的include几乎是一样的。</p>
+ <include file="$(dirname)/other.launch" />
+
+</li>
+</ol>
+<p>总而言之，launch是ROS框架中非常实用、灵活的功能，它类似于一种高级编程语言，可以帮助我们管理启动系统时的方方面面。在使用ROS的过程中，很多情况下我们并不需要编写大量代码，仅需要使用已有的功能包，编辑一下launch文件，就可以完成很多机器人功能。</p>
+<ol start="2">
+<li>重映射</li>
+</ol>
+<p>ROS的设计目标是提高代码的复用率，所以ROS社区中的很多功能包我们都可以拿来直接使用，而不需要关注功能包的内部实现。那么问题就来了，别人功能包的接口不一定和我们的系统兼容呀？</p>
+<p>ROS提供一种重映射的机制，简单来说就是取别名，类似于C++中的别名机制，我们不需要修改别人功能包的接口，只需要将接口名称重映射一下，取个别名，我们的系统就认识了（接口的数据类型必须相同）。launch文件中的<remap>标签可以帮我们实现这个重映射的功能。</p>
+<p>比如turtlebot的键盘控制节点，发布的速度控制指令话题可能是/turtlebot/cmd_vel，但是我们自己的机器人订阅的速度控制话题是/cmd_vel，这个时候使用<remap>就可以轻松解决问题，将/turtlebot /cmd_vel重映射为/cmd_vel，我们的机器人就可以接收到速度控制指令了：</p>
+<pre><code>&lt;remap from=&quot;/turtlebot/cmd_vel&quot;to=&quot;/cmd_vel&quot;/&gt;</code></pre>
+<p>重映射机制在ROS中的使用非常广泛，也非常重要，方法不止这一种，也可以在终端rosrun命令中实现重映射，大家一定要理解好这种机制。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89-action/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1419,77 +1544,6 @@ exit # 退出root用户</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/05/02/Git%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/02/Git%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Git命令学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-02 16:58:59" itemprop="dateCreated datePublished" datetime="2020-05-02T16:58:59+08:00">2020-05-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 22:58:38" itemprop="dateModified" datetime="2020-08-06T22:58:38+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="./images/403841589.jpg" alt="(1).jpg"></p>
-<h2 id="仓库结构："><a href="#仓库结构：" class="headerlink" title="仓库结构："></a>仓库结构：</h2><p><img src="./images/2772529628.jpg" alt="1588409468(1).jpg"></p>
-<h2 id="基础操作："><a href="#基础操作：" class="headerlink" title="基础操作："></a>基础操作：</h2><p><img src="./images/2137430414.jpg" alt="1588409521(1).jpg"></p>
-<h2 id="常用操作："><a href="#常用操作：" class="headerlink" title="常用操作："></a>常用操作：</h2><p><img src="./images/896156408.jpg" alt="1588409858(1).jpg"></p>
-<p>多人协作情况下的细节：</p>
-<p>为了减少冲突的产生，可以先将master <strong>merge</strong> 到自己的分支，之后再merge 到master</p>
-<p><a href="./images/364696890.pdf">导图下载</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1561,7 +1615,7 @@ exit # 退出root用户</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>欧美影视下载</title>
+      <link href="/2020/11/17/mgdl/"/>
+      <url>/2020/11/17/mgdl/</url>
+      
+        <content type="html"><![CDATA[<h3 id="不论是观影还是下载影片，都推荐在PC端进行"><a href="#不论是观影还是下载影片，都推荐在PC端进行" class="headerlink" title="不论是观影还是下载影片，都推荐在PC端进行"></a>不论是观影还是下载影片，都推荐在PC端进行</h3><h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><ul><li>下载种子或获取磁力链接</li><li>将以上提交服务器开始下载</li><li>将文件拉回本地</li><li>删除远端文件</li></ul><h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><ul><li><p>下载种子或获取磁力链接</p><ul><li>开启代理</li><li>打开<a href="https://rarbgprx.org/torrents.php?category=movies">https://rarbgprx.org/torrents.php?category=movies</a></li><li>左侧选择要搜索的类目（例如电影或是TV Show）</li><li>中间搜索你想要看的电影或节目，注意一定要用英文名<ul><li>例如：少年的你 则搜索 Better Days</li><li>不知道英文名可以先百度</li></ul></li><li>搜索完在下面根据名称日期预览图等挑选一个，单击之后会跳到详情页面</li><li>第一行<strong>Torrent</strong>，点击旁边的链接就可以下载种子文件，右边红色小磁铁就是磁力链接。（建议使用种子）</li></ul></li><li><p>将以上提交服务器开始下载</p><ul><li>浏览器新开标签页打开<a href="https://u.nu/mgdl">https://u.nu/mgdl</a>（MG Download）</li><li>AriaNg认证<ul><li>左边标签选择<strong>Aria2Ng</strong>设置，然后在页面左上找到<strong>全局</strong>旁边的<strong>RPC</strong>选项卡，单击</li><li>Aria2 RPC 密钥一栏填写<strong>657286</strong>，刷新页面</li></ul></li><li>创建下载任务<ul><li>页面左上找到<strong>新建</strong>,单击</li><li><strong>立即下载</strong>按钮旁边有文件夹字样，单击上传刚刚下载好的种子文件</li><li><strong>立即下载</strong></li></ul></li><li>等待下载完成<ul><li>下载速度取决于资源热度</li></ul></li></ul></li><li><p>将文件拉回本地</p><ul><li>再次打开<a href="https://u.nu/mgdl">https://u.nu/mgdl</a></li><li>点击左侧菜单栏最后一项<strong>文件管理</strong></li><li>登陆<ul><li>账号： <strong>ccaa</strong></li><li>密码： <strong>admin</strong></li></ul></li><li>找到自己的文件<ul><li>单击，底色变蓝说明已经选中</li><li>右上角点击下载图标，开始下载</li></ul></li><li>下载完成<ul><li>请将下载完的文件删除，因为服务器外存有限</li><li>选中，点击右上垃圾桶按钮即可</li></ul></li></ul></li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Q-learning</title>
       <link href="/2020/10/08/Q-learning/"/>
       <url>/2020/10/08/Q-learning/</url>
