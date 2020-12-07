@@ -22,19 +22,19 @@
     var CONFIG = {"hostname":"1b.mk","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Cause经常使用端口服务，同时可能非法退出，所以整理一下有关端口占用及解除的命令。 查看占用netstat -anl | grep &quot;80&quot; # 或者 lsof -i:80 解除占用kill -9 pid or name  # 通过pid或进程名杀掉，-9表示显示执行结果 # 相关命令 killall killall apt apt-get  # 结束所有 apt apt-g">
+  <meta name="description" content="跟着作者流程先来一遍Vue 安装及demo页Vue官方教程   安装Vue-cli   安装nodejs(为了安装需要用的npm) vue-cli12npm install -g vue-cli# 该方式安装的是2.9版本  3.x及以上版本安装 1npm install -g @vue&#x2F;cli 新版本可以使用图形化界面初始化项目，并加入了项目健康监控的内容。  构建前端项目1234#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux--端口">
-<meta property="og:url" content="https://1b.mk/2020/06/16/Linux-%E7%AB%AF%E5%8F%A3/index.html">
+<meta property="og:title" content="White-Jotter">
+<meta property="og:url" content="https://1b.mk/2020/12/05/White-Jotter/index.html">
 <meta property="og:site_name" content="One Bottle of Milk">
-<meta property="og:description" content="Cause经常使用端口服务，同时可能非法退出，所以整理一下有关端口占用及解除的命令。 查看占用netstat -anl | grep &quot;80&quot; # 或者 lsof -i:80 解除占用kill -9 pid or name  # 通过pid或进程名杀掉，-9表示显示执行结果 # 相关命令 killall killall apt apt-get  # 结束所有 apt apt-g">
+<meta property="og:description" content="跟着作者流程先来一遍Vue 安装及demo页Vue官方教程   安装Vue-cli   安装nodejs(为了安装需要用的npm) vue-cli12npm install -g vue-cli# 该方式安装的是2.9版本  3.x及以上版本安装 1npm install -g @vue&#x2F;cli 新版本可以使用图形化界面初始化项目，并加入了项目健康监控的内容。  构建前端项目1234#">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-16T13:33:44.000Z">
-<meta property="article:modified_time" content="2020-08-06T15:09:23.007Z">
+<meta property="article:published_time" content="2020-12-05T05:09:44.000Z">
+<meta property="article:modified_time" content="2020-12-05T05:30:21.082Z">
 <meta property="article:author" content="二茂铁Fe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://1b.mk/2020/06/16/Linux-%E7%AB%AF%E5%8F%A3/">
+<link rel="canonical" href="https://1b.mk/2020/12/05/White-Jotter/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>Linux--端口 | One Bottle of Milk</title>
+  <title>White-Jotter | One Bottle of Milk</title>
   
 
 
@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/16/Linux-%E7%AB%AF%E5%8F%A3/">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/12/05/White-Jotter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.ico">
@@ -206,7 +206,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Linux--端口
+          White-Jotter
         </h1>
 
         <div class="post-meta">
@@ -215,16 +215,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-06-16 21:33:44" itemprop="dateCreated datePublished" datetime="2020-06-16T21:33:44+08:00">2020-06-16</time>
+              <time title="创建时间：2020-12-05 13:09:44 / 修改时间：13:30:21" itemprop="dateCreated datePublished" datetime="2020-12-05T13:09:44+08:00">2020-12-05</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:09:23" itemprop="dateModified" datetime="2020-08-06T23:09:23+08:00">2020-08-06</time>
-              </span>
 
           
 
@@ -237,13 +231,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Cause"><a href="#Cause" class="headerlink" title="Cause"></a>Cause</h2><p>经常使用端口服务，同时可能非法退出，所以整理一下有关端口占用及解除的命令。</p>
-<h3 id="查看占用"><a href="#查看占用" class="headerlink" title="查看占用"></a>查看占用</h3><pre><code>netstat -anl | grep &quot;80&quot;
-# 或者
-lsof -i:80</code></pre>
-<h3 id="解除占用"><a href="#解除占用" class="headerlink" title="解除占用"></a>解除占用</h3><pre><code>kill -9 pid or name  # 通过pid或进程名杀掉，-9表示显示执行结果
-# 相关命令 killall
-killall apt apt-get  # 结束所有 apt apt-get 进程</code></pre>
+        <h1 id="跟着作者流程先来一遍"><a href="#跟着作者流程先来一遍" class="headerlink" title="跟着作者流程先来一遍"></a><a target="_blank" rel="noopener" href="https://learner.blog.csdn.net/article/details/88926242">跟着作者流程先来一遍</a></h1><h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><ul>
+<li>安装及demo页<br><a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/">Vue官方教程</a></li>
+</ul>
+<ol>
+<li>安装Vue-cli</li>
+</ol>
+<ul>
+<li>安装nodejs(为了安装需要用的npm)</li>
+<li>vue-cli<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br><span class="line"># 该方式安装的是2.9版本</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>3.x及以上版本安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue&#x2F;cli</span><br></pre></td></tr></table></figure>
+<p>新版本可以使用图形化界面初始化项目，并加入了项目健康监控的内容。</p>
+<ol start="2">
+<li>构建前端项目<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 进入工作目录</span><br><span class="line">vue init webpack projectName</span><br><span class="line"># webpack 为模板项目</span><br><span class="line"># 默认则一路回车</span><br></pre></td></tr></table></figure></li>
+</ol>
 
     </div>
 
@@ -288,12 +291,12 @@ killall apt apt-get  # 结束所有 apt apt-get 进程</code></pre>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/11/ROS%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="ROS基本学习（一）">
-      <i class="fa fa-chevron-left"></i> ROS基本学习（一）
+    <a href="/2020/12/02/mysql%E5%AD%A6%E4%B9%A0/" rel="prev" title="mysql学习">
+      <i class="fa fa-chevron-left"></i> mysql学习
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/06/17/%E6%97%A7%E7%AC%94%E8%AE%B0%E6%9C%AC%E5%AE%89%E8%A3%85Ubuntu/" rel="next" title="旧笔记本安装Ubuntu">
-      旧笔记本安装Ubuntu <i class="fa fa-chevron-right"></i>
+    <a href="/2020/12/07/Server%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="next" title="Server常用命令">
+      Server常用命令 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -354,7 +357,7 @@ killall apt apt-get  # 结束所有 apt apt-get 进程</code></pre>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cause"><span class="nav-number">1.</span> <span class="nav-text">Cause</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%8D%A0%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">查看占用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%99%A4%E5%8D%A0%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">解除占用</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B7%9F%E7%9D%80%E4%BD%9C%E8%80%85%E6%B5%81%E7%A8%8B%E5%85%88%E6%9D%A5%E4%B8%80%E9%81%8D"><span class="nav-number">1.</span> <span class="nav-text">跟着作者流程先来一遍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue"><span class="nav-number">1.1.</span> <span class="nav-text">Vue</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -510,7 +513,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : '1b.mk',
       owner       : 'Ermaotie',
       admin       : ['Ermaotie'],
-      id          : 'c9eb4829ae461067b13897e0fcb255de',
+      id          : 'ddbe2b6f570613a7b7aae4d5e8f97a00',
         language: 'zh-CN',
       distractionFreeMode: true
     });
