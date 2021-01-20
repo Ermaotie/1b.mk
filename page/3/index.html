@@ -190,6 +190,837 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89-%E5%8F%82%E6%95%B0%E4%B8%8Elaunch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89-%E5%8F%82%E6%95%B0%E4%B8%8Elaunch/" class="post-title-link" itemprop="url">ROS学习（四）----参数与launch</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-25 16:31:49" itemprop="dateCreated datePublished" datetime="2020-06-25T16:31:49+08:00">2020-06-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:14:13" itemprop="dateModified" datetime="2020-08-06T23:14:13+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h1><p>launch是一个xml语法的文件</p>
+<h1 id="功能："><a href="#功能：" class="headerlink" title="功能："></a>功能：</h1><p>方便启动多个节点，设置参数</p>
+<h1 id="基本构成"><a href="#基本构成" class="headerlink" title="基本构成"></a>基本构成</h1><ul>
+<li>&lt;launch&gt;<ul>
+<li>&lt;node&gt;</li>
+<li>&lt;param&gt;</li>
+<li>&lt;arg&gt;</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<p>xml中缩进没有实际意义，但为了表达清楚各标签间关系，使用缩进。</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><node></h1><p>demo: 运行”package-name”中”executable-name”的二进制文件，</p>
+<ul>
+<li>ROS中注册节点名为”node-name”（会自动修改ros::init()中的内容）</li>
+</ul>
+<pre><code>&lt;node pkg=&quot;package-name&quot;type=&quot;executable-name&quot; name=&quot;node-name&quot; /&gt;</code></pre>
+<h2 id="其他常用参数"><a href="#其他常用参数" class="headerlink" title="其他常用参数"></a><node>其他常用参数</h2><ul>
+<li><p>output = “screen”：将节点的标准输出打印到终端屏幕，默认输出为日志文档；</p>
+</li>
+<li><p>respawn = “true”：复位属性，该节点停止时，会自动重启，默认为false；</p>
+</li>
+<li><p>required = “true”：必要节点，当该节点终止时，launch文件中的其他节点也被终止；</p>
+</li>
+<li><p>ns = “namespace”：命名空间，为节点内的相对名称添加命名空间前缀；</p>
+</li>
+<li><p>args = “arguments”：节点需要的输入参数。</p>
+</li>
+</ul>
+<h2 id="参数标签"><a href="#参数标签" class="headerlink" title="参数标签"></a>参数标签</h2><ol>
+<li>&lt;param&gt;<br>parameter是ROS系统运行中的参数，存储在参数服务器中。在launch文件中通过<param>元素加载parameter；launch文件执行后，parameter就加载到ROS的参数服务器上了。每个活跃的节点都可以通过 **ros::param::get()**接口来获取parameter的值，用户也可以在终端中通过rosparam命令获得parameter的值。</li>
+</ol>
+<p>&lt;param&gt;的使用方法如下：</p>
+<pre><code>&lt;param name=&quot;output_frame&quot; value=&quot;odom&quot;/&gt;</code></pre>
+<p>运行launch文件后，output_frame这个parameter的值就设置为odom，并且加载到ROS参数服务器上了。但是在很多复杂的系统中，参数的数量很多，如果这样一个一个的设置会非常麻烦，ROS也为我们提供了另外一种类似的参数加载方式——<rosparam>：</p>
+<pre><code>&lt;rosparamfile=&quot;$(find 2dnav_pr2)/config/costmap_common_params.yaml&quot; command=&quot;load&quot; ns=&quot;local_costmap&quot; /&gt;</code></pre>
+<p>&lt;rosparam&gt;可以帮助我们将一个yaml格式文件中的参数全部加载到ROS参数服务器中，需要设置command属性为“load”，还可以选择设置命名空间“ns”。</p>
+<ol start="2">
+<li><p>&lt;arg&gt;<br>&lt;arg&gt; 为launch文件内部参数。<br>设置argument使用<arg>标签元素，语法如下：</p>
+ <arg name=”arg-name” default=”arg-value”/>
+
+</li>
+</ol>
+<p>launch文件中需要使用到argument时，可以使用如下方式调用：</p>
+<pre><code>&lt;paramname=&quot;foo&quot; value=&quot;$(arg arg-name)&quot; /&gt;
+&lt;node name=&quot;node&quot; pkg=&quot;package&quot; type=&quot;type &quot;args=&quot;$(arg arg-name)&quot; /&gt;</code></pre>
+<h2 id="其他标签"><a href="#其他标签" class="headerlink" title="其他标签"></a>其他标签</h2><ol>
+<li><p>引用其他launch文件（嵌套复用）<br>在复杂的系统当中，launch文件往往有很多，这些launch文件之间也会存在依赖关系。如果需要直接复用一个已有launch文件中的内容，可以使用<include>标签包含其他launch文件，这和C语言中的include几乎是一样的。</p>
+ <include file="$(dirname)/other.launch" />
+
+</li>
+</ol>
+<p>总而言之，launch是ROS框架中非常实用、灵活的功能，它类似于一种高级编程语言，可以帮助我们管理启动系统时的方方面面。在使用ROS的过程中，很多情况下我们并不需要编写大量代码，仅需要使用已有的功能包，编辑一下launch文件，就可以完成很多机器人功能。</p>
+<ol start="2">
+<li>重映射</li>
+</ol>
+<p>ROS的设计目标是提高代码的复用率，所以ROS社区中的很多功能包我们都可以拿来直接使用，而不需要关注功能包的内部实现。那么问题就来了，别人功能包的接口不一定和我们的系统兼容呀？</p>
+<p>ROS提供一种重映射的机制，简单来说就是取别名，类似于C++中的别名机制，我们不需要修改别人功能包的接口，只需要将接口名称重映射一下，取个别名，我们的系统就认识了（接口的数据类型必须相同）。launch文件中的<remap>标签可以帮我们实现这个重映射的功能。</p>
+<p>比如turtlebot的键盘控制节点，发布的速度控制指令话题可能是/turtlebot/cmd_vel，但是我们自己的机器人订阅的速度控制话题是/cmd_vel，这个时候使用<remap>就可以轻松解决问题，将/turtlebot /cmd_vel重映射为/cmd_vel，我们的机器人就可以接收到速度控制指令了：</p>
+<pre><code>&lt;remap from=&quot;/turtlebot/cmd_vel&quot;to=&quot;/cmd_vel&quot;/&gt;</code></pre>
+<p>重映射机制在ROS中的使用非常广泛，也非常重要，方法不止这一种，也可以在终端rosrun命令中实现重映射，大家一定要理解好这种机制。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89-action/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89-action/" class="post-title-link" itemprop="url">ROS学习（三）----action</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-25 15:20:05" itemprop="dateCreated datePublished" datetime="2020-06-25T15:20:05+08:00">2020-06-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:13:32" itemprop="dateModified" datetime="2020-08-06T23:13:32+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在了解了service与topic这两种较为简单的通信之后，继续学习一种新的交互方式—-action</p>
+<h1 id="文件构成"><a href="#文件构成" class="headerlink" title="文件构成"></a>文件构成</h1><p>action文件以**.action**为后缀，其内容与service相似，多了过程中的反馈（Feedback）</p>
+<pre><code># demo.action
+# define goal
+int32 demo_goal
+---
+# define result
+int[] demo_res
+---
+# define feedback
+int[] demo_fb</code></pre>
+<h1 id="编译action"><a href="#编译action" class="headerlink" title="编译action"></a>编译action</h1><p>编译action文件为头文件时，</p>
+<p><strong>CMakeList.txt</strong>中需要添加activelib 及 activelib_msgs</p>
+<pre><code>find_package(....
+generate_message(activelib_msgs...
+catkin_package(LIBRARIES ...
+               CATKIN_DEPENDS actionlib actionlib_msgs roscpp std_msgs ...
+               DEPENDS BOOST
+               )</code></pre>
+<h1 id="cpp中调用action文件与actionlib"><a href="#cpp中调用action文件与actionlib" class="headerlink" title="cpp中调用action文件与actionlib"></a>cpp中调用action文件与actionlib</h1><pre><code>// 以demo.action为例
+#include&lt;demoAction.h&gt;
+
+//调用actionlib
+
+//server端
+#include&lt;actionlib/simple_action_server.h&gt;
+
+//client端
+#include&lt;actionlib/simple_action_client.h&gt; // action library header files
+#inclued&lt;actionlib/terminal_state.h&gt; //action_goals status files</code></pre>
+<h1 id="需要注意的细节"><a href="#需要注意的细节" class="headerlink" title="需要注意的细节"></a>需要注意的细节</h1><ol>
+<li><p>Client<br> // Action Client Declaration (Action Name: ros_tutorial_action)<br>   actionlib::SimpleActionClient&lt;ros_tutorials_action::FibonacciAction&gt; ac(“ros_tutorial_action”, true);<br>//client 端不需要节点句柄， true表示不需要ros::spin();,因此循环等待服务为：</p>
+<p> ac.waitForServer()</p>
+</li>
+<li><p>Server<br>// 句柄需在action_sercer 创建之前被创建<br>ros::NodeHandle nh_;  // Node handle declaration<br>actionlib::SimpleActionServer&lt;ros_tutorials_action::FibonacciAction&gt; as_;</p>
+</li>
+</ol>
+<p>// 初始化as_时，会自动获取client发出action文件中的goal的地址</p>
+<pre><code>public:
+  // Initialize action server (Node handle, action name, action callback function)
+  FibonacciAction(std::string name) :
+    as_(nh_, name, boost::bind(&amp;FibonacciAction::executeCB, this, _1), false),
+    action_name_(name)
+  &#123;
+    as_.start();
+  &#125;
+......</code></pre>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/30e79d2a8f7d">bind绑定函数</a></p>
+<p>关于请求的细节：</p>
+<pre><code>// 确认请求存在且非preempted
+// Preempted - Processing of the goal was canceled by either another goal, 
+//             or a cancel request sent to the action server
+
+for(int i=1; i&lt;=goal-&gt;order; i++)
+    &#123;
+      // Confirm action cancellation from action client
+      if (as_.isPreemptRequested() || !ros::ok())
+      &#123;
+        // Notify action cancellation
+        ROS_INFO(&quot;%s: Preempted&quot;, action_name_.c_str());
+        // Action cancellation and consider action as failure and save to variable
+        as_.setPreempted();
+        success = false;
+        break;
+      &#125;</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/21/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%8A%82%E7%82%B9%EF%BC%88Node%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/21/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89-%E8%8A%82%E7%82%B9%EF%BC%88Node%EF%BC%89/" class="post-title-link" itemprop="url">ROS学习（二）----节点（Node）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-21 22:22:34" itemprop="dateCreated datePublished" datetime="2020-06-21T22:22:34+08:00">2020-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:11:59" itemprop="dateModified" datetime="2020-08-06T23:11:59+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="重新返回去熟悉操作，加深印象。"><a href="#重新返回去熟悉操作，加深印象。" class="headerlink" title="重新返回去熟悉操作，加深印象。"></a>重新返回去熟悉操作，加深印象。</h5><p>这次将更条理地，细致地梳理遇到的一系列问题。<br><img src="./images/2311292133.png" alt="1592790092(1).png"></p>
+<h1 id="Package-结构"><a href="#Package-结构" class="headerlink" title="Package 结构"></a>Package 结构</h1><ul>
+<li>package<ul>
+<li>src<ul>
+<li>example_node.cpp</li>
+</ul>
+</li>
+<li>…</li>
+<li>package.xml</li>
+<li>CMakList.txt</li>
+</ul>
+</li>
+</ul>
+<h1 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h1><ol>
+<li>${workspace}/src 下使用命令 <code>catkin_create_pkg $&#123;pkg_name&#125; $&#123;dependencis&#125;</code></li>
+<li>进入package(后用pkg代替）编写文件。（cpp || py）</li>
+<li>编辑 <strong>package.xml &amp;&amp; CMakList.txt</strong></li>
+<li><code>catkin_make</code></li>
+</ol>
+<h1 id="流程中的一些细节问题"><a href="#流程中的一些细节问题" class="headerlink" title="流程中的一些细节问题"></a>流程中的一些细节问题</h1><h2 id="2-编写cpp"><a href="#2-编写cpp" class="headerlink" title="2. 编写cpp"></a>2. 编写cpp</h2><h3 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h3><p>默认两个参数：    <strong>int argc, char**argv</strong><br>初始化时会用到： <code>ros::init(argc,argv,&quot;node_name&quot;);</code></p>
+<h3 id="回调参数"><a href="#回调参数" class="headerlink" title="回调参数"></a>回调参数</h3><p>ConstPtr&amp; 与 Ptr&amp; 的区别：<br>ConstPtr 常类型msg ，减少传值次数。<br><a target="_blank" rel="noopener" href="https://answers.ros.org/question/212857/what-is-constptr/">https://answers.ros.org/question/212857/what-is-constptr/</a></p>
+<h2 id="3-编辑package-xml-amp-amp-CMakeList-txt"><a href="#3-编辑package-xml-amp-amp-CMakeList-txt" class="headerlink" title="3.编辑package.xml &amp;&amp; CMakeList.txt"></a>3.编辑package.xml &amp;&amp; CMakeList.txt</h2><h3 id="使用了msg文件"><a href="#使用了msg文件" class="headerlink" title="使用了msg文件"></a>使用了msg文件</h3><h4 id="由于ROS通过message-generation-对-msg文件编译以及-message-runtime-在节点中运行有关-msg文件。所以需要在package-xml中加入编译依赖及运行依赖"><a href="#由于ROS通过message-generation-对-msg文件编译以及-message-runtime-在节点中运行有关-msg文件。所以需要在package-xml中加入编译依赖及运行依赖" class="headerlink" title="由于ROS通过message_generation 对.msg文件编译以及 message_runtime 在节点中运行有关.msg文件。所以需要在package.xml中加入编译依赖及运行依赖"></a>由于ROS通过message_generation 对.msg文件编译以及 message_runtime 在节点中运行有关.msg文件。所以需要在<strong>package.xml</strong>中加入编译依赖及运行依赖</h4><pre><code>&lt;build_depend&gt;message_generation&lt;/build_depend&gt;
+ &lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;</code></pre>
+<h4 id="同时需要修改-CMakeList-txt"><a href="#同时需要修改-CMakeList-txt" class="headerlink" title="同时需要修改 CMakeList.txt"></a>同时需要修改 <strong>CMakeList.txt</strong></h4><h5 id="在catkin-make编译找依赖包的位置，写入”message-generation”"><a href="#在catkin-make编译找依赖包的位置，写入”message-generation”" class="headerlink" title="在catkin_make编译找依赖包的位置，写入”message_generation”"></a>在catkin_make编译找依赖包的位置，写入”message_generation”</h5><pre><code>find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+  message_generation
+)</code></pre>
+<h5 id="在添加编译msg的步骤（generate-message-即在devel下生成对应的-demo-h"><a href="#在添加编译msg的步骤（generate-message-即在devel下生成对应的-demo-h" class="headerlink" title="在添加编译msg的步骤（generate_message(), 即在devel下生成对应的  demo.h"></a>在添加编译msg的步骤（generate_message(), 即在devel下生成对应的  <strong>demo.h</strong></h5><pre><code>add_message_files(
+  FILES
+  demo.msg
+)
+generate_messages(DEPENDENCIES std_msgs)</code></pre>
+<h5 id="添加Node运行时依赖-message-runtime"><a href="#添加Node运行时依赖-message-runtime" class="headerlink" title="添加Node运行时依赖 message_runtime"></a>添加Node运行时依赖 <strong>message_runtime</strong></h5><pre><code>catkin_package(
+ CATKIN_DEPENDS roscpp std_msgs message_runtime
+)</code></pre>
+<h5 id="若需编译为二进制文件"><a href="#若需编译为二进制文件" class="headerlink" title="若需编译为二进制文件"></a>若需编译为二进制文件</h5><pre><code># 仅为demo， 前两行为 将cpp文件编译为
+
+# 添加 二进制文件         二进制文件名    cpp文件位置
+add_executable(fbnq_subscriber src/topic_subscriber.cpp)
+# add_executable是对于构建之后要创建的可执行文件的选项。
+
+# 二进制文件引用         二进制文件名         对应上面填写的
+target_link_libraries(fbnq_subscriber $&#123;catkin_LIBRARIES&#125;)
+# target_link_libraries是在创建特定的可执行文件之前将库和可执行文件进行链接的 选项。 
+
+# 添加依赖                    二进制文件名         依赖编译后的message
+add_dependencies(fbnq_subscriber $&#123;PROJECT_NAME&#125;_generate_messages_cpp)
+# add_dependencies是一个首选项，是在构建库和可执行文件之前创建依赖消息和dynamic reconfigure的设置。</code></pre>
+<h6 id="需要注意俩个add-dependencies添加的依赖是不一样的"><a href="#需要注意俩个add-dependencies添加的依赖是不一样的" class="headerlink" title="需要注意俩个add_dependencies添加的依赖是不一样的"></a>需要注意俩个<strong>add_dependencies</strong>添加的依赖是不一样的</h6><p><img src="./images/1204245160.png" alt="微信截图_20200622093823.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/17/%E6%97%A7%E7%AC%94%E8%AE%B0%E6%9C%AC%E5%AE%89%E8%A3%85Ubuntu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/17/%E6%97%A7%E7%AC%94%E8%AE%B0%E6%9C%AC%E5%AE%89%E8%A3%85Ubuntu/" class="post-title-link" itemprop="url">旧笔记本安装Ubuntu</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-17 18:21:59" itemprop="dateCreated datePublished" datetime="2020-06-17T18:21:59+08:00">2020-06-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:10:15" itemprop="dateModified" datetime="2020-08-06T23:10:15+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><ol>
+<li>制作安装盘</li>
+<li>安装<h1 id="所需物品"><a href="#所需物品" class="headerlink" title="所需物品"></a>所需物品</h1></li>
+<li>8G以上 U盘</li>
+<li>一台旧笔记本</li>
+</ol>
+<h1>制作安装盘</h1>
+## pre:
+下载镜像: [点击链接][1]
+使用uiso9_pe烧录到U盘：
+1. [点击下载][2]
+2. 选择好镜像文件后，选择**“写入硬盘映像”**
+
+<h1>安装</h1>
+1. 插入U盘，修改BIOS
+2. 按引导一步一步进行，全部清除原分区
+3. 等待
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/16/Linux-%E7%AB%AF%E5%8F%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/16/Linux-%E7%AB%AF%E5%8F%A3/" class="post-title-link" itemprop="url">Linux--端口</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-16 21:33:44" itemprop="dateCreated datePublished" datetime="2020-06-16T21:33:44+08:00">2020-06-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:09:23" itemprop="dateModified" datetime="2020-08-06T23:09:23+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Cause"><a href="#Cause" class="headerlink" title="Cause"></a>Cause</h2><p>经常使用端口服务，同时可能非法退出，所以整理一下有关端口占用及解除的命令。</p>
+<h3 id="查看占用"><a href="#查看占用" class="headerlink" title="查看占用"></a>查看占用</h3><pre><code>netstat -anl | grep &quot;80&quot;
+# 或者
+lsof -i:80</code></pre>
+<h3 id="解除占用"><a href="#解除占用" class="headerlink" title="解除占用"></a>解除占用</h3><pre><code>kill -9 pid or name  # 通过pid或进程名杀掉，-9表示显示执行结果
+# 相关命令 killall
+killall apt apt-get  # 结束所有 apt apt-get 进程</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/11/ROS%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/11/ROS%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">ROS基本学习（一）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-11 21:48:35" itemprop="dateCreated datePublished" datetime="2020-06-11T21:48:35+08:00">2020-06-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:08:33" itemprop="dateModified" datetime="2020-08-06T23:08:33+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>（看手册看的我迷迷糊糊~</p>
+<h2 id="简单工作构成介绍"><a href="#简单工作构成介绍" class="headerlink" title="简单工作构成介绍"></a>简单工作构成介绍</h2><p>ROS是一个多节点的分布式工作平台，节点之间，当然就会有数据的收发。ROS中通过主节点来将各个分布的节点的数据记录，方便节点间相互联络。ROS运行的最小单位Node。</p>
+<h3 id="Node的工作方式"><a href="#Node的工作方式" class="headerlink" title="Node的工作方式"></a>Node的工作方式</h3><ol>
+<li>Topic<br> 特点：publisher发布，subscriber接收（异步完成）</li>
+<li>Service<br> 特点：client直连server，直至会话结束</li>
+</ol>
+<ul>
+<li>Package<ul>
+<li>node<ul>
+<li>subscriber</li>
+<li>publisher</li>
+<li>server</li>
+<li>client</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="构建过程"><a href="#构建过程" class="headerlink" title="构建过程"></a>构建过程</h2><h3 id="Catkin"><a href="#Catkin" class="headerlink" title="Catkin"></a>Catkin</h3><pre><code>ROS提供了较为友好构建包的过程。</code></pre>
+<ol>
+<li>在工作空间(workspace)下执行：<br> catkin_create_pkg ${your_package_name} ${dependent_packages}</li>
+<li>对应文件夹下，写好文件例如(demo.cpp),之后再修改<strong>CMakeList.txt</strong>中对应参数，及依赖。</li>
+</ol>
+<p>示例文件:</p>
+<pre><code>cmake_minimum_required(VERSION 2.8.3)
+project(learning_launch)
+
+## Compile as C++11, supported in ROS Kinetic and newer
+# add_compile_options(-std=c++11)
+
+## Find catkin macros and libraries
+## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
+## is used, also find other catkin packages
+find_package(catkin REQUIRED)
+
+## System dependencies are found with CMake&#39;s conventions
+# find_package(Boost REQUIRED COMPONENTS system)
+
+
+## Uncomment this if the package has a setup.py. This macro ensures
+## modules and global scripts declared therein get installed
+## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
+# catkin_python_setup()
+
+################################################
+## Declare ROS messages, services and actions ##
+################################################
+
+################################################
+## 声明 ROS 消息 服务 动作 的相关文件           ##
+################################################
+
+## To declare and build messages, services or actions from within this
+## package, follow these steps:
+## * Let MSG_DEP_SET be the set of packages whose message types you use in
+##   your messages/services/actions (e.g. std_msgs, actionlib_msgs, ...).
+## * In the file package.xml:
+##   * add a build_depend tag for &quot;message_generation&quot;
+##   * add a build_depend and a exec_depend tag for each package in MSG_DEP_SET
+##   * If MSG_DEP_SET isn&#39;t empty the following dependency has been pulled in
+##     but can be declared for certainty nonetheless:
+##     * add a exec_depend tag for &quot;message_runtime&quot;
+## * In this file (CMakeLists.txt):
+##   * add &quot;message_generation&quot; and every package in MSG_DEP_SET to
+##     find_package(catkin REQUIRED COMPONENTS ...)
+##   * add &quot;message_runtime&quot; and every package in MSG_DEP_SET to
+##     catkin_package(CATKIN_DEPENDS ...)
+##   * uncomment the add_*_files sections below as needed
+##     and list every .msg/.srv/.action file to be processed
+##   * uncomment the generate_messages entry below
+##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
+
+## Generate messages in the &#39;msg&#39; folder
+# add_message_files(
+#   FILES
+#   Message1.msg
+#   Message2.msg
+# )
+
+## Generate services in the &#39;srv&#39; folder
+# add_service_files(
+#   FILES
+#   Service1.srv
+#   Service2.srv
+# )
+
+## Generate actions in the &#39;action&#39; folder
+# add_action_files(
+#   FILES
+#   Action1.action
+#   Action2.action
+# )
+
+## Generate added messages and services with any dependencies listed here
+# generate_messages(
+#   DEPENDENCIES
+#   std_msgs  # Or other packages containing msgs
+# )
+
+################################################
+## Declare ROS dynamic reconfigure parameters ##
+################################################
+
+## To declare and build dynamic reconfigure parameters within this
+## package, follow these steps:
+## * In the file package.xml:
+##   * add a build_depend and a exec_depend tag for &quot;dynamic_reconfigure&quot;
+## * In this file (CMakeLists.txt):
+##   * add &quot;dynamic_reconfigure&quot; to
+##     find_package(catkin REQUIRED COMPONENTS ...)
+##   * uncomment the &quot;generate_dynamic_reconfigure_options&quot; section below
+##     and list every .cfg file to be processed
+
+## Generate dynamic reconfigure parameters in the &#39;cfg&#39; folder
+# generate_dynamic_reconfigure_options(
+#   cfg/DynReconf1.cfg
+#   cfg/DynReconf2.cfg
+# )
+
+###################################
+## catkin specific configuration ##
+###################################
+## The catkin_package macro generates cmake config files for your package
+## Declare things to be passed to dependent projects
+## INCLUDE_DIRS: uncomment this if your package contains header files
+## LIBRARIES: libraries you create in this project that dependent projects also need
+## CATKIN_DEPENDS: catkin_packages dependent projects also need
+## DEPENDS: system dependencies of this project that dependent projects also need
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES learning_launch
+#  CATKIN_DEPENDS other_catkin_pkg
+#  DEPENDS system_lib
+)
+
+###########
+## Build ##
+###########
+
+## Specify additional locations of header files
+## Your package locations should be listed before other locations
+include_directories(
+# include
+# $&#123;catkin_INCLUDE_DIRS&#125;
+)
+
+## Declare a C++ library
+# add_library($&#123;PROJECT_NAME&#125;
+#   src/$&#123;PROJECT_NAME&#125;/learning_launch.cpp
+# )
+
+## Add cmake target dependencies of the library
+## as an example, code may need to be generated before libraries
+## either from message generation or dynamic reconfigure
+# add_dependencies($&#123;PROJECT_NAME&#125; $&#123;$&#123;PROJECT_NAME&#125;_EXPORTED_TARGETS&#125; $&#123;catkin_EXPORTED_TARGETS&#125;)
+
+## Declare a C++ executable
+## 声明一个C++可执行文件
+## With catkin_make all packages are built within a single CMake context
+## The recommended prefix ensures that target names across packages don&#39;t collide
+# add_executable($&#123;PROJECT_NAME&#125;_node src/learning_launch_node.cpp)
+
+## Rename C++ executable without prefix
+## The above recommended prefix causes long target names, the following renames the
+## target back to the shorter version for ease of user use
+## e.g. &quot;rosrun someones_pkg node&quot; instead of &quot;rosrun someones_pkg someones_pkg_node&quot;
+# set_target_properties($&#123;PROJECT_NAME&#125;_node PROPERTIES OUTPUT_NAME node PREFIX &quot;&quot;)
+
+## Add cmake target dependencies of the executable
+## 添加cmake生成可执行文件的依赖
+## same as for the library above
+# add_dependencies($&#123;PROJECT_NAME&#125;_node $&#123;$&#123;PROJECT_NAME&#125;_EXPORTED_TARGETS&#125; 
+$&#123;catkin_EXPORTED_TARGETS&#125;)
+
+## Specify libraries to link a library or executable target against
+# target_link_libraries($&#123;PROJECT_NAME&#125;_node
+#   $&#123;catkin_LIBRARIES&#125;
+# )
+
+#############
+## Install ##
+#############
+
+# all install targets should use catkin DESTINATION variables
+# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
+
+## Mark executable scripts (Python etc.) for installation
+## in contrast to setup.py, you can choose the destination
+# install(PROGRAMS
+#   scripts/my_python_script
+#   DESTINATION $&#123;CATKIN_PACKAGE_BIN_DESTINATION&#125;
+# )
+
+## Mark executables and/or libraries for installation
+# install(TARGETS $&#123;PROJECT_NAME&#125; $&#123;PROJECT_NAME&#125;_node
+#   ARCHIVE DESTINATION $&#123;CATKIN_PACKAGE_LIB_DESTINATION&#125;
+#   LIBRARY DESTINATION $&#123;CATKIN_PACKAGE_LIB_DESTINATION&#125;
+#   RUNTIME DESTINATION $&#123;CATKIN_PACKAGE_BIN_DESTINATION&#125;
+# )
+
+## Mark cpp header files for installation
+# install(DIRECTORY include/$&#123;PROJECT_NAME&#125;/
+#   DESTINATION $&#123;CATKIN_PACKAGE_INCLUDE_DESTINATION&#125;
+#   FILES_MATCHING PATTERN &quot;*.h&quot;
+#   PATTERN &quot;.svn&quot; EXCLUDE
+# )
+
+## Mark other files for installation (e.g. launch and bag files, etc.)
+# install(FILES
+#   # myfile1
+#   # myfile2
+#   DESTINATION $&#123;CATKIN_PACKAGE_SHARE_DESTINATION&#125;
+# )
+
+#############
+## Testing ##
+#############
+
+## Add gtest based cpp test target and link libraries
+# catkin_add_gtest($&#123;PROJECT_NAME&#125;-test test/test_learning_launch.cpp)
+# if(TARGET $&#123;PROJECT_NAME&#125;-test)
+#   target_link_libraries($&#123;PROJECT_NAME&#125;-test $&#123;PROJECT_NAME&#125;)
+# endif()
+
+## Add folders to be run by python nosetests
+# catkin_add_nosetests(test)</code></pre>
+<ol start="3">
+<li>编译</li>
+</ol>
+<pre><code>cd $&#123;work_space&#125; # 通常为catkin_ws
+catkin_make # 自动编译未被编译的package</code></pre>
+<ol start="4">
+<li>添加环境变量</li>
+</ol>
+<pre><code># catkin_ws下
+source devel/setup.bash</code></pre>
+<p>或者在~目录下设置好自动添加(之后不需要执行第四步）</p>
+<pre><code># ~
+sudo nano .bashrc
+# 文件末添加
+# source /home/&#123;user_name&#125;/&#123;workspace&#125;/devel/setup.bash</code></pre>
+<h3 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h3><p>脑图总结</p>
+<p><a href="./images/2190550263.xmind">ROS learning.xmind</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/05/21/%E7%88%AC%E5%8F%96%E5%BE%AE%E5%8D%9A%E5%B9%B6%E5%B0%86%E6%9C%80%E6%96%B0%E4%B8%80%E6%9D%A1%E6%8E%A8%E9%80%81%E8%87%B3%E5%BE%AE%E4%BF%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -713,581 +1544,10 @@ exit # 退出root用户</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/05/02/Git%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/02/Git%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Git命令学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-02 16:58:59" itemprop="dateCreated datePublished" datetime="2020-05-02T16:58:59+08:00">2020-05-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 22:58:38" itemprop="dateModified" datetime="2020-08-06T22:58:38+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="./images/403841589.jpg" alt="(1).jpg"></p>
-<h2 id="仓库结构："><a href="#仓库结构：" class="headerlink" title="仓库结构："></a>仓库结构：</h2><p><img src="./images/2772529628.jpg" alt="1588409468(1).jpg"></p>
-<h2 id="基础操作："><a href="#基础操作：" class="headerlink" title="基础操作："></a>基础操作：</h2><p><img src="./images/2137430414.jpg" alt="1588409521(1).jpg"></p>
-<h2 id="常用操作："><a href="#常用操作：" class="headerlink" title="常用操作："></a>常用操作：</h2><p><img src="./images/896156408.jpg" alt="1588409858(1).jpg"></p>
-<p>多人协作情况下的细节：</p>
-<p>为了减少冲突的产生，可以先将master <strong>merge</strong> 到自己的分支，之后再merge 到master</p>
-<p><a href="./images/364696890.pdf">导图下载</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/05/02/ROS%E5%AE%89%E8%A3%85%E8%B7%B3%E5%9D%91%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/02/ROS%E5%AE%89%E8%A3%85%E8%B7%B3%E5%9D%91%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">ROS安装跳坑指南</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-02 11:44:15" itemprop="dateCreated datePublished" datetime="2020-05-02T11:44:15+08:00">2020-05-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 22:45:42" itemprop="dateModified" datetime="2020-08-06T22:45:42+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="官方Kinetic版安装链接：http-wiki-ros-org-cn-kinetic-Installation-Ubuntu"><a href="#官方Kinetic版安装链接：http-wiki-ros-org-cn-kinetic-Installation-Ubuntu" class="headerlink" title="官方Kinetic版安装链接：http://wiki.ros.org/cn/kinetic/Installation/Ubuntu"></a>官方Kinetic版安装链接：<a target="_blank" rel="noopener" href="http://wiki.ros.org/cn/kinetic/Installation/Ubuntu">http://wiki.ros.org/cn/kinetic/Installation/Ubuntu</a></h1><p>国内安装真的是太不友好了！！！！！！</p>
-<hr>
-<h2 id="常见问题："><a href="#常见问题：" class="headerlink" title="常见问题："></a>常见问题：</h2><p>1.安装包下载太慢</p>
-<p>更换清华镜像源及软件源<br>镜像源列表：<br><a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/">https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/</a></p>
-<p>重写地址： </p>
-<pre><code>/etc/apt/sources.list</code></pre>
-<p>软件源:   </p>
-<pre><code>sudo sh -c &#39;. /etc/lsb-release &amp;&amp; echo &quot;deb http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;</code></pre>
-<p>2.ros版本不一致<br>查看方法：</p>
-<pre><code>rosdep --version
-apt-cache policy python-rosdep</code></pre>
-<p>版本若不同：<br>需卸载通过pip安装的版本，通过apt安装</p>
-<pre><code>sudo apt-get remove --purge python-rosdep python-pip
-sudo apt-get update
-sudo apt-get install python-rosdep</code></pre>
-<p>3.所有的timeout<br>S：<br>①更改NS服务<br>  所在目录：<code>/etc/resolv.conf</code><br>  推荐更换为谷歌DNS</p>
-<pre><code>nameserver 8.8.8.8
-nameserver 8.8.4.4</code></pre>
-<p>需要注意的是，ns设置将在每次重新启动后刷新</p>
-<p>②直接将域名所指向的IP设为静态(推荐)<br>  首先到<a target="_blank" rel="noopener" href="https://ipaddress.com/">ipaddress.com</a>查找需要设置为静态的域名</p>
-<pre><code>raw.githubusercontent.com
-github.com
-github.global.ssl.fastly.net
-codeload.github.com</code></pre>
-<p>  以ip在前，域名在后的形式写入</p>
-<pre><code>/etc/hosts</code></pre>
-<p>例：</p>
-<pre><code>199.232.68.133    raw.githubusercontent.com</code></pre>
-<p>(安装完成后记得将新写入的静态解析擦除，因为GITHUB服务器的IP会更换）</p>
-<p>③使用代理服务<br>  通过shadowsocks或者V2ray，在ubuntu上可能会更加难以操控，如果你了解如何使用，那么这个办法是最省事的，请到<a target="_blank" rel="noopener" href="http://www.v2ray.com/">v2ray主页</a>查看如何使用。当然也有一个不太成熟的类似V2rayN式GUI界面的软件——<a target="_blank" rel="noopener" href="https://github.com/jiangxufeng/v2rayL">v2rayL</a>(需要设置http以及socket端口转发）</p>
-<p>④安装在哪里？<br>  不推荐安装在虚拟机以及树莓派中，但依然是可以安装的。</p>
-<pre><code>为什么？
-运行前需要编译很多相关文件</code></pre>
-<p>  Ubuntu 16是最适合装Kinetic的版本<br>关于树莓派3/3+/4安装：<br>直接烧好已经安装好ROS Kinetic的镜像：<a target="_blank" rel="noopener" href="https://downloads.ubiquityrobotics.com/pi.html">点击进入</a></p>
-<p>目前遇到坑就这么多了。相关问题详见：<br>孤峰乔木：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzAwNTg5NzUyOA==&mid=2247483943&idx=1&sn=3ad640fd41b2d661ec6f18437219098c&chksm=9b14ee70ac6367661c84490b0e4e98a351e5b05ef65351cca6aceae9adb0caacb7f39a30262e&mpshare=1&scene=1&srcid=0502thJjcK5N6ELd8Ua8wpXy&sharer_sharetime=1588382530879&sharer_shareid=b06e24e740e1d94e6298702d6950f001&key=caf03409094d441c5e7510adb2045afcd862781d483efe22cc617aea57bdf942684599fd07e2140a7829bbf97fa5a7be40543e982acd619505d2a796a27212ecfbb714a4bb1005ab6c17b6aae925654f&ascene=1&uin=MTkwNDAxMTU3OQ==&devicetype=Windows%2010%20x64&version=62090070&lang=zh_CN&exportkey=AzdT3dUghxveKf0UOF5fHoM=&pass_ticket=m9hSQuzboCOWFuzOJube+MaAL74fPQUHB60b7W07TpGfqnF3xXpsaNjkwSfgQvFP">rosdep问题解决</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/04/08/%E8%BD%BB%E9%87%8F%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA(tcpsc)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/08/%E8%BD%BB%E9%87%8F%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA(tcpsc)/" class="post-title-link" itemprop="url">轻量博客搭建（tcpsc)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-08 20:57:18" itemprop="dateCreated datePublished" datetime="2020-04-08T20:57:18+08:00">2020-04-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 22:45:36" itemprop="dateModified" datetime="2020-08-06T22:45:36+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="typecho-caddy-php7-sqlite3-cloudflare"><a href="#typecho-caddy-php7-sqlite3-cloudflare" class="headerlink" title="typecho+caddy+php7+sqlite3+cloudflare"></a><strong>typecho+caddy+php7+sqlite3+cloudflare</strong></h2><p>系统Debian10：<br>执行相应的更新操作,以及安装必要的依赖</p>
-<pre><code>apt update
-apt install lsb-release
-apt install net-tools</code></pre>
-<p>优化打开文件的限制次数，默认的打开文件数是1024：</p>
-<pre><code>echo &#39;* soft nofile 51200
-* hard nofile 51200&#39; &gt;&gt; /etc/security/limits.conf
-
-ulimit -n 51200
-
-echo &#39;fs.file-max = 51200
-net.core.rmem_max = 67108864
-net.core.wmem_max = 67108864
-net.core.netdev_max_backlog = 250000
-net.core.somaxconn = 4096
-net.ipv4.tcp_syncookies = 1
-net.ipv4.tcp_tw_reuse = 1
-net.ipv4.tcp_tw_recycle = 0
-net.ipv4.tcp_fin_timeout = 30
-net.ipv4.tcp_keepalive_time = 1200
-net.ipv4.ip_local_port_range = 10000 65000
-net.ipv4.tcp_max_syn_backlog = 8192
-net.ipv4.tcp_max_tw_buckets = 5000
-net.ipv4.tcp_fastopen = 3
-net.ipv4.tcp_mem = 25600 51200 102400
-net.ipv4.tcp_rmem = 4096 87380 67108864
-net.ipv4.tcp_wmem = 4096 65536 67108864
-net.ipv4.tcp_mtu_probing = 1
-net.ipv4.tcp_congestion_control = hybla&#39; &gt;&gt; /etc/sysctl.conf
-
-sysctl -p</code></pre>
-<p>更新php7.2的软件源</p>
-<pre><code>#添加GPG
-wget -O /etc/apt/trusted.gpg.d/php.gpg https://mirror.xtom.com.hk/sury/php/apt.gpg
-
-#安装apt-transport-https
-apt-get install apt-transport-https
-
-#添加sury软件源
-sh -c &#39;echo &quot;deb https://packages.sury.org/php/ $(lsb_release -sc) main&quot; &gt; /etc/apt/sources.list.d/php.list&#39;
-
-#更新软件源缓存
-apt-get update</code></pre>
-<p>安装php 7.2</p>
-<pre><code>apt install php7.2-fpm php7.2-mysql php7.2-curl php7.2-gd php7.2-mbstring php7.2-xml php7.2-xmlrpc php7.2-zip php7.2-opcache -y</code></pre>
-<p>设置php</p>
-<pre><code>sed -i &#39;s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/&#39; /etc/php/7.2/fpm/php.ini </code></pre>
-<p>php更多命令：</p>
-<pre><code>systemctl restart php7.2-fpm  #重启
-systemctl start php7.2-fpm  #启动
-systemctl stop php7.2-fpm  #关闭
-systemctl status php7.2-fpm  #检查状态</code></pre>
-<hr>
-<p>安装sqlite3</p>
-<pre><code>apt install php7.2-sqlite3
-#创建数据库文件
-mkdir /www/db #示例
-cd /www/db
-sqlite3 testDB.db
-#创建以后权限加满，可读写
-chmod -R 777 /www/db</code></pre>
-<hr>
-<p>安装caddy：</p>
-<pre><code>#下载并解压Caddy
-wget &quot;https://caddyserver.com/download/linux/amd64?license=personal&amp;telemetry=off&quot; -O - | tar -xzv
-
-#新建并写入Caddyfile，目录最好放在Caddy下
-https://yourdomain.com &#123;
-    root /www/web/bulid
-    tls self_signed
-    fastcgi / /run/php/php7.2-fpm.sock php &#123; 
-        ext .php
-        split .php
-        index index.php
-   &#125;
-   proxy /hello 127.0.0.1:10000 &#123;
-      websocket
-      header_upstream -Origin
-    &#125;
-   rewrite &#123;
-        if &#123;path&#125; not_match ^\/admin
-        to &#123;path&#125; &#123;path&#125;/ /index.php?&#123;query&#125;
-    &#125;
-&#125;</code></pre>
-<p>使用自签名证书，<strong>cloudflare的Catch需要设置Full模式。</strong></p>
-<p>启动Caddy：</p>
-<pre><code>./caddy &gt; caddy.log 2&gt;&amp;1 &amp;</code></pre>
-<p>相关命令：</p>
-<pre><code>启动：systemctl start caddy
-停止：systemctl stop caddy
-重启：systemctl restart caddy</code></pre>
-<hr>
-<p>安装typecho：</p>
-<pre><code>#下载
-wget --no-check-certificate https://github.com/typecho/typecho/releases/download/v1.1-17.10.30-release/1.1.17.10.30.-release.tar.gz -O typecho.tar.gz
-tar -zxvf typecho.tar.gz -C  /www/web
-#使用本Blog模板
-wget --no-check-certificate  https://github.com/Zisbusy/Akina-for-Typecho/archive/v3.0.zip
-mv /Akina-for-Typecho-3.0/Akina/*  /www/web/build/usr/themes/Akina</code></pre>
-<h2 id="大功告成！"><a href="#大功告成！" class="headerlink" title="大功告成！"></a><strong>大功告成！</strong></h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/04/08/ssh%E8%BF%9E%E6%8E%A5%E6%A0%91%E8%8E%93%E6%B4%BE-xrdp%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/08/ssh%E8%BF%9E%E6%8E%A5%E6%A0%91%E8%8E%93%E6%B4%BE-xrdp%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/" class="post-title-link" itemprop="url">ssh连接树莓派&xrdp远程连接</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-08 20:26:18" itemprop="dateCreated datePublished" datetime="2020-04-08T20:26:18+08:00">2020-04-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 22:46:13" itemprop="dateModified" datetime="2020-08-06T22:46:13+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>买回来一块树莓派裸板，没想到ssh连接花了这么长时间。</p>
-<p>首先是在写入系统时需要创建一个名为ssh的文件夹。16年之后的版本都需要这样。因为默认的ssh的关闭的。<br>之后是利用一根网线，直接接到猫的网口，再用<strong>Advanced IP Scanner</strong>扫描找到raspberry的IP地址。</p>
-<h2 id="ssh连接："><a href="#ssh连接：" class="headerlink" title="ssh连接："></a>ssh连接：</h2><pre><code>username：pi
-password：raspberry</code></pre>
-<h2 id="连接Wifi："><a href="#连接Wifi：" class="headerlink" title="连接Wifi："></a>连接Wifi：</h2><pre><code>sudo raspi-config</code></pre>
-<p>2 Network Options<br>然后回车，输入SSID，password。</p>
-<pre><code>sudo reboot</code></pre>
-<p>重启自动链接。</p>
-<h2 id="改为静态IP："><a href="#改为静态IP：" class="headerlink" title="改为静态IP："></a>改为静态IP：</h2><p>（否则每次重启后连接都得先找地址）</p>
-<pre><code>sudo nano /etc/dhcpcd.conf</code></pre>
-<p>在文件末加入</p>
-<pre><code>interface eth0
-# 指定静态IP，/24表示子网掩码为 255.255.255.0
-static ip_address=192.168.1.20/24
-# 路由器/网关IP地址
-static routers=192.168.1.1
-# 手动自定义DNS服务器
-static domain_name_servers=114.114.114.114</code></pre>
-<p>WiFi则将第一行改为：</p>
-<pre><code>interface wlan0</code></pre>
-<p>重启生效：</p>
-<pre><code>sudo reboot</code></pre>
-<h2 id="安装xrdp："><a href="#安装xrdp：" class="headerlink" title="安装xrdp："></a>安装xrdp：</h2><p>首先更改软件源：</p>
-<pre><code>sudo vi /etc/apt/sources.list</code></pre>
-<p>更新：</p>
-<pre><code>sudo apt-get upgrade</code></pre>
-<p>安装xrdp：</p>
-<pre><code>sudo apt-get install xrdp</code></pre>
-<p>安装完成后即可通过win10自带的远程桌面连接。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/04/02/ipv6%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BF%E9%97%AEipv4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/02/ipv6%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BF%E9%97%AEipv4/" class="post-title-link" itemprop="url">ipv6服务器访问ipv4</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-02 12:42:50" itemprop="dateCreated datePublished" datetime="2020-04-02T12:42:50+08:00">2020-04-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 22:46:51" itemprop="dateModified" datetime="2020-08-06T22:46:51+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>首先编辑DNS，改为DNS64地址：</p>
-<pre><code>sudo vi /etc/resolv.conf
-nameserver 2001:67c:2b0::4
-nameserver 2001:67c:27e4::64</code></pre>
-<p>然后编辑/etc/yum/pluginconf.d/fastestmirror.conf，改一下</p>
-<pre><code>enable=0</code></pre>
-<p>更新软件源：</p>
-<pre><code>sudo vi /etc/apt/sources.list</code></pre>
-<p>编辑为相应源，并更新。</p>
-<pre><code>sudo apt-get update</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/03/15/Pyinstaller%E6%89%93%E5%8C%85%E6%97%B6%E5%8F%AF%E8%83%BD%E4%BC%9A%E9%80%A0%E6%88%90%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/15/Pyinstaller%E6%89%93%E5%8C%85%E6%97%B6%E5%8F%AF%E8%83%BD%E4%BC%9A%E9%80%A0%E6%88%90%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Pyinstaller打包时可能会造成的一些问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-15 13:42:56" itemprop="dateCreated datePublished" datetime="2020-03-15T13:42:56+08:00">2020-03-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 22:47:19" itemprop="dateModified" datetime="2020-08-06T22:47:19+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>pyinstaller基本参数</p>
-<pre><code>-D 零散文件，不完全打包
--F 只有exe
--w 窗口
---nonconsole 无控制台</code></pre>
-<p>在打包过程中的问题：</p>
-<p>pyinstaller 在打包过程中，不会将import的库中引用或依赖的文件一并打包，所以我们需要通过-D来打包，并从python文件夹中找到对应的库，复制到打包后的文件夹中</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1355,7 +1615,7 @@ nameserver 2001:67c:27e4::64</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1397,7 +1657,7 @@ nameserver 2001:67c:27e4::64</code></pre>
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
