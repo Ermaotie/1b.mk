@@ -190,6 +190,238 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/07/18/ROS%E4%BB%BF%E7%9C%9F%EF%BC%88simulation%EF%BC%89-%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/18/ROS%E4%BB%BF%E7%9C%9F%EF%BC%88simulation%EF%BC%89-%E4%B8%80/" class="post-title-link" itemprop="url">ROS仿真（simulation）(一)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-18 16:51:07" itemprop="dateCreated datePublished" datetime="2020-07-18T16:51:07+08:00">2020-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:17:32" itemprop="dateModified" datetime="2020-08-06T23:17:32+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>SLAM仿真建图：</p>
+<pre><code># 打开一个地图文件，并带有一个仿真机器人
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+# 运行SLAM启动文件，启动RVIZ
+roslaunch turtlebot3_slam turtlebot3_slam.launch
+# 运行键盘控制
+roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+# 建图完毕后，保存地图
+rosrun map_server map_saver -f ~/map
+# 保存到~/ 下 “上面的~/是指 topic中”</code></pre>
+<p>仿真导航：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 打开一个地图文件，并带有一个仿真机器人</span><br><span class="line">roslaunch turtlebot3_gazebo turtlebot3_world.launch</span><br><span class="line"></span><br><span class="line"># 依赖于保存好的map.pgm</span><br><span class="line">roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:&#x3D;$HOME&#x2F;map.yaml</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>要给出初始数据，请按照说明进行操作。 <ul>
+<li>点击2D Pose Estimate按钮</li>
+<li>通过单击并拖动地图上的方向来设置地图上的大致位置。</li>
+<li>箭头的每个点意味着TurtleBot3的预期姿势。激光扫描仪将在近似位置绘制线条，如地图上的墙壁。</li>
+<li>要发送目标位置：</li>
+<li>点击 2D Nav Goal按钮</li>
+<li>点击地图上你想要的TurtleBot驱动和拖动方向TurtleBot应该指向地方</li>
+<li>要在机器人到达目标位置之前停止机器人，请发送TurtleBot3的当前位置。</li>
+</ul>
+</li>
+</ul>
+<p>需要已经启动机器人</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/07/18/Ubuntu-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/18/Ubuntu-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC/" class="post-title-link" itemprop="url">Ubuntu 开机自启运行脚本</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-18 09:32:55" itemprop="dateCreated datePublished" datetime="2020-07-18T09:32:55+08:00">2020-07-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:15:17" itemprop="dateModified" datetime="2020-08-06T23:15:17+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>将脚本文件放在 <code>/etc/init.d/</code> 下<br>脚本格式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">### BEGIN INIT INFO</span><br><span class="line"># Provides:          1bmk</span><br><span class="line"># Required-Start:    $local_fs $network</span><br><span class="line"># Required-Stop:     $local_fs</span><br><span class="line"># Default-Start:     2 3 4 5</span><br><span class="line"># Default-Stop:      0 1 6</span><br><span class="line"># Short-Description: self define auto start</span><br><span class="line"># Description:       self define auto start</span><br><span class="line">### END INIT INFO</span><br><span class="line">sudo ntpdate pool.ntp.org</span><br></pre></td></tr></table></figure></li>
+<li>加权限 <code> sudo chmod +x demo.sh</code></li>
+<li><code>sudo update-rc.d demo.sh defaults 90</code></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/07/15/turtlebot%E5%AE%89%E8%A3%85BUG-ubuntu18-04-melodic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/15/turtlebot%E5%AE%89%E8%A3%85BUG-ubuntu18-04-melodic/" class="post-title-link" itemprop="url">turtlebot安装BUG (ubuntu18.04+melodic)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-15 17:08:37" itemprop="dateCreated datePublished" datetime="2020-07-15T17:08:37+08:00">2020-07-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:16:33" itemprop="dateModified" datetime="2020-08-06T23:16:33+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>教程：<a target="_blank" rel="noopener" href="https://www.ncnynl.com/archives/201903/2884.html">创客制造</a></p>
+<p>第一个错是缺失urdf（– Could NOT find urdf (missing: urdf_DIR)）：<br>解决方法：先卸载：sudo apt-get remove ros-melodic-*<br>再重新按照官方教程安装：<a target="_blank" rel="noopener" href="http://wiki.ros.org/melodic/Installation/Ubuntu">http://wiki.ros.org/melodic/Installation/Ubuntu</a></p>
+<p>第二个错：Could not find a package configuration file provided by “ecl_threads” with any of the following names:<br>解决方法：sudo apt-get install ros-melodic-ecl-threads<br>第三个错：Could not find a package configuration file provided by ‘ecl_geometry’<br>解决方法：sudo apt-get install ros-melodic-ecl-geometry</p>
+<p>第四个错：Could not find a package configuration file provided by “kobuki_dock_drive”<br>解决方法：sudo apt-get install ros-melodic-kobuki-dock-drive</p>
+<p>第五个错：No package ‘orocos-bfl’ found<br>解决方法：sudo apt-get install ros-melodic-bfl</p>
+<p>第六个错：Could not find a package configuration file provided by “kobuki_driver”<br>解决方法：sudo apt-get install ros-melodic-kobuki-driver</p>
+<p>第七个错： Could not find a package configuration file provided by “ecl_streams” with any of the following names:<br>解决方法：sudo apt-get install ros-melodic-ecl-streams</p>
+<p>第八个错：/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp: In member function ‘void keyop_core::KeyOpCore::remoteKeyInputReceived(const KeyboardInput&amp;)’:<br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:274:28: error: ‘const KeyboardInput {aka const struct kobuki_msgs::KeyboardInput_}’ has no member named ‘pressed_key’; did you mean ‘pressedKey’?<br>processKeyboardInput(key.pressed_key);<br>^<del>~<br>pressedKey<br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp: In member function ‘void keyop_core::KeyOpCore::processKeyboardInput(char)’:<br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:293:38: error: ‘KEYCODE_LEFT’ is not a member of ‘kobuki_msgs::KeyboardInput {aka kobuki_msgs::KeyboardInput_}’<br>case kobuki_msgs::KeyboardInput::KEYCODE_LEFT:<br>^</del><br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:298:38: error: ‘KEYCODE_RIGHT’ is not a member of ‘kobuki_msgs::KeyboardInput {aka kobuki_msgs::KeyboardInput_}’<br>case kobuki_msgs::KeyboardInput::KEYCODE_RIGHT:<br>^<del>~<br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:303:38: error: ‘KEYCODE_UP’ is not a member of ‘kobuki_msgs::KeyboardInput {aka kobuki_msgs::KeyboardInput_}’<br>case kobuki_msgs::KeyboardInput::KEYCODE_UP:<br>^</del><br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:308:38: error: ‘KEYCODE_DOWN’ is not a member of ‘kobuki_msgs::KeyboardInput {aka kobuki_msgs::KeyboardInput_}’<br>case kobuki_msgs::KeyboardInput::KEYCODE_DOWN:<br>^<del>~<br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:313:38: error: ‘KEYCODE_SPACE’ is not a member of ‘kobuki_msgs::KeyboardInput {aka kobuki_msgs::KeyboardInput_}’<br>case kobuki_msgs::KeyboardInput::KEYCODE_SPACE:<br>^</del><br>kobuki_keyop/src/CMakeFiles/keyop.dir/build.make:62: recipe for target ‘kobuki_keyop/src/CMakeFiles/keyop.dir/keyop_core.cpp.o’ failed</p>
+<p>所需文件：<br><a href="./images/2954616753.zip">pud.zip</a><br>若编译出现错误：   processKeyboardInput(key.pressed_key);<br>     case kobuki_msgs::KeyboardInput::KEYCODE_LEFT:<br>    case kobuki_msgs::KeyboardInput::KEYCODE_RIGHT:<br>     …<br>请用包中的文件替换kobuki_node/src/library/slot_callbacks.cpp和/kobuki_keyop/src/keyop_core.cpp</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89-%E5%8F%82%E6%95%B0%E4%B8%8Elaunch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1114,436 +1346,6 @@ sudo nano .bashrc
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/05/12/float%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/12/float%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8/" class="post-title-link" itemprop="url">float在计算机中的存储</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-12 10:54:04" itemprop="dateCreated datePublished" datetime="2020-05-12T10:54:04+08:00">2020-05-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:05:23" itemprop="dateModified" datetime="2020-08-06T23:05:23+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在了解float之前，先来复习一下int的存储方式</p>
-<h2 id="int"><a href="#int" class="headerlink" title="int"></a>int</h2><ul>
-<li>原码</li>
-<li>补码</li>
-<li>反码<br>以在32的计算机系统中为例，<br>一个int占四个字节，也就是32位<br>第一位表示正负(0正1负），后面三十一位表示数。<br>因此，int的范围是 $-2^{32}$(100000…000) 到 $2^{32}-1$(01111…11111)<h2 id="float"><a href="#float" class="headerlink" title="float"></a>float</h2></li>
-<li>组成<ul>
-<li>正负 第一位</li>
-<li>数位 往后八位</li>
-<li>数值 余下23位</li>
-</ul>
-</li>
-</ul>
-<p>float可以看作是二进制的科学计数法，例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">10.25</span><br><span class="line">#采用二进制表示</span><br><span class="line">1010.01</span><br><span class="line">1.01001*2**3</span><br></pre></td></tr></table></figure>
-<p>接下来会以这个例子作为介绍。</p>
-<h3 id="正负-0正1负"><a href="#正负-0正1负" class="headerlink" title="正负 0正1负"></a>正负 0正1负</h3><h3 id="数位-采取“平移”的思想来理解"><a href="#数位-采取“平移”的思想来理解" class="headerlink" title="数位 采取“平移”的思想来理解"></a>数位 采取“平移”的思想来理解</h3><p>八位二进制数均为正可表达的数的范围是0~2**9-1，我们以127为界限，也就是将127看作0，划分正负，即将指数部分划为正负两部分。</p>
-<pre><code># 1.01001*2**3
-# 指数为3
-# 127+3=130
-# 130 = 2**7+2**1
-# 数位区应写为
-# 01000010</code></pre>
-<h3 id="数值，小数部分"><a href="#数值，小数部分" class="headerlink" title="数值，小数部分"></a>数值，小数部分</h3><p>因为第一位数基本上(有例外)都是一，所以我们省去。</p>
-<pre><code># 1.01001*2**3
-# 省去变为 01001，则后面的数位由0补齐。</code></pre>
-<p>最终表达为<br>0 01000010 010010000…000<br>再来一个例子</p>
-<pre><code># 0.5
-# 0 01111110 100000...00</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/05/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85%E5%B9%B6%E4%BD%BF%E7%94%A8v2ray%E5%AE%A2%E6%88%B7%E7%AB%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85%E5%B9%B6%E4%BD%BF%E7%94%A8v2ray%E5%AE%A2%E6%88%B7%E7%AB%AF/" class="post-title-link" itemprop="url">树莓派安装并使用v2ray客户端</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-11 23:58:03" itemprop="dateCreated datePublished" datetime="2020-05-11T23:58:03+08:00">2020-05-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:04:43" itemprop="dateModified" datetime="2020-08-06T23:04:43+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>用v2ray也有一两年的时间了，用的挺舒服添加订阅就完事儿了，也没有心思去深挖一下为什么我用的是V2rayN？还要下载内核？恰好这几天折腾树莓派，想用走一下代理，结果并没有想的那么直接。</p>
-<h3 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h3><ul>
-<li>调整v2ray的config.json<ul>
-<li>写好inbounds &amp; outbounds</li>
-</ul>
-</li>
-<li>使用proxychains4<ul>
-<li>下载安装</li>
-<li>配置代理</li>
-<li>实现命令</li>
-</ul>
-</li>
-</ul>
-<h4 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h4><pre><code>git clone https://github.com/rofl0r/proxychains-ng.git
-sudo su - root
-# 到下载目录编译安装
-./configure
-make &amp;&amp; make install</code></pre>
-<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><pre><code>cp ./src/proxychains.conf /etc/proxychains.conf
-
-vim /etc/proxychains.conf
-
-# 将最后的 socks4 127.0.0.1 9095 改为 socks5  127.0.0.1 1080(与v2ray 对应即可）
-
-exit # 退出root用户</code></pre>
-<h4 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h4><p>想通过代理的命令前加<strong>proxychains4</strong></p>
-<pre><code>proxychains4 curl ip.sb</code></pre>
-<h2 id="浅入了解"><a href="#浅入了解" class="headerlink" title="浅入了解"></a>浅入了解</h2><p>v2rayN其实就像是博客的主题，让BLOG变得平易近人，好看又方便。真正实现功能的是v2ray-core。</p>
-<h3 id="v2ray-core"><a href="#v2ray-core" class="headerlink" title="v2ray-core"></a>v2ray-core</h3><p>从config.json入手，我们来看看v2ray-core运行。</p>
-<pre><code># config.json
-&#123;
-  &quot;log&quot;: &#123;
-    &quot;access&quot;: &quot;&quot;,
-    &quot;error&quot;: &quot;&quot;,
-    &quot;loglevel&quot;: &quot;warning&quot;
-  &#125;,
-  &quot;inbounds&quot;: [
-    &#123;
-      &quot;port&quot;: 10808,
-      &quot;listen&quot;: &quot;0.0.0.0&quot;,
-      &quot;protocol&quot;: &quot;socks&quot;,
-      &quot;sniffing&quot;: &#123;
-        &quot;enabled&quot;: true,
-        &quot;destOverride&quot;: [
-          &quot;http&quot;,
-          &quot;tls&quot;
-        ]
-      &#125;,
-      &quot;settings&quot;: &#123;
-        &quot;auth&quot;: &quot;noauth&quot;,
-        &quot;udp&quot;: true,
-        &quot;ip&quot;: null,
-        &quot;clients&quot;: [
-      &#123;
-        &quot;id&quot;: &quot;b831381d-6324-4d53-ad4f-8cda48b30811&quot;,  // 用户 ID，客户端与服务器必须相同
-        &quot;alterId&quot;: 64
-      &#125;
-    ]
-      &#125;,
-      &quot;streamSettings&quot;: null
-    &#125;
-  ],
-  &quot;outbounds&quot;: [
-    &#123;
-      &quot;tag&quot;: &quot;proxy&quot;,
-      &quot;protocol&quot;: &quot;vmess&quot;,
-      &quot;settings&quot;: &#123;
-        &quot;vnext&quot;: [
-          &#123;
-            &quot;address&quot;: &quot;google.com&quot;,
-            &quot;port&quot;: 80,
-            &quot;users&quot;: [
-              &#123;
-                &quot;id&quot;: &quot;749bf9f9-3423-3666-86ef-87e9b9e2a332&quot;,
-                &quot;alterId&quot;: 0,
-                &quot;email&quot;: &quot;t@t.tt&quot;,
-                &quot;security&quot;: &quot;auto&quot;
-              &#125;
-            ]
-          &#125;
-        ],
-        &quot;servers&quot;: null,
-        &quot;response&quot;: null
-      &#125;,
-      &quot;streamSettings&quot;: &#123;
-        &quot;network&quot;: &quot;ws&quot;,
-        &quot;security&quot;: &quot;&quot;,
-        &quot;tlsSettings&quot;: &#123;
-          &quot;allowInsecure&quot;: true,
-          &quot;serverName&quot;: &quot;d6a5e4d7238acfab4dd366754a9bd95a.wuyiauto.com&quot;
-        &#125;,
-        &quot;tcpSettings&quot;: null,
-        &quot;kcpSettings&quot;: null,
-        &quot;wsSettings&quot;: &#123;
-          &quot;connectionReuse&quot;: true,
-          &quot;path&quot;: &quot;/user&quot;,
-          &quot;headers&quot;: &#123;
-            &quot;Host&quot;: &quot;d6a5e4d7238acfab4dd366754a9bd95a.wuyiauto.com&quot;
-          &#125;
-        &#125;,
-        &quot;httpSettings&quot;: null,
-        &quot;quicSettings&quot;: null
-      &#125;,
-      &quot;mux&quot;: &#123;
-        &quot;enabled&quot;: true
-      &#125;
-    &#125;,
-    &#123;
-      &quot;tag&quot;: &quot;direct&quot;,
-      &quot;protocol&quot;: &quot;freedom&quot;,
-      &quot;settings&quot;: &#123;
-        &quot;vnext&quot;: null,
-        &quot;servers&quot;: null,
-        &quot;response&quot;: null
-      &#125;,
-      &quot;streamSettings&quot;: null,
-      &quot;mux&quot;: null
-    &#125;,
-    &#123;
-      &quot;tag&quot;: &quot;block&quot;,
-      &quot;protocol&quot;: &quot;blackhole&quot;,
-      &quot;settings&quot;: &#123;
-        &quot;vnext&quot;: null,
-        &quot;servers&quot;: null,
-        &quot;response&quot;: &#123;
-          &quot;type&quot;: &quot;http&quot;
-        &#125;
-      &#125;,
-      &quot;streamSettings&quot;: null,
-      &quot;mux&quot;: null
-    &#125;
-  ],
-  &quot;dns&quot;: null,
-  &quot;routing&quot;: &#123;
-    &quot;domainStrategy&quot;: &quot;IPIfNonMatch&quot;,
-    &quot;rules&quot;: []
-  &#125;
-&#125;</code></pre>
-<p>v2ray-core可调参数真的是太灵活了，简单看几个主要的叭~</p>
-<h3 id="inbounds-and-outbounds"><a href="#inbounds-and-outbounds" class="headerlink" title="inbounds and outbounds"></a>inbounds and outbounds</h3><h4 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h4><p>简单来说就是“出界”和“入界”。在v2ray中，其实并没有client与server的严格划分。它既可以做服务端，也可以是客户端，有点类似与节点（Node)。<strong>inbound</strong>是如何与上一节点连接，<strong>outbound</strong>是如何与下一节点连接。对于第一个节点，inbound与“浏览器”相连，也就是本地代理，对于最后一个节点，<strong>outbound</strong>与目标网站相连。所有相连的这些桥就是<strong>inbounds</strong>和<strong>outbounds</strong>。</p>
-<pre><code># inbounds
-&quot;port&quot;: 10808, #端口
-&quot;listen&quot;: &quot;0.0.0.0&quot;, #监听地址
-&quot;protocol&quot;: &quot;socks&quot;, # socks协议，浏览器向服务器端发出的数据包被打包成socks。
-&quot;client&quot;: [
-          &#123;
-            &quot;id&quot;: &quot;b831381d-6324-4d53-ad4f-8cda48b30811&quot;,  // 用户 ID，客户端与服务器必须相同
-            &quot;alterId&quot;: 64
-          &#125;
-        ]</code></pre>
-<p>打包成socks后，v2ray收到用预设id加密打包为vmess协议的包。再根据<strong>outbounds</strong>中的参数进行发送。</p>
-<pre><code># outbounds
-&quot;outbounds&quot;: [
-            &#123;
-              &quot;tag&quot;: &quot;proxy&quot;,
-              &quot;protocol&quot;: &quot;vmess&quot;, # 可以看到协议变成了vmess
-              &quot;settings&quot;: &#123;
-                &quot;vnext&quot;: [
-                  &#123;
-                    &quot;address&quot;: &quot;google.com&quot;, # 下一节点地址
-                    &quot;port&quot;: 80, # 端口
-                    &quot;users&quot;: [
-                      &#123;
-                        &quot;id&quot;: &quot;749bf9f9-3423-3666-86ef-87e9b9e2a332&quot;,
-                        &quot;alterId&quot;: 0,
-                        &quot;email&quot;: &quot;t@t.tt&quot;,
-                        &quot;security&quot;: &quot;auto&quot;
-                      &#125;
-                    ]
-                  &#125;
-                ]</code></pre>
-<p>下一节点对上一节点发来的vmess包利用预存的client的id进行解密，解完之后会校验时间，时间一致就会将数据包继续加密成vmess包，转发到下一节点。直至到达目标网站。<br>最后一个节点的outbounds.portocol是freedom，理解为直连叭。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/05/07/MarkDown%E8%BD%BB%E9%87%8F%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/07/MarkDown%E8%BD%BB%E9%87%8F%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">MarkDown轻量标记语言学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-07 14:57:50" itemprop="dateCreated datePublished" datetime="2020-05-07T14:57:50+08:00">2020-05-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:03:29" itemprop="dateModified" datetime="2020-08-06T23:03:29+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="编辑器：Typora"><a href="#编辑器：Typora" class="headerlink" title="编辑器：Typora"></a>编辑器：Typora</h3><p>事实上，Typecho编辑器也默认支持Markdown</p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>语法较为简单且能够直接使用部分html标签，怪不得被众人称之为轻量呢~</p>
-<ul>
-<li>标题<ul>
-<li>推荐使用  # 几个# 就表示几级标题</li>
-</ul>
-</li>
-<li>段落<ul>
-<li>换行：末尾添加两个空格，然后回车</li>
-<li>斜体： *斜体文本*     <em>斜体文本</em></li>
-<li>粗体： **粗体文本**          <strong>粗体文本</strong></li>
-<li>斜体： ***粗斜体文本***      <strong><em>粗斜体文本</em></strong><ul>
-<li>字体中* 均可以用_来代替</li>
-</ul>
-</li>
-<li>删除线：<del>删除线</del>  使用~~在文字两边</li>
-<li>下划线： <u>underline</u> 使用html中的u标签</li>
-<li>脚注： 1b.mk[^Come here and drink a bottle of milk！]</li>
-<li>分隔线 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line">* * *</span><br><span class="line">*****</span><br><span class="line">- - -</span><br><span class="line">----------</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li>区块： &gt;<blockquote>
-<p>这是一个区块</p>
-</blockquote>
-</li>
-<li>代码区块： 四个空格或一个制表符或 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\\&#96;&#96;&#96;javascript(可不填)</span><br><span class="line">\\代码区域</span><br><span class="line">\\&#96;&#96;&#96;</span><br><span class="line">忽略\\</span><br></pre></td></tr></table></figure></li>
-<li>链接： <a href="https://1b.mk/">Demo</a><ul>
-<li>[Demo2][1]<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Demo](https:1b.mk)</span><br><span class="line">[Demo2][1]</span><br><span class="line">[1]: https:&#x2F;&#x2F;1b.mk</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>图片 同 “链接”</li>
-<li>Markdown 制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行。</li>
-</ul>
-<p>基本用法到此处结束~<br>PS:由于该主题对一些语法的展示进行了美化，一些效果会有出入。<br>[^Come here and drink a bottle of milk!]: 来喝一瓶牛奶!!<br>[1]: <a href="https://1b.mk/">https://1b.mk</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1615,7 +1417,7 @@ exit # 退出root用户</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

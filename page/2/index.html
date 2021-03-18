@@ -190,6 +190,753 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/12/05/White-Jotter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/05/White-Jotter/" class="post-title-link" itemprop="url">White-Jotter</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-05 13:09:44" itemprop="dateCreated datePublished" datetime="2020-12-05T13:09:44+08:00">2020-12-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-21 17:56:25" itemprop="dateModified" datetime="2021-01-21T17:56:25+08:00">2021-01-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="跟着作者流程先来一遍"><a href="#跟着作者流程先来一遍" class="headerlink" title="跟着作者流程先来一遍"></a><a target="_blank" rel="noopener" href="https://learner.blog.csdn.net/article/details/88926242">跟着作者流程先来一遍</a></h1><h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><ul>
+<li>安装及demo页<br><a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/">Vue官方教程</a></li>
+</ul>
+<ol>
+<li>安装Vue-cli</li>
+</ol>
+<ul>
+<li>安装nodejs(为了安装需要用的npm)</li>
+<li>vue-cli<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br><span class="line"># 该方式安装的是2.9版本</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>3.x及以上版本安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue&#x2F;cli</span><br></pre></td></tr></table></figure>
+<p>新版本可以使用图形化界面初始化项目，并加入了项目健康监控的内容。</p>
+<ol start="2">
+<li><p>构建前端项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 进入工作目录</span><br><span class="line">vue init webpack projectName</span><br><span class="line"># webpack 为模板项目</span><br><span class="line"># 默认则一路回车</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Vue项目结构分析</p>
+</li>
+</ol>
+<ul>
+<li>Vue Cli<ul>
+<li>build(webpack初始化配置)</li>
+<li>config(项目配置)</li>
+<li>node_modules(项目依赖模块)</li>
+<li><strong>src</strong> <ul>
+<li>assets</li>
+<li><strong>components</strong></li>
+<li>route -&gt; <strong>index.js</strong></li>
+<li>App.vue (根组件)</li>
+<li>main.js(入口)</li>
+</ul>
+</li>
+<li>static</li>
+<li>test</li>
+<li>index.html</li>
+<li>package.json</li>
+</ul>
+</li>
+</ul>
+<h3 id="前端路由与登陆拦截器"><a href="#前端路由与登陆拦截器" class="headerlink" title="前端路由与登陆拦截器"></a>前端路由与登陆拦截器</h3><ol>
+<li><p>前端路由</p>
+<ul>
+<li><p>Hash模式（即含#）</p>
+<p>锚点，改变URL却不请求后端</p>
+</li>
+<li><p>History模式</p>
+<p>使用了 <strong>History API</strong> </p>
+<p>原理： 将页面状态保存到一个对象(state)中，当URL变化时，找到对应的对象，从而还原页面。本来是方便浏览器前进后退的。</p>
+</li>
+</ul>
+</li>
+<li><p>使用 <strong>History</strong> 模式</p>
+<p>src/router/index.js 中添加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mode: <span class="string">&quot;history&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>前后端整合部署</p>
+<ul>
+<li><p>Vue项目文件夹中执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>只有index.html一个页面，为单页面应用</p>
+<p>因此，后端直接访问 <strong>/login</strong> 时服务器后端并没有内容。</p>
+<p>为了获取到我们需要的内容，我们要设法触发前端路由，即在后端添加处理内容，把通过这个 URL 渲染出的 index.html 返回到浏览器。（个人认为是将实际文件路径指向index.html，而页面渲染是依据地址栏中的URL的，因此后端写code的时候只需要将这个页面用index.html补上就可以。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>后端登陆拦截器</p>
+<ul>
+<li><p>简单逻辑</p>
+<p>除login页面，均判断是否登陆，未登录 =&gt; 登陆， 已登录 =&gt; 访问。</p>
+</li>
+<li><p>实现（loginController）</p>
+<ul>
+<li>给session会话记录User值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; LoginController</span><br><span class="line">&#x2F;&#x2F; 返回200前，添加settion</span><br><span class="line"></span><br><span class="line">@Controller</span><br><span class="line">public class LoginController &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    UserService userService;</span><br><span class="line"></span><br><span class="line">    @CrossOrigin</span><br><span class="line">    @PostMapping(value &#x3D; &quot;&#x2F;api&#x2F;login&quot;)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public Result login(@RequestBody User requestUser, HttpSession session) &#123;</span><br><span class="line">        String username &#x3D; requestUser.getUsername();</span><br><span class="line">        username &#x3D; HtmlUtils.htmlEscape(username);</span><br><span class="line"></span><br><span class="line">        User user &#x3D; userService.get(username, requestUser.getPassword());</span><br><span class="line">        if (null &#x3D;&#x3D; user) &#123;</span><br><span class="line">            return new Result(400);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            session.setAttribute(&quot;user&quot;, user);</span><br><span class="line">            return new Result(200);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>LoginIntercepter</p>
+<p>拦截器，在spring boot中，我们可以直接继承拦截器的接口，然后实现 preHandle 方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">package com.evan.wj.interceptor;</span><br><span class="line"></span><br><span class="line">import com.evan.wj.pojo.User;</span><br><span class="line">import org.apache.commons.lang.StringUtils;</span><br><span class="line">import org.springframework.web.servlet.HandlerInterceptor;</span><br><span class="line"></span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import javax.servlet.http.HttpSession;</span><br><span class="line"></span><br><span class="line">public class LoginInterceptor  implements HandlerInterceptor&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean preHandle (HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception &#123;</span><br><span class="line">        HttpSession session &#x3D; httpServletRequest.getSession();</span><br><span class="line">        String contextPath&#x3D;session.getServletContext().getContextPath();</span><br><span class="line">        String[] requireAuthPages &#x3D; new String[]&#123;</span><br><span class="line">                &quot;index&quot;,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        String uri &#x3D; httpServletRequest.getRequestURI();</span><br><span class="line"></span><br><span class="line">        uri &#x3D; StringUtils.remove(uri, contextPath+&quot;&#x2F;&quot;);</span><br><span class="line">        String page &#x3D; uri;</span><br><span class="line"></span><br><span class="line">        if(begingWith(page, requireAuthPages))&#123;</span><br><span class="line">            User user &#x3D; (User) session.getAttribute(&quot;user&quot;);</span><br><span class="line">            if(user&#x3D;&#x3D;null) &#123;</span><br><span class="line">                httpServletResponse.sendRedirect(&quot;login&quot;);</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private boolean begingWith(String page, String[] requiredAuthPages) &#123;</span><br><span class="line">        boolean result &#x3D; false;</span><br><span class="line">        for (String requiredAuthPage : requiredAuthPages) &#123;</span><br><span class="line">            if(StringUtils.startsWith(page, requiredAuthPage)) &#123;</span><br><span class="line">                result &#x3D; true;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>判断 <code>session</code> 中是否存在 <code>user</code> 属性，如果存在就放行，如果不存在就跳转到 <code>login</code> 页面。这里使用了一个路径列表（<code>requireAuthPages</code>），可以在里面写下需要拦截的路径。当然我们也可以拦截所有路径，那样就不用写这么多了，但会有逻辑上的问题，就是你访问了 <code>\login</code> 页面，仍然会需要跳转，这样就会引发多次重定向问题。</p>
+</li>
+<li><p>WebConfigurer</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package com.evan.wj.config;</span><br><span class="line"></span><br><span class="line">import com.evan.wj.interceptor.LoginInterceptor;</span><br><span class="line">import org.springframework.boot.SpringBootConfiguration;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.web.servlet.config.annotation.*;</span><br><span class="line"></span><br><span class="line">@SpringBootConfiguration</span><br><span class="line">public class MyWebConfigurer implements WebMvcConfigurer &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public LoginInterceptor getLoginIntercepter() &#123;</span><br><span class="line">        return new LoginInterceptor();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void addInterceptors(InterceptorRegistry registry)&#123;</span><br><span class="line">        registry.addInterceptor(getLoginIntercepter()).addPathPatterns(&quot;&#x2F;**&quot;).excludePathPatterns(&quot;&#x2F;index.html&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">registry.addInterceptor(getLoginIntercepter()).addPathPatterns(&quot;&#x2F;**&quot;).excludePathPatterns(&quot;&#x2F;index.html&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>这条语句的作用是对所有路径应用拦截器，除了 <code>/index.html</code>。</p>
+<p>之前我们在拦截器 LoginInterceptor 中配置的路径，即 <code>index</code>，触发的时机是在拦截器生效之后。也就是说，我们访问一个 URL，会首先通过 Configurer 判断是否需要拦截，如果需要，才会触发拦截器 LoginInterceptor，根据我们自定义的规则进行再次判断。</p>
+<p><code>/index</code> 与 <code>/index.html</code> 是不同的，也就是说 <code>/index</code> 会触发拦截器而 <code>/index.html</code> 不会，但根据拦截器 LoginInterceptor 中我们定义的判断条件，以 <code>/index</code> 开头的路径都会被转发，包括 <code>index.html</code>。</p>
+<p>因为我们做的是单页面应用，之前通过配置 ErrorPage，实际上访问所有路径都会重定向到 <code>/index.html</code> 。我们直接在浏览器地址栏输入 <code>/index</code> 会触发拦截器，经过拦截器重定向到 <code>/login</code>，然后 <code>/login</code> 再经过 Configurer 的判断，再次触发拦截器，由于不在需要拦截的路径中，所以被放行，页面则重新定向到了 <code>/index.html</code>，如果没有再 Configurer 中取消对 <code>/index.html</code> 的拦截，则会再次触发拦截器，再次重定向到 <code>/login</code>，引发如下错误。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Vuex 与前端登录拦截器</p>
+<p>前面我们使用了后端拦截器，但这种拦截器只有在将前后端项目整合在一起时才能生效，而前后端分离的项目实际上不推荐这么做，接下来我们尝试用前端实现相似的功能。</p>
+</li>
+</ol>
+<p>   实现前端登录器，需要在前端判断用户的登录状态。我们可以像之前那样在组件的 data 中设置一个状态标志，但登录状态应该被视为一个<strong>全局属性</strong>，而不应该只写在某一组件中。所以我们需要引入一个新的工具——Vuex，它是专门为 Vue 开发的状态管理方案，我们可以把需要在各个组件中传递使用的变量、方法定义在这里。之前我一直没有使用它，所以在不同组件传值的问题上十分头疼，要写很多多余的代码来调用不同组件的值，所以推荐大家从一开始就去熟悉这种管理方式。</p>
+<ul>
+<li><p>引入 Vuex</p>
+<p>在我们的项目文件夹中，运行 <code>npm install vuex --save</code>，之后，在 src 目录下新建一个文件夹 store，并在该目录下新建 index.js 文件，在该文件中引入 vue 和 vuex，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import Vuex from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br></pre></td></tr></table></figure>
+
+<p>之后，我们在 index.js 里设置我们需要的状态变量和方法。为了实现登录拦截器，我们需要一个记录用户信息的变量。为了方便日后的扩展（权限认证等），我们使用一个用户对象而不是仅仅使用一个布尔变量。同时，设置一个方法，触发这个方法时可以为我们的用户对象赋值。完整的代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import Vuex from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    user: &#123;</span><br><span class="line">      username: window.localStorage.getItem(&#39;user&#39; || &#39;[]&#39;) &#x3D;&#x3D; null ? &#39;&#39; : JSON.parse(window.localStorage.getItem(&#39;user&#39; || &#39;[]&#39;)).username</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    login (state, user) &#123;</span><br><span class="line">      state.user &#x3D; user</span><br><span class="line">      window.localStorage.setItem(&#39;user&#39;, JSON.stringify(user))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这里我们还用到了 <code>localStorage</code>，即本地存储，在项目打开的时候会判断本地存储中是否有 user 这个对象存在，如果存在就取出来并获得 <code>username</code> 的值，否则则把 <code>username</code> 设置为空。这样我们只要不清除缓存，登录的状态就会一直保存。</p>
+</li>
+<li><p>修改前端路由配置</p>
+<p>为了区分页面是否需要拦截，我们需要修改一下 <code>src\router\index.js</code>，在需要拦截的路由中加一条元数据，设置一个 <code>requireAuth</code> 字段如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     path: &#39;&#x2F;index&#39;,</span><br><span class="line">     name: &#39;AppIndex&#39;,</span><br><span class="line">     component: AppIndex,</span><br><span class="line">     meta: &#123;</span><br><span class="line">       requireAuth: true</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用钩子函数判断是否拦截</p>
+<p>使用 <code>router.beforeEach()</code>，意思是在访问每一个路由前调用。</p>
+<p>打开 <code>src\main.js</code> ，首先添加对 <code>store</code> 的引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#39;#app&#39;,</span><br><span class="line">  render: h &#x3D;&gt; h(App),</span><br><span class="line">  router,</span><br><span class="line">  &#x2F;&#x2F; 注意这里</span><br><span class="line">  store,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: &#39;&lt;App&#x2F;&gt;&#39;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>接着写 <code>beforeEach()</code> 函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) &#x3D;&gt; &#123;</span><br><span class="line">    if (to.meta.requireAuth) &#123;</span><br><span class="line">      if (store.state.user.username) &#123;</span><br><span class="line">        next()</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        next(&#123;</span><br><span class="line">          path: &#39;login&#39;,</span><br><span class="line">          query: &#123;redirect: to.fullPath&#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      next()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>这个的逻辑很简单，首先判断访问的路径是否需要登录，如果需要，判断 <code>store</code> 里有没有存储 <code>user</code> 的信息，如果存在，则放行，否则跳转到登录页面，并存储访问的页面路径（以便在登录后跳转到访问页）。</p>
+</li>
+</ul>
+<pre><code> 完整：
+
+ &lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import Vue from &amp;#39;vue&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;import App from &amp;#39;.&amp;#x2F;App&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;import router from &amp;#39;.&amp;#x2F;router&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;import store from &amp;#39;.&amp;#x2F;store&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;import ElementUI from &amp;#39;element-ui&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;import &amp;#39;element-ui&amp;#x2F;lib&amp;#x2F;theme-chalk&amp;#x2F;index.css&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var axios &amp;#x3D; require(&amp;#39;axios&amp;#39;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;axios.defaults.baseURL &amp;#x3D; &amp;#39;http:&amp;#x2F;&amp;#x2F;localhost:8443&amp;#x2F;api&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Vue.prototype.$axios &amp;#x3D; axios&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Vue.config.productionTip &amp;#x3D; false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Vue.use(ElementUI)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;router.beforeEach((to, from, next) &amp;#x3D;&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (to.meta.requireAuth) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      if (store.state.user.username) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        next()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        next(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          path: &amp;#39;login&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          query: &amp;#123;redirect: to.fullPath&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      next()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;* eslint-disable no-new *&amp;#x2F;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new Vue(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  el: &amp;#39;#app&amp;#39;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  render: h &amp;#x3D;&amp;gt; h(App),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  router,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  store,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  components: &amp;#123; App &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  template: &amp;#39;&amp;lt;App&amp;#x2F;&amp;gt;&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;</code></pre>
+<ul>
+<li><p>修改Login.vue</p>
+<p>之前的登录组件中，我们只是判断后端返回的状态码，如果是 200，就重定向到首页。在经过前面的配置后，我们需要修改一下登录逻辑，以最终实现登录拦截。</p>
+<p>修改后的逻辑如下：</p>
+<p>1.点击登录按钮，向后端发送数据<br>2.受到后端返回的成功代码时，触发 <code>store</code> 中的 <code>login()</code> 方法，把 <code>loginForm</code> 对象传递给 <code>store</code> 中的 <code>user</code> 对象<br>（*这里只是简单的实现，在后端我们可以通过用户名和密码查询数据库，获得 user 表的完整信息，比如用户昵称、用户级别等，返回前端，并传递给 <code>user</code> 对象，以实现更复杂的功能）<br>3.获取登录前页面的路径并跳转，如果该路径不存在，则跳转到首页</p>
+<p>修改后的 <code>login()</code> 方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">login () &#123;</span><br><span class="line">  var _this &#x3D; this</span><br><span class="line">  console.log(this.$store.state)</span><br><span class="line">  this.$axios</span><br><span class="line">    .post(&#39;&#x2F;login&#39;, &#123;</span><br><span class="line">      username: this.loginForm.username,</span><br><span class="line">      password: this.loginForm.password</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(successResponse &#x3D;&gt; &#123;</span><br><span class="line">      if (successResponse.data.code &#x3D;&#x3D;&#x3D; 200) &#123;</span><br><span class="line">        &#x2F;&#x2F; var data &#x3D; this.loginForm</span><br><span class="line">        _this.$store.commit(&#39;login&#39;, _this.loginForm)</span><br><span class="line">        var path &#x3D; this.$route.query.redirect</span><br><span class="line">        this.$router.replace(&#123;path: path &#x3D;&#x3D;&#x3D; &#39;&#x2F;&#39; || path &#x3D;&#x3D;&#x3D; undefined ? &#39;&#x2F;index&#39; : path&#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(failResponse &#x3D;&gt; &#123;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完整：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;body id&#x3D;&quot;poster&quot;&gt;</span><br><span class="line">    &lt;el-form class&#x3D;&quot;login-container&quot; label-position&#x3D;&quot;left&quot;</span><br><span class="line">             label-width&#x3D;&quot;0px&quot;&gt;</span><br><span class="line">      &lt;h3 class&#x3D;&quot;login_title&quot;&gt;系统登录&lt;&#x2F;h3&gt;</span><br><span class="line">      &lt;el-form-item&gt;</span><br><span class="line">        &lt;el-input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;loginForm.username&quot;</span><br><span class="line">                  auto-complete&#x3D;&quot;off&quot; placeholder&#x3D;&quot;账号&quot;&gt;&lt;&#x2F;el-input&gt;</span><br><span class="line">      &lt;&#x2F;el-form-item&gt;</span><br><span class="line">      &lt;el-form-item&gt;</span><br><span class="line">        &lt;el-input type&#x3D;&quot;password&quot; v-model&#x3D;&quot;loginForm.password&quot;</span><br><span class="line">                  auto-complete&#x3D;&quot;off&quot; placeholder&#x3D;&quot;密码&quot;&gt;&lt;&#x2F;el-input&gt;</span><br><span class="line">      &lt;&#x2F;el-form-item&gt;</span><br><span class="line">      &lt;el-form-item style&#x3D;&quot;width: 100%&quot;&gt;</span><br><span class="line">        &lt;el-button type&#x3D;&quot;primary&quot; style&#x3D;&quot;width: 100%;background: #505458;border: none&quot; v-on:click&#x3D;&quot;login&quot;&gt;登录&lt;&#x2F;el-button&gt;</span><br><span class="line">      &lt;&#x2F;el-form-item&gt;</span><br><span class="line">    &lt;&#x2F;el-form&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">  export default &#123;</span><br><span class="line">    name: &#39;Login&#39;,</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        loginForm: &#123;</span><br><span class="line">          username: &#39;admin&#39;,</span><br><span class="line">          password: &#39;123&#39;</span><br><span class="line">        &#125;,</span><br><span class="line">        responseResult: []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      login () &#123;</span><br><span class="line">        var _this &#x3D; this</span><br><span class="line">        console.log(this.$store.state)</span><br><span class="line">        this.$axios</span><br><span class="line">          .post(&#39;&#x2F;login&#39;, &#123;</span><br><span class="line">            username: this.loginForm.username,</span><br><span class="line">            password: this.loginForm.password</span><br><span class="line">          &#125;)</span><br><span class="line">          .then(successResponse &#x3D;&gt; &#123;</span><br><span class="line">            if (successResponse.data.code &#x3D;&#x3D;&#x3D; 200) &#123;</span><br><span class="line">              &#x2F;&#x2F; var data &#x3D; this.loginForm</span><br><span class="line">              _this.$store.commit(&#39;login&#39;, _this.loginForm)</span><br><span class="line">              var path &#x3D; this.$route.query.redirect</span><br><span class="line">              this.$router.replace(&#123;path: path &#x3D;&#x3D;&#x3D; &#39;&#x2F;&#39; || path &#x3D;&#x3D;&#x3D; undefined ? &#39;&#x2F;index&#39; : path&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">          .catch(failResponse &#x3D;&gt; &#123;</span><br><span class="line">          &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  #poster &#123;</span><br><span class="line">    background:url(&quot;..&#x2F;assets&#x2F;eva.jpg&quot;) no-repeat;</span><br><span class="line">    background-position: center;</span><br><span class="line">    height: 100%;</span><br><span class="line">    width: 100%;</span><br><span class="line">    background-size: cover;</span><br><span class="line">    position: fixed;</span><br><span class="line">  &#125;</span><br><span class="line">  body&#123;</span><br><span class="line">    margin: 0px;</span><br><span class="line">  &#125;</span><br><span class="line">  .login-container &#123;</span><br><span class="line">    border-radius: 15px;</span><br><span class="line">    background-clip: padding-box;</span><br><span class="line">    margin: 90px auto;</span><br><span class="line">    width: 350px;</span><br><span class="line">    padding: 35px 35px 15px 35px;</span><br><span class="line">    background: #fff;</span><br><span class="line">    border: 1px solid #eaeaea;</span><br><span class="line">    box-shadow: 0 0 25px #cac6c6;</span><br><span class="line">  &#125;</span><br><span class="line">  .login_title &#123;</span><br><span class="line">    margin: 0px auto 40px auto;</span><br><span class="line">    text-align: center;</span><br><span class="line">    color: #505458;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>输入账号密码后登录，成功跳转到 <a target="_blank" rel="noopener" href="http://localhost:8080/index">http://localhost:8080/index</a> ，之后再次访问则无需登录（除非清除缓存）。</p>
+</li>
+</ul>
+<h3 id="数据库设计与增删查改"><a href="#数据库设计与增删查改" class="headerlink" title="数据库设计与增删查改"></a>数据库设计与增删查改</h3><p>把拍脑袋想字段的过程称为数据库设计也是脸皮够厚，不过反正你们也不能顺着网线来打我。说起来也确实没啥需要认真琢磨的地方，等到之后做后台管理时可以把用户权限管理那一套东西整上，现在嘛，我们的需求大致如下：</p>
+<ul>
+<li>展示书籍的信息，包括封面、标题、作者、出版日期、出版社、摘要和分类。</li>
+<li>维护分类信息。</li>
+</ul>
+<p>如果直接 clone 项目，因为我配置了自动注入的代码，直接运行项目就可以生成表结构（数据库需要手动创建）。关闭此功能，可以把 <code>application.properties</code> 中的如下代码注释掉：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 每次运行时初始化数据库，如不需要可以注释掉</span><br><span class="line">spring.datasource.initialization-mode&#x3D;always</span><br></pre></td></tr></table></figure>
+
+<p><strong>user 表：</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`user`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`username`</span> <span class="built_in">char</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`password`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">3</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
+
+<p><strong>book 表：</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`book`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`book`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`cover`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="string">`title`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="string">`author`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="string">`date`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="string">`press`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  <span class="string">`abs`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`cid`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`fk_book_category_on_cid`</span> (<span class="string">`cid`</span>),</span><br><span class="line">  <span class="keyword">CONSTRAINT</span> <span class="string">`fk_book_category_on_cid`</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (<span class="string">`cid`</span>) <span class="keyword">REFERENCES</span> <span class="string">`category`</span> (<span class="string">`id`</span>) <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">SET</span> <span class="literal">NULL</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CASCADE</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">102</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line">1234567891011121314</span><br></pre></td></tr></table></figure>
+
+<p><strong>category 表：</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`category`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`category`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line">123456</span><br></pre></td></tr></table></figure>
+
+<p>这里注意在 book 表在 cid 上有一个外键。</p>
+<h4 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h4><p>还是先看需求：</p>
+<ul>
+<li>查询书籍信息（查）</li>
+<li>上传书籍信息（增）</li>
+<li>修改书籍信息（改）</li>
+<li>删除书籍信息（删）</li>
+</ul>
+<p>查询里涉及按关键字查询（图书检索），上传书籍信息里涉及图片上传，这里先不多说。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/12/02/mysql%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/02/mysql%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">mysql学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-02 22:19:13" itemprop="dateCreated datePublished" datetime="2020-12-02T22:19:13+08:00">2020-12-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-21 23:53:58" itemprop="dateModified" datetime="2021-01-21T23:53:58+08:00">2021-01-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>SQL语言定义了这么几种操作数据库的能力：</p>
+<p><strong>DDL：Data Definition Language</strong></p>
+<p>DDL允许用户定义数据，也就是创建表、删除表、修改表结构这些操作。通常，DDL由数据库管理员执行。</p>
+<p><strong>DML：Data Manipulation Language</strong></p>
+<p>DML为用户提供添加、删除、更新数据的能力，这些是应用程序对数据库的日常操作。</p>
+<p><strong>DQL：Data Query Language</strong></p>
+<p>DQL允许用户查询数据，这也是通常最频繁的数据库日常操作。</p>
+<ul>
+<li>语法特点</li>
+</ul>
+<p>SQL语言关键字不区分大小写！！！但是，针对不同的数据库，对于表名和列名，有的数据库区分大小写，有的数据库不区分大小写。同一个数据库，有的在Linux上区分大小写，有的在Windows上不区分大小写。</p>
+<h3 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h3><p>表的每一行称为记录（Record），记录是一个逻辑意义上的数据。</p>
+<p>表的每一列称为字段（Column），同一个表的每一行记录都拥有相同的若干字段。</p>
+<p>字段定义了数据类型（整型、浮点型、字符串、日期等），以及是否允许为<code>NULL</code>。注意<code>NULL</code>表示字段数据不存在。一个整型字段如果为<code>NULL</code>不表示它的值为<code>0</code>，同样的，一个字符串型字段为<code>NULL</code>也不表示它的值为空串<code>&#39;&#39;</code>。</p>
+<p> 通常情况下，字段应该避免允许为NULL。不允许为NULL可以简化查询条件，加快查询速度，也利于应用程序读取数据后无需判断是否为NULL。</p>
+<p>和Excel表有所不同的是，关系数据库的表和表之间需要建立“一对多”，“多对一”和“一对一”的关系，这样才能够按照应用程序的逻辑来组织和存储数据。</p>
+<h4 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h4><p>在关系数据库中，一张表中的每一行数据被称为一条记录。一条记录就是由多个字段组成的。例如，<code>students</code>表的两行记录：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">class_id</th>
+<th align="left">name</th>
+<th align="left">gender</th>
+<th align="left">score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">小明</td>
+<td align="left">M</td>
+<td align="left">90</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">小红</td>
+<td align="left">F</td>
+<td align="left">95</td>
+</tr>
+</tbody></table>
+<p>每一条记录都包含若干定义好的字段。同一个表的所有记录都有相同的字段定义。</p>
+<p>对于关系表，有个很重要的约束，就是任意两条记录不能重复。不能重复不是指两条记录不完全相同，而是指能够通过某个字段唯一区分出不同的记录，这个字段被称为<em>主键</em>。</p>
+<p>例如，假设我们把<code>name</code>字段作为主键，那么通过名字<code>小明</code>或<code>小红</code>就能唯一确定一条记录。但是，这么设定，就没法存储同名的同学了，因为插入相同主键的两条记录是不被允许的。</p>
+<p>对主键的要求，最关键的一点是：记录一旦插入到表中，主键最好不要再修改，因为主键是用来唯一定位记录的，修改了主键，会造成一系列的影响。</p>
+<p>由于主键的作用十分重要，如何选取主键会对业务开发产生重要影响。如果我们以学生的身份证号作为主键，似乎能唯一定位记录。然而，身份证号也是一种业务场景，如果身份证号升位了，或者需要变更，作为主键，不得不修改的时候，就会对业务产生严重影响。</p>
+<p>所以，选取主键的一个基本原则是：不使用任何业务相关的字段作为主键。</p>
+<p>因此，身份证号、手机号、邮箱地址这些看上去可以唯一的字段，均<em>不可</em>用作主键。</p>
+<p>作为主键最好是完全业务无关的字段，我们一般把这个字段命名为<code>id</code>。常见的可作为<code>id</code>字段的类型有：</p>
+<ol>
+<li>自增整数类型：数据库会在插入数据时自动为每一条记录分配一个自增整数，这样我们就完全不用担心主键重复，也不用自己预先生成主键；</li>
+<li>全局唯一GUID类型：使用一种全局唯一的字符串作为主键，类似<code>8f55d96b-8acc-4636-8cb8-76bf8abc2f57</code>。GUID算法通过网卡MAC地址、时间戳和随机数保证任意计算机在任意时间生成的字符串都是不同的，大部分编程语言都内置了GUID算法，可以自己预算出主键。</li>
+</ol>
+<p>对于大部分应用来说，通常自增类型的主键就能满足需求。我们在<code>students</code>表中定义的主键也是<code>BIGINT NOT NULL AUTO_INCREMENT</code>类型。</p>
+<p> 如果使用INT自增类型，那么当一张表的记录数超过2147483647（约21亿）时，会达到上限而出错。使用BIGINT自增类型则可以最多约922亿亿条记录。</p>
+<h5 id="联合主键"><a href="#联合主键" class="headerlink" title="联合主键"></a>联合主键</h5><p>关系数据库实际上还允许通过多个字段唯一标识记录，即两个或更多的字段都设置为主键，这种主键被称为联合主键。</p>
+<p>对于联合主键，允许一列有重复，只要不是所有主键列都重复即可：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id_num</th>
+<th align="left">id_type</th>
+<th align="left">other columns…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">A</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">A</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">B</td>
+<td align="left">…</td>
+</tr>
+</tbody></table>
+<p>如果我们把上述表的<code>id_num</code>和<code>id_type</code>这两列作为联合主键，那么上面的3条记录都是允许的，因为没有两列主键组合起来是相同的。</p>
+<p>没有必要的情况下，我们尽量不使用联合主键，因为它给关系表带来了复杂度的上升。</p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>主键是关系表中记录的唯一标识。主键的选取非常重要：主键不要带有业务含义，而应该使用BIGINT自增或者GUID类型。主键也不应该允许<code>NULL</code>。</p>
+<p>可以使用多个列作为联合主键，但联合主键并不常用。</p>
+<h4 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h4><p>当我们用主键唯一标识记录时，我们就可以在<code>students</code>表中确定任意一个学生的记录：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">name</th>
+<th align="left">other columns…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">小明</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">小红</td>
+<td align="left">…</td>
+</tr>
+</tbody></table>
+<p>我们还可以在<code>classes</code>表中确定任意一个班级记录：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">name</th>
+<th align="left">other columns…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">一班</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">二班</td>
+<td align="left">…</td>
+</tr>
+</tbody></table>
+<p>但是我们如何确定<code>students</code>表的一条记录，例如，<code>id=1</code>的小明，属于哪个班级呢？</p>
+<p>由于一个班级可以有多个学生，在关系模型中，这两个表的关系可以称为“一对多”，即一个<code>classes</code>的记录可以对应多个<code>students</code>表的记录。</p>
+<p>为了表达这种一对多的关系，我们需要在<code>students</code>表中加入一列<code>class_id</code>，让它的值与<code>classes</code>表的某条记录相对应：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">class_id</th>
+<th align="left">name</th>
+<th align="left">other columns…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">小明</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">小红</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">2</td>
+<td align="left">小白</td>
+<td align="left">…</td>
+</tr>
+</tbody></table>
+<p>这样，我们就可以根据<code>class_id</code>这个列直接定位出一个<code>students</code>表的记录应该对应到<code>classes</code>的哪条记录。</p>
+<p>例如：</p>
+<ul>
+<li>小明的<code>class_id</code>是<code>1</code>，因此，对应的<code>classes</code>表的记录是<code>id=1</code>的一班；</li>
+<li>小红的<code>class_id</code>是<code>1</code>，因此，对应的<code>classes</code>表的记录是<code>id=1</code>的一班；</li>
+<li>小白的<code>class_id</code>是<code>2</code>，因此，对应的<code>classes</code>表的记录是<code>id=2</code>的二班。</li>
+</ul>
+<p>在<code>students</code>表中，通过<code>class_id</code>的字段，可以把数据与另一张表关联起来，这种列称为<code>外键</code>。</p>
+<p>外键并不是通过列名实现的，而是通过定义外键约束实现的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD CONSTRAINT fk_class_id</span><br><span class="line">FOREIGN KEY (class_id)</span><br><span class="line">REFERENCES classes (id);</span><br></pre></td></tr></table></figure>
+
+<p>其中，外键约束的名称<code>fk_class_id</code>可以任意，<code>FOREIGN KEY (class_id)</code>指定了<code>class_id</code>作为外键，<code>REFERENCES classes (id)</code>指定了这个外键将关联到<code>classes</code>表的<code>id</code>列（即<code>classes</code>表的主键）。</p>
+<p>通过定义外键约束，关系数据库可以保证无法插入无效的数据。即如果<code>classes</code>表不存在<code>id=99</code>的记录，<code>students</code>表就无法插入<code>class_id=99</code>的记录。</p>
+<p>由于外键约束会降低数据库的性能，大部分互联网应用程序为了追求速度，并不设置外键约束，而是仅靠应用程序自身来保证逻辑的正确性。这种情况下，<code>class_id</code>仅仅是一个普通的列，只是它起到了外键的作用而已。</p>
+<p>要删除一个外键约束，也是通过<code>ALTER TABLE</code>实现的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">DROP FOREIGN KEY fk_class_id;</span><br></pre></td></tr></table></figure>
+
+<p>注意：删除外键约束并没有删除外键这一列。删除列是通过<code>DROP COLUMN ...</code>实现的。</p>
+<h5 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h5><p>通过一个表的外键关联到另一个表，我们可以定义出一对多关系。有些时候，还需要定义“多对多”关系。例如，一个老师可以对应多个班级，一个班级也可以对应多个老师，因此，班级表和老师表存在多对多关系。</p>
+<p>多对多关系实际上是通过两个一对多关系实现的，即通过一个中间表，关联两个一对多关系，就形成了多对多关系：</p>
+<p><code>teachers</code>表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">张老师</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">王老师</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">李老师</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">赵老师</td>
+</tr>
+</tbody></table>
+<p><code>classes</code>表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">一班</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">二班</td>
+</tr>
+</tbody></table>
+<p>中间表<code>teacher_class</code>关联两个一对多关系：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">teacher_id</th>
+<th align="left">class_id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">2</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">3</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">4</td>
+<td align="left">2</td>
+</tr>
+</tbody></table>
+<p>通过中间表<code>teacher_class</code>可知<code>teachers</code>到<code>classes</code>的关系：</p>
+<ul>
+<li><code>id=1</code>的张老师对应<code>id=1,2</code>的一班和二班；</li>
+<li><code>id=2</code>的王老师对应<code>id=1,2</code>的一班和二班；</li>
+<li><code>id=3</code>的李老师对应<code>id=1</code>的一班；</li>
+<li><code>id=4</code>的赵老师对应<code>id=2</code>的二班。</li>
+</ul>
+<p>同理可知<code>classes</code>到<code>teachers</code>的关系：</p>
+<ul>
+<li><code>id=1</code>的一班对应<code>id=1,2,3</code>的张老师、王老师和李老师；</li>
+<li><code>id=2</code>的二班对应<code>id=1,2,4</code>的张老师、王老师和赵老师；</li>
+</ul>
+<p>因此，通过中间表，我们就定义了一个“多对多”关系。</p>
+<h5 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h5><p>一对一关系是指，一个表的记录对应到另一个表的唯一一个记录。</p>
+<p>例如，<code>students</code>表的每个学生可以有自己的联系方式，如果把联系方式存入另一个表<code>contacts</code>，我们就可以得到一个“一对一”关系：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">student_id</th>
+<th align="left">mobile</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">135xxxx6300</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">138xxxx2209</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">5</td>
+<td align="left">139xxxx8086</td>
+</tr>
+</tbody></table>
+<p>有细心的童鞋会问，既然是一对一关系，那为啥不给<code>students</code>表增加一个<code>mobile</code>列，这样就能合二为一了？</p>
+<p>如果业务允许，完全可以把两个表合为一个表。但是，有些时候，如果某个学生没有手机号，那么，<code>contacts</code>表就不存在对应的记录。实际上，一对一关系准确地说，是<code>contacts</code>表一对一对应<code>students</code>表。</p>
+<p>还有一些应用会把一个大表拆成两个一对一的表，目的是把经常读取和不经常读取的字段分开，以获得更高的性能。例如，把一个大的用户表分拆为用户基本信息表<code>user_info</code>和用户详细信息表<code>user_profiles</code>，大部分时候，只需要查询<code>user_info</code>表，并不需要查询<code>user_profiles</code>表，这样就提高了查询速度。</p>
+<h5 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h5><p>关系数据库通过外键可以实现一对多、多对多和一对一的关系。外键既可以通过数据库来约束，也可以不设置约束，仅依靠应用程序的逻辑来保证。</p>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>在关系数据库中，如果有上万甚至上亿条记录，在查找记录的时候，想要获得非常快的速度，就需要使用索引。</p>
+<p>索引是关系数据库中对某一列或多个列的值进行预排序的数据结构。通过使用索引，可以让数据库系统不必扫描整个表，而是直接定位到符合条件的记录，这样就大大加快了查询速度。</p>
+<p>例如，对于<code>students</code>表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">class_id</th>
+<th align="left">name</th>
+<th align="left">gender</th>
+<th align="left">score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">小明</td>
+<td align="left">M</td>
+<td align="left">90</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">小红</td>
+<td align="left">F</td>
+<td align="left">95</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">1</td>
+<td align="left">小军</td>
+<td align="left">M</td>
+<td align="left">88</td>
+</tr>
+</tbody></table>
+<p>如果要经常根据<code>score</code>列进行查询，就可以对<code>score</code>列创建索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD INDEX idx_score (score);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>ADD INDEX idx_score (score)</code>就创建了一个名称为<code>idx_score</code>，使用列<code>score</code>的索引。索引名称是任意的，索引如果有多列，可以在括号里依次写上，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD INDEX idx_name_score (name, score);</span><br></pre></td></tr></table></figure>
+
+<p>索引的效率取决于索引列的值是否散列，即该列的值如果越互不相同，那么索引效率越高。反过来，如果记录的列存在大量相同的值，例如<code>gender</code>列，大约一半的记录值是<code>M</code>，另一半是<code>F</code>，因此，对该列创建索引就没有意义。</p>
+<p>可以对一张表创建多个索引。索引的优点是提高了查询效率，缺点是在插入、更新和删除记录时，需要同时修改索引，因此，索引越多，插入、更新和删除记录的速度就越慢。</p>
+<p>对于主键，关系数据库会自动对其创建主键索引。使用主键索引的效率是最高的，因为主键会保证绝对唯一。</p>
+<h5 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h5><p>在设计关系数据表的时候，看上去唯一的列，例如身份证号、邮箱地址等，因为他们具有业务含义，因此不宜作为主键。</p>
+<p>但是，这些列根据业务要求，又具有唯一性约束：即不能出现两条记录存储了同一个身份证号。这个时候，就可以给该列添加一个唯一索引。例如，我们假设<code>students</code>表的<code>name</code>不能重复：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD UNIQUE INDEX uni_name (name);</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>UNIQUE</code>关键字我们就添加了一个唯一索引。</p>
+<p>也可以只对某一列添加一个唯一约束而不创建唯一索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD CONSTRAINT uni_name UNIQUE (name);</span><br></pre></td></tr></table></figure>
+
+<p>这种情况下，<code>name</code>列没有索引，但仍然具有唯一性保证。</p>
+<p>无论是否创建索引，对于用户和应用程序来说，使用关系数据库不会有任何区别。这里的意思是说，当我们在数据库中查询时，如果有相应的索引可用，数据库系统就会自动使用索引来提高查询效率，如果没有索引，查询也能正常执行，只是速度会变慢。因此，索引可以在使用数据库的过程中逐步优化。</p>
+<h5 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h5><p>通过对数据库表创建索引，可以提高查询速度。</p>
+<p>通过创建唯一索引，可以保证某一列的值具有唯一性。</p>
+<p>数据库索引对于用户和应用程序来说都是透明的。</p>
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><h4 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h4><p>使用SELECT查询的基本语句<code>SELECT * FROM &lt;表名&gt;</code>可以查询一个表的所有行和所有列的数据。</p>
+<p>SELECT查询的结果是一个二维表。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/12/01/manim%E5%AE%89%E8%A3%85-ubuntu16-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/01/manim%E5%AE%89%E8%A3%85-ubuntu16-04/" class="post-title-link" itemprop="url">manim安装-ubuntu16.04</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-01 15:59:42 / 修改时间：21:13:24" itemprop="dateCreated datePublished" datetime="2020-12-01T15:59:42+08:00">2020-12-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>每次上网搜索感到有些白费力。遂整理，之后有空再写成一键脚本。</p>
+<ul>
+<li><p>检查Python版本<br>  习惯装ubuntu16.04，自带python为3.5，不支持manim，先更新python</p>
+<p>  不行，还是换18方便一点，，，，，</p>
+<h2 id="更新Python至3-8"><a href="#更新Python至3-8" class="headerlink" title="更新Python至3.8"></a>更新Python至3.8</h2><h3 id="通过apt安装"><a href="#通过apt安装" class="headerlink" title="通过apt安装"></a>通过apt安装</h3><p>由于官方源暂未收录<strong>python3.8</strong>,所以这里使用 <strong>deadsnakes ppa</strong> 库</p>
+<h4 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install software-properties-common</span><br></pre></td></tr></table></figure>
+<h4 id="添加-deadsnakes-源"><a href="#添加-deadsnakes-源" class="headerlink" title="添加 deadsnakes 源"></a>添加 deadsnakes 源</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:deadsnakes&#x2F;ppa</span><br><span class="line"></span><br><span class="line"># 按下Enter</span><br></pre></td></tr></table></figure>
+<h4 id="安装-Python3-8"><a href="#安装-Python3-8" class="headerlink" title="安装 Python3.8"></a>安装 Python3.8</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3.8</span><br></pre></td></tr></table></figure>
+<h4 id="将python3与Python3-8-关联"><a href="#将python3与Python3-8-关联" class="headerlink" title="将python3与Python3.8 关联"></a>将<strong>python3</strong>与Python3.8 关联</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">which python3.8</span><br><span class="line"># print &#x2F;usr&#x2F;bin&#x2F;python3.8</span><br><span class="line">sudo update-alternatives --install &#x2F;usr&#x2F;bin&#x2F;python3 python3 &#x2F;usr&#x2F;bin&#x2F;python3.8 1</span><br><span class="line"># 查看自带python版本，ubuntu18默认3.6</span><br><span class="line">which python3.6</span><br><span class="line"># print &#x2F;usr&#x2F;bin&#x2F;python3.6</span><br><span class="line">sudo update-alternatives --install &#x2F;usr&#x2F;bin&#x2F;python3 python3 &#x2F;usr&#x2F;bin&#x2F;python3.6 2</span><br><span class="line"></span><br><span class="line">update-alternatives --config python3</span><br><span class="line"># 输入python3.8 对应的序号 默认应为 2</span><br><span class="line"></span><br><span class="line"># 检查</span><br><span class="line">python3 -V</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h2 id="安装-pip3"><a href="#安装-pip3" class="headerlink" title="安装 pip3"></a>安装 pip3</h2><ol>
+<li><p>apt 安装(便于卸载)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3-pip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过官方文件安装(报bug少)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl https:&#x2F;&#x2F;bootstrap.pypa.io&#x2F;get-pip.py -o get-pip.py</span><br><span class="line">sudo python3 get-pip.py</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="安装-Manim"><a href="#安装-Manim" class="headerlink" title="安装 Manim"></a>安装 Manim</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 安装Tex</span><br><span class="line">sudo apt-get install texlive-full</span><br><span class="line"></span><br><span class="line"># 安装依赖工具等</span><br><span class="line">sudo apt-get install ffmpeg sox libcairo2-dev libjpeg-dev libgif-dev python3-dev libffi-dev</span><br><span class="line"></span><br><span class="line"># 安装python相关库</span><br><span class="line">python3 -m pip install pyreadline</span><br><span class="line">python3 -m pip install pydub</span><br><span class="line"></span><br><span class="line"># https:&#x2F;&#x2F;github.com&#x2F;3b1b&#x2F;manim.git</span><br><span class="line"># 拉取</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;3b1b&#x2F;manim.git</span><br><span class="line"></span><br><span class="line">cd manim</span><br><span class="line"># 安装相关依赖</span><br><span class="line">python3 -m pip install -r requirements.txt</span><br><span class="line"># 安装不成功先试试升级pip3</span><br><span class="line">pip3 install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 进入manim文件夹</span><br><span class="line">python3 -m manim example_scenes.py WriteStuff -l</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装成功！"><a href="#安装成功！" class="headerlink" title="安装成功！"></a>安装成功！</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/11/17/mgdl/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -213,10 +960,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-11-17 16:52:20 / 修改时间：17:23:26" itemprop="dateCreated datePublished" datetime="2020-11-17T16:52:20+08:00">2020-11-17</time>
+              <time title="创建时间：2020-11-17 16:52:20" itemprop="dateCreated datePublished" datetime="2020-11-17T16:52:20+08:00">2020-11-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-18 21:51:00" itemprop="dateModified" datetime="2021-03-18T21:51:00+08:00">2021-03-18</time>
+              </span>
 
           
 
@@ -272,7 +1025,7 @@
 </li>
 <li><p>将文件拉回本地</p>
 <ul>
-<li>再次打开<a target="_blank" rel="noopener" href="https://u.nu/mgdl">https://u.nu/mgdl</a></li>
+<li>再次打开<a target="_blank" rel="noopener" href="https://u.nu/mg-dl">https://u.nu/mg-dl</a></li>
 <li>点击左侧菜单栏最后一项<strong>文件管理</strong></li>
 <li>登陆<ul>
 <li>账号： <strong>ccaa</strong></li>
@@ -799,238 +1552,6 @@ hexo s  # hexo server</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/07/18/ROS%E4%BB%BF%E7%9C%9F%EF%BC%88simulation%EF%BC%89-%E4%B8%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/18/ROS%E4%BB%BF%E7%9C%9F%EF%BC%88simulation%EF%BC%89-%E4%B8%80/" class="post-title-link" itemprop="url">ROS仿真（simulation）(一)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-18 16:51:07" itemprop="dateCreated datePublished" datetime="2020-07-18T16:51:07+08:00">2020-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:17:32" itemprop="dateModified" datetime="2020-08-06T23:17:32+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>SLAM仿真建图：</p>
-<pre><code># 打开一个地图文件，并带有一个仿真机器人
-roslaunch turtlebot3_gazebo turtlebot3_world.launch
-# 运行SLAM启动文件，启动RVIZ
-roslaunch turtlebot3_slam turtlebot3_slam.launch
-# 运行键盘控制
-roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
-# 建图完毕后，保存地图
-rosrun map_server map_saver -f ~/map
-# 保存到~/ 下 “上面的~/是指 topic中”</code></pre>
-<p>仿真导航：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 打开一个地图文件，并带有一个仿真机器人</span><br><span class="line">roslaunch turtlebot3_gazebo turtlebot3_world.launch</span><br><span class="line"></span><br><span class="line"># 依赖于保存好的map.pgm</span><br><span class="line">roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:&#x3D;$HOME&#x2F;map.yaml</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>要给出初始数据，请按照说明进行操作。 <ul>
-<li>点击2D Pose Estimate按钮</li>
-<li>通过单击并拖动地图上的方向来设置地图上的大致位置。</li>
-<li>箭头的每个点意味着TurtleBot3的预期姿势。激光扫描仪将在近似位置绘制线条，如地图上的墙壁。</li>
-<li>要发送目标位置：</li>
-<li>点击 2D Nav Goal按钮</li>
-<li>点击地图上你想要的TurtleBot驱动和拖动方向TurtleBot应该指向地方</li>
-<li>要在机器人到达目标位置之前停止机器人，请发送TurtleBot3的当前位置。</li>
-</ul>
-</li>
-</ul>
-<p>需要已经启动机器人</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/07/18/Ubuntu-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/18/Ubuntu-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC/" class="post-title-link" itemprop="url">Ubuntu 开机自启运行脚本</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-18 09:32:55" itemprop="dateCreated datePublished" datetime="2020-07-18T09:32:55+08:00">2020-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:15:17" itemprop="dateModified" datetime="2020-08-06T23:15:17+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>将脚本文件放在 <code>/etc/init.d/</code> 下<br>脚本格式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">### BEGIN INIT INFO</span><br><span class="line"># Provides:          1bmk</span><br><span class="line"># Required-Start:    $local_fs $network</span><br><span class="line"># Required-Stop:     $local_fs</span><br><span class="line"># Default-Start:     2 3 4 5</span><br><span class="line"># Default-Stop:      0 1 6</span><br><span class="line"># Short-Description: self define auto start</span><br><span class="line"># Description:       self define auto start</span><br><span class="line">### END INIT INFO</span><br><span class="line">sudo ntpdate pool.ntp.org</span><br></pre></td></tr></table></figure></li>
-<li>加权限 <code> sudo chmod +x demo.sh</code></li>
-<li><code>sudo update-rc.d demo.sh defaults 90</code></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/07/15/turtlebot%E5%AE%89%E8%A3%85BUG-ubuntu18-04-melodic/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/15/turtlebot%E5%AE%89%E8%A3%85BUG-ubuntu18-04-melodic/" class="post-title-link" itemprop="url">turtlebot安装BUG (ubuntu18.04+melodic)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-15 17:08:37" itemprop="dateCreated datePublished" datetime="2020-07-15T17:08:37+08:00">2020-07-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:16:33" itemprop="dateModified" datetime="2020-08-06T23:16:33+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>教程：<a target="_blank" rel="noopener" href="https://www.ncnynl.com/archives/201903/2884.html">创客制造</a></p>
-<p>第一个错是缺失urdf（– Could NOT find urdf (missing: urdf_DIR)）：<br>解决方法：先卸载：sudo apt-get remove ros-melodic-*<br>再重新按照官方教程安装：<a target="_blank" rel="noopener" href="http://wiki.ros.org/melodic/Installation/Ubuntu">http://wiki.ros.org/melodic/Installation/Ubuntu</a></p>
-<p>第二个错：Could not find a package configuration file provided by “ecl_threads” with any of the following names:<br>解决方法：sudo apt-get install ros-melodic-ecl-threads<br>第三个错：Could not find a package configuration file provided by ‘ecl_geometry’<br>解决方法：sudo apt-get install ros-melodic-ecl-geometry</p>
-<p>第四个错：Could not find a package configuration file provided by “kobuki_dock_drive”<br>解决方法：sudo apt-get install ros-melodic-kobuki-dock-drive</p>
-<p>第五个错：No package ‘orocos-bfl’ found<br>解决方法：sudo apt-get install ros-melodic-bfl</p>
-<p>第六个错：Could not find a package configuration file provided by “kobuki_driver”<br>解决方法：sudo apt-get install ros-melodic-kobuki-driver</p>
-<p>第七个错： Could not find a package configuration file provided by “ecl_streams” with any of the following names:<br>解决方法：sudo apt-get install ros-melodic-ecl-streams</p>
-<p>第八个错：/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp: In member function ‘void keyop_core::KeyOpCore::remoteKeyInputReceived(const KeyboardInput&amp;)’:<br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:274:28: error: ‘const KeyboardInput {aka const struct kobuki_msgs::KeyboardInput_}’ has no member named ‘pressed_key’; did you mean ‘pressedKey’?<br>processKeyboardInput(key.pressed_key);<br>^<del>~<br>pressedKey<br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp: In member function ‘void keyop_core::KeyOpCore::processKeyboardInput(char)’:<br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:293:38: error: ‘KEYCODE_LEFT’ is not a member of ‘kobuki_msgs::KeyboardInput {aka kobuki_msgs::KeyboardInput_}’<br>case kobuki_msgs::KeyboardInput::KEYCODE_LEFT:<br>^</del><br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:298:38: error: ‘KEYCODE_RIGHT’ is not a member of ‘kobuki_msgs::KeyboardInput {aka kobuki_msgs::KeyboardInput_}’<br>case kobuki_msgs::KeyboardInput::KEYCODE_RIGHT:<br>^<del>~<br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:303:38: error: ‘KEYCODE_UP’ is not a member of ‘kobuki_msgs::KeyboardInput {aka kobuki_msgs::KeyboardInput_}’<br>case kobuki_msgs::KeyboardInput::KEYCODE_UP:<br>^</del><br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:308:38: error: ‘KEYCODE_DOWN’ is not a member of ‘kobuki_msgs::KeyboardInput {aka kobuki_msgs::KeyboardInput_}’<br>case kobuki_msgs::KeyboardInput::KEYCODE_DOWN:<br>^<del>~<br>/home/wwh/turtlebot_ws/src/kobuki_keyop/src/keyop_core.cpp:313:38: error: ‘KEYCODE_SPACE’ is not a member of ‘kobuki_msgs::KeyboardInput {aka kobuki_msgs::KeyboardInput_}’<br>case kobuki_msgs::KeyboardInput::KEYCODE_SPACE:<br>^</del><br>kobuki_keyop/src/CMakeFiles/keyop.dir/build.make:62: recipe for target ‘kobuki_keyop/src/CMakeFiles/keyop.dir/keyop_core.cpp.o’ failed</p>
-<p>所需文件：<br><a href="./images/2954616753.zip">pud.zip</a><br>若编译出现错误：   processKeyboardInput(key.pressed_key);<br>     case kobuki_msgs::KeyboardInput::KEYCODE_LEFT:<br>    case kobuki_msgs::KeyboardInput::KEYCODE_RIGHT:<br>     …<br>请用包中的文件替换kobuki_node/src/library/slot_callbacks.cpp和/kobuki_keyop/src/keyop_core.cpp</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1102,7 +1623,7 @@ rosrun map_server map_saver -f ~/map
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

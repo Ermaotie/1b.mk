@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"1b.mk","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="mysql构成  users  user  databases  database  tables table col row header key index     命令    show xxxs show xxxs from xxx">
+  <meta name="description" content="介绍SQL语言定义了这么几种操作数据库的能力： DDL：Data Definition Language DDL允许用户定义数据，也就是创建表、删除表、修改表结构这些操作。通常，DDL由数据库管理员执行。 DML：Data Manipulation Language DML为用户提供添加、删除、更新数据的能力，这些是应用程序对数据库的日常操作。 DQL：Data Query Language DQ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql学习">
 <meta property="og:url" content="https://1b.mk/2020/12/02/mysql%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="One Bottle of Milk">
-<meta property="og:description" content="mysql构成  users  user  databases  database  tables table col row header key index     命令    show xxxs show xxxs from xxx">
+<meta property="og:description" content="介绍SQL语言定义了这么几种操作数据库的能力： DDL：Data Definition Language DDL允许用户定义数据，也就是创建表、删除表、修改表结构这些操作。通常，DDL由数据库管理员执行。 DML：Data Manipulation Language DML为用户提供添加、删除、更新数据的能力，这些是应用程序对数据库的日常操作。 DQL：Data Query Language DQ">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-02T14:19:13.000Z">
-<meta property="article:modified_time" content="2020-12-02T16:06:46.355Z">
+<meta property="article:modified_time" content="2021-01-21T15:53:58.855Z">
 <meta property="article:author" content="二茂铁Fe">
 <meta name="twitter:card" content="summary">
 
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-03 00:06:46" itemprop="dateModified" datetime="2020-12-03T00:06:46+08:00">2020-12-03</time>
+                <time title="修改时间：2021-01-21 23:53:58" itemprop="dateModified" datetime="2021-01-21T23:53:58+08:00">2021-01-21</time>
               </span>
 
           
@@ -237,34 +237,367 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>mysql构成</p>
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>SQL语言定义了这么几种操作数据库的能力：</p>
+<p><strong>DDL：Data Definition Language</strong></p>
+<p>DDL允许用户定义数据，也就是创建表、删除表、修改表结构这些操作。通常，DDL由数据库管理员执行。</p>
+<p><strong>DML：Data Manipulation Language</strong></p>
+<p>DML为用户提供添加、删除、更新数据的能力，这些是应用程序对数据库的日常操作。</p>
+<p><strong>DQL：Data Query Language</strong></p>
+<p>DQL允许用户查询数据，这也是通常最频繁的数据库日常操作。</p>
 <ul>
-<li><p>users</p>
-</li>
-<li><p>user</p>
-</li>
-<li><p>databases</p>
-</li>
-<li><p>database</p>
-<ul>
-<li>tables</li>
-<li>table<ul>
-<li>col</li>
-<li>row</li>
-<li>header</li>
-<li>key</li>
-<li>index</li>
+<li>语法特点</li>
 </ul>
-</li>
-</ul>
-</li>
-<li><p>命令</p>
-</li>
-</ul>
+<p>SQL语言关键字不区分大小写！！！但是，针对不同的数据库，对于表名和列名，有的数据库区分大小写，有的数据库不区分大小写。同一个数据库，有的在Linux上区分大小写，有的在Windows上不区分大小写。</p>
+<h3 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h3><p>表的每一行称为记录（Record），记录是一个逻辑意义上的数据。</p>
+<p>表的每一列称为字段（Column），同一个表的每一行记录都拥有相同的若干字段。</p>
+<p>字段定义了数据类型（整型、浮点型、字符串、日期等），以及是否允许为<code>NULL</code>。注意<code>NULL</code>表示字段数据不存在。一个整型字段如果为<code>NULL</code>不表示它的值为<code>0</code>，同样的，一个字符串型字段为<code>NULL</code>也不表示它的值为空串<code>&#39;&#39;</code>。</p>
+<p> 通常情况下，字段应该避免允许为NULL。不允许为NULL可以简化查询条件，加快查询速度，也利于应用程序读取数据后无需判断是否为NULL。</p>
+<p>和Excel表有所不同的是，关系数据库的表和表之间需要建立“一对多”，“多对一”和“一对一”的关系，这样才能够按照应用程序的逻辑来组织和存储数据。</p>
+<h4 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h4><p>在关系数据库中，一张表中的每一行数据被称为一条记录。一条记录就是由多个字段组成的。例如，<code>students</code>表的两行记录：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">class_id</th>
+<th align="left">name</th>
+<th align="left">gender</th>
+<th align="left">score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">小明</td>
+<td align="left">M</td>
+<td align="left">90</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">小红</td>
+<td align="left">F</td>
+<td align="left">95</td>
+</tr>
+</tbody></table>
+<p>每一条记录都包含若干定义好的字段。同一个表的所有记录都有相同的字段定义。</p>
+<p>对于关系表，有个很重要的约束，就是任意两条记录不能重复。不能重复不是指两条记录不完全相同，而是指能够通过某个字段唯一区分出不同的记录，这个字段被称为<em>主键</em>。</p>
+<p>例如，假设我们把<code>name</code>字段作为主键，那么通过名字<code>小明</code>或<code>小红</code>就能唯一确定一条记录。但是，这么设定，就没法存储同名的同学了，因为插入相同主键的两条记录是不被允许的。</p>
+<p>对主键的要求，最关键的一点是：记录一旦插入到表中，主键最好不要再修改，因为主键是用来唯一定位记录的，修改了主键，会造成一系列的影响。</p>
+<p>由于主键的作用十分重要，如何选取主键会对业务开发产生重要影响。如果我们以学生的身份证号作为主键，似乎能唯一定位记录。然而，身份证号也是一种业务场景，如果身份证号升位了，或者需要变更，作为主键，不得不修改的时候，就会对业务产生严重影响。</p>
+<p>所以，选取主键的一个基本原则是：不使用任何业务相关的字段作为主键。</p>
+<p>因此，身份证号、手机号、邮箱地址这些看上去可以唯一的字段，均<em>不可</em>用作主键。</p>
+<p>作为主键最好是完全业务无关的字段，我们一般把这个字段命名为<code>id</code>。常见的可作为<code>id</code>字段的类型有：</p>
 <ol>
-<li>show xxxs</li>
-<li>show xxxs from xxx</li>
+<li>自增整数类型：数据库会在插入数据时自动为每一条记录分配一个自增整数，这样我们就完全不用担心主键重复，也不用自己预先生成主键；</li>
+<li>全局唯一GUID类型：使用一种全局唯一的字符串作为主键，类似<code>8f55d96b-8acc-4636-8cb8-76bf8abc2f57</code>。GUID算法通过网卡MAC地址、时间戳和随机数保证任意计算机在任意时间生成的字符串都是不同的，大部分编程语言都内置了GUID算法，可以自己预算出主键。</li>
 </ol>
+<p>对于大部分应用来说，通常自增类型的主键就能满足需求。我们在<code>students</code>表中定义的主键也是<code>BIGINT NOT NULL AUTO_INCREMENT</code>类型。</p>
+<p> 如果使用INT自增类型，那么当一张表的记录数超过2147483647（约21亿）时，会达到上限而出错。使用BIGINT自增类型则可以最多约922亿亿条记录。</p>
+<h5 id="联合主键"><a href="#联合主键" class="headerlink" title="联合主键"></a>联合主键</h5><p>关系数据库实际上还允许通过多个字段唯一标识记录，即两个或更多的字段都设置为主键，这种主键被称为联合主键。</p>
+<p>对于联合主键，允许一列有重复，只要不是所有主键列都重复即可：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id_num</th>
+<th align="left">id_type</th>
+<th align="left">other columns…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">A</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">A</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">B</td>
+<td align="left">…</td>
+</tr>
+</tbody></table>
+<p>如果我们把上述表的<code>id_num</code>和<code>id_type</code>这两列作为联合主键，那么上面的3条记录都是允许的，因为没有两列主键组合起来是相同的。</p>
+<p>没有必要的情况下，我们尽量不使用联合主键，因为它给关系表带来了复杂度的上升。</p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>主键是关系表中记录的唯一标识。主键的选取非常重要：主键不要带有业务含义，而应该使用BIGINT自增或者GUID类型。主键也不应该允许<code>NULL</code>。</p>
+<p>可以使用多个列作为联合主键，但联合主键并不常用。</p>
+<h4 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h4><p>当我们用主键唯一标识记录时，我们就可以在<code>students</code>表中确定任意一个学生的记录：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">name</th>
+<th align="left">other columns…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">小明</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">小红</td>
+<td align="left">…</td>
+</tr>
+</tbody></table>
+<p>我们还可以在<code>classes</code>表中确定任意一个班级记录：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">name</th>
+<th align="left">other columns…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">一班</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">二班</td>
+<td align="left">…</td>
+</tr>
+</tbody></table>
+<p>但是我们如何确定<code>students</code>表的一条记录，例如，<code>id=1</code>的小明，属于哪个班级呢？</p>
+<p>由于一个班级可以有多个学生，在关系模型中，这两个表的关系可以称为“一对多”，即一个<code>classes</code>的记录可以对应多个<code>students</code>表的记录。</p>
+<p>为了表达这种一对多的关系，我们需要在<code>students</code>表中加入一列<code>class_id</code>，让它的值与<code>classes</code>表的某条记录相对应：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">class_id</th>
+<th align="left">name</th>
+<th align="left">other columns…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">小明</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">小红</td>
+<td align="left">…</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">2</td>
+<td align="left">小白</td>
+<td align="left">…</td>
+</tr>
+</tbody></table>
+<p>这样，我们就可以根据<code>class_id</code>这个列直接定位出一个<code>students</code>表的记录应该对应到<code>classes</code>的哪条记录。</p>
+<p>例如：</p>
+<ul>
+<li>小明的<code>class_id</code>是<code>1</code>，因此，对应的<code>classes</code>表的记录是<code>id=1</code>的一班；</li>
+<li>小红的<code>class_id</code>是<code>1</code>，因此，对应的<code>classes</code>表的记录是<code>id=1</code>的一班；</li>
+<li>小白的<code>class_id</code>是<code>2</code>，因此，对应的<code>classes</code>表的记录是<code>id=2</code>的二班。</li>
+</ul>
+<p>在<code>students</code>表中，通过<code>class_id</code>的字段，可以把数据与另一张表关联起来，这种列称为<code>外键</code>。</p>
+<p>外键并不是通过列名实现的，而是通过定义外键约束实现的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD CONSTRAINT fk_class_id</span><br><span class="line">FOREIGN KEY (class_id)</span><br><span class="line">REFERENCES classes (id);</span><br></pre></td></tr></table></figure>
+
+<p>其中，外键约束的名称<code>fk_class_id</code>可以任意，<code>FOREIGN KEY (class_id)</code>指定了<code>class_id</code>作为外键，<code>REFERENCES classes (id)</code>指定了这个外键将关联到<code>classes</code>表的<code>id</code>列（即<code>classes</code>表的主键）。</p>
+<p>通过定义外键约束，关系数据库可以保证无法插入无效的数据。即如果<code>classes</code>表不存在<code>id=99</code>的记录，<code>students</code>表就无法插入<code>class_id=99</code>的记录。</p>
+<p>由于外键约束会降低数据库的性能，大部分互联网应用程序为了追求速度，并不设置外键约束，而是仅靠应用程序自身来保证逻辑的正确性。这种情况下，<code>class_id</code>仅仅是一个普通的列，只是它起到了外键的作用而已。</p>
+<p>要删除一个外键约束，也是通过<code>ALTER TABLE</code>实现的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">DROP FOREIGN KEY fk_class_id;</span><br></pre></td></tr></table></figure>
+
+<p>注意：删除外键约束并没有删除外键这一列。删除列是通过<code>DROP COLUMN ...</code>实现的。</p>
+<h5 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h5><p>通过一个表的外键关联到另一个表，我们可以定义出一对多关系。有些时候，还需要定义“多对多”关系。例如，一个老师可以对应多个班级，一个班级也可以对应多个老师，因此，班级表和老师表存在多对多关系。</p>
+<p>多对多关系实际上是通过两个一对多关系实现的，即通过一个中间表，关联两个一对多关系，就形成了多对多关系：</p>
+<p><code>teachers</code>表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">张老师</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">王老师</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">李老师</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">赵老师</td>
+</tr>
+</tbody></table>
+<p><code>classes</code>表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">一班</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">二班</td>
+</tr>
+</tbody></table>
+<p>中间表<code>teacher_class</code>关联两个一对多关系：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">teacher_id</th>
+<th align="left">class_id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">2</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">3</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">4</td>
+<td align="left">2</td>
+</tr>
+</tbody></table>
+<p>通过中间表<code>teacher_class</code>可知<code>teachers</code>到<code>classes</code>的关系：</p>
+<ul>
+<li><code>id=1</code>的张老师对应<code>id=1,2</code>的一班和二班；</li>
+<li><code>id=2</code>的王老师对应<code>id=1,2</code>的一班和二班；</li>
+<li><code>id=3</code>的李老师对应<code>id=1</code>的一班；</li>
+<li><code>id=4</code>的赵老师对应<code>id=2</code>的二班。</li>
+</ul>
+<p>同理可知<code>classes</code>到<code>teachers</code>的关系：</p>
+<ul>
+<li><code>id=1</code>的一班对应<code>id=1,2,3</code>的张老师、王老师和李老师；</li>
+<li><code>id=2</code>的二班对应<code>id=1,2,4</code>的张老师、王老师和赵老师；</li>
+</ul>
+<p>因此，通过中间表，我们就定义了一个“多对多”关系。</p>
+<h5 id="一对一"><a href="#一对一" class="headerlink" title="一对一"></a>一对一</h5><p>一对一关系是指，一个表的记录对应到另一个表的唯一一个记录。</p>
+<p>例如，<code>students</code>表的每个学生可以有自己的联系方式，如果把联系方式存入另一个表<code>contacts</code>，我们就可以得到一个“一对一”关系：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">student_id</th>
+<th align="left">mobile</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">135xxxx6300</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">138xxxx2209</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">5</td>
+<td align="left">139xxxx8086</td>
+</tr>
+</tbody></table>
+<p>有细心的童鞋会问，既然是一对一关系，那为啥不给<code>students</code>表增加一个<code>mobile</code>列，这样就能合二为一了？</p>
+<p>如果业务允许，完全可以把两个表合为一个表。但是，有些时候，如果某个学生没有手机号，那么，<code>contacts</code>表就不存在对应的记录。实际上，一对一关系准确地说，是<code>contacts</code>表一对一对应<code>students</code>表。</p>
+<p>还有一些应用会把一个大表拆成两个一对一的表，目的是把经常读取和不经常读取的字段分开，以获得更高的性能。例如，把一个大的用户表分拆为用户基本信息表<code>user_info</code>和用户详细信息表<code>user_profiles</code>，大部分时候，只需要查询<code>user_info</code>表，并不需要查询<code>user_profiles</code>表，这样就提高了查询速度。</p>
+<h5 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h5><p>关系数据库通过外键可以实现一对多、多对多和一对一的关系。外键既可以通过数据库来约束，也可以不设置约束，仅依靠应用程序的逻辑来保证。</p>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>在关系数据库中，如果有上万甚至上亿条记录，在查找记录的时候，想要获得非常快的速度，就需要使用索引。</p>
+<p>索引是关系数据库中对某一列或多个列的值进行预排序的数据结构。通过使用索引，可以让数据库系统不必扫描整个表，而是直接定位到符合条件的记录，这样就大大加快了查询速度。</p>
+<p>例如，对于<code>students</code>表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">class_id</th>
+<th align="left">name</th>
+<th align="left">gender</th>
+<th align="left">score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">小明</td>
+<td align="left">M</td>
+<td align="left">90</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">小红</td>
+<td align="left">F</td>
+<td align="left">95</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">1</td>
+<td align="left">小军</td>
+<td align="left">M</td>
+<td align="left">88</td>
+</tr>
+</tbody></table>
+<p>如果要经常根据<code>score</code>列进行查询，就可以对<code>score</code>列创建索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD INDEX idx_score (score);</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>ADD INDEX idx_score (score)</code>就创建了一个名称为<code>idx_score</code>，使用列<code>score</code>的索引。索引名称是任意的，索引如果有多列，可以在括号里依次写上，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD INDEX idx_name_score (name, score);</span><br></pre></td></tr></table></figure>
+
+<p>索引的效率取决于索引列的值是否散列，即该列的值如果越互不相同，那么索引效率越高。反过来，如果记录的列存在大量相同的值，例如<code>gender</code>列，大约一半的记录值是<code>M</code>，另一半是<code>F</code>，因此，对该列创建索引就没有意义。</p>
+<p>可以对一张表创建多个索引。索引的优点是提高了查询效率，缺点是在插入、更新和删除记录时，需要同时修改索引，因此，索引越多，插入、更新和删除记录的速度就越慢。</p>
+<p>对于主键，关系数据库会自动对其创建主键索引。使用主键索引的效率是最高的，因为主键会保证绝对唯一。</p>
+<h5 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h5><p>在设计关系数据表的时候，看上去唯一的列，例如身份证号、邮箱地址等，因为他们具有业务含义，因此不宜作为主键。</p>
+<p>但是，这些列根据业务要求，又具有唯一性约束：即不能出现两条记录存储了同一个身份证号。这个时候，就可以给该列添加一个唯一索引。例如，我们假设<code>students</code>表的<code>name</code>不能重复：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD UNIQUE INDEX uni_name (name);</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>UNIQUE</code>关键字我们就添加了一个唯一索引。</p>
+<p>也可以只对某一列添加一个唯一约束而不创建唯一索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD CONSTRAINT uni_name UNIQUE (name);</span><br></pre></td></tr></table></figure>
+
+<p>这种情况下，<code>name</code>列没有索引，但仍然具有唯一性保证。</p>
+<p>无论是否创建索引，对于用户和应用程序来说，使用关系数据库不会有任何区别。这里的意思是说，当我们在数据库中查询时，如果有相应的索引可用，数据库系统就会自动使用索引来提高查询效率，如果没有索引，查询也能正常执行，只是速度会变慢。因此，索引可以在使用数据库的过程中逐步优化。</p>
+<h5 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h5><p>通过对数据库表创建索引，可以提高查询速度。</p>
+<p>通过创建唯一索引，可以保证某一列的值具有唯一性。</p>
+<p>数据库索引对于用户和应用程序来说都是透明的。</p>
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><h4 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h4><p>使用SELECT查询的基本语句<code>SELECT * FROM &lt;表名&gt;</code>可以查询一个表的所有行和所有列的数据。</p>
+<p>SELECT查询的结果是一个二维表。</p>
 
     </div>
 
@@ -375,6 +708,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">关系模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE"><span class="nav-number">2.1.</span> <span class="nav-text">主键</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%81%94%E5%90%88%E4%B8%BB%E9%94%AE"><span class="nav-number">2.1.1.</span> <span class="nav-text">联合主键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">2.1.2.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%96%E9%94%AE"><span class="nav-number">2.2.</span> <span class="nav-text">外键</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%9A%E5%AF%B9%E5%A4%9A"><span class="nav-number">2.2.1.</span> <span class="nav-text">多对多</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E5%AF%B9%E4%B8%80"><span class="nav-number">2.2.2.</span> <span class="nav-text">一对一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-number">2.3.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95"><span class="nav-number">2.3.1.</span> <span class="nav-text">唯一索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-2"><span class="nav-number">2.3.2.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="nav-number">3.</span> <span class="nav-text">查询数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.1.</span> <span class="nav-text">基本查询</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -390,7 +724,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
