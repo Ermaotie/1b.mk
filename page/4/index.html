@@ -190,6 +190,103 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/05/21/%E7%88%AC%E5%8F%96%E5%BE%AE%E5%8D%9A%E5%B9%B6%E5%B0%86%E6%9C%80%E6%96%B0%E4%B8%80%E6%9D%A1%E6%8E%A8%E9%80%81%E8%87%B3%E5%BE%AE%E4%BF%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/21/%E7%88%AC%E5%8F%96%E5%BE%AE%E5%8D%9A%E5%B9%B6%E5%B0%86%E6%9C%80%E6%96%B0%E4%B8%80%E6%9D%A1%E6%8E%A8%E9%80%81%E8%87%B3%E5%BE%AE%E4%BF%A1/" class="post-title-link" itemprop="url">爬取微博并将最新一条推送至微信</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-21 12:55:42" itemprop="dateCreated datePublished" datetime="2020-05-21T12:55:42+08:00">2020-05-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:06:11" itemprop="dateModified" datetime="2020-08-06T23:06:11+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先感谢<a target="_blank" rel="noopener" href="https://github.com/dataabc/">dataabc</a>所写的weibo-scrawler项目，非常感谢能够开源。</p>
+<ul>
+<li>部署</li>
+<li>调参<ul>
+<li>config.json</li>
+<li>msg.py</li>
+</ul>
+</li>
+<li>使用</li>
+</ul>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><h2 id="clone-项目"><a href="#clone-项目" class="headerlink" title="clone 项目"></a>clone 项目</h2><pre><code>git clone https://github.com/Ermaotie/weibo-crawler.git</code></pre>
+<h2 id="安装相关module"><a href="#安装相关module" class="headerlink" title="安装相关module"></a>安装相关module</h2><pre><code>pip install -r requirement.txt</code></pre>
+<h1 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h1><h2 id="config-json"><a href="#config-json" class="headerlink" title="config.json"></a>config.json</h2><p>详细设置见<a target="_blank" rel="noopener" href="https://github.com/Ermaotie/weibo-crawler">github</a><br>这里必须将文件格式保存为json<br>若想要定期执行，请将<code>since_date</code>设置为 <strong>int</strong> 型整数</p>
+<h2 id="msg-py"><a href="#msg-py" class="headerlink" title="msg.py"></a>msg.py</h2><ol>
+<li>方糖server酱绑定微信并获取SCKEY</li>
+<li>填入SCKEY，修改文件路径为 </li>
+</ol>
+<pre><code>weibo/微博用户名/微博id.json</code></pre>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="使用crontab-定期执行"><a href="#使用crontab-定期执行" class="headerlink" title="使用crontab 定期执行"></a>使用crontab 定期执行</h2><pre><code>crontab -e
+# 编辑定时执行任务
+0 12 * * * python weibo.py # 绝对路径
+0 12 * * * python msg.py # 绝对路径
+# 每天12时0分 执行xxx
+# 注意python版本</code></pre>
+<h2 id="crontab-命令format"><a href="#crontab-命令format" class="headerlink" title="crontab 命令format"></a>crontab 命令format</h2><pre><code>*    *    *    *    *    your command
+-    -    -    -    -
+|    |    |    |    |
+|    |    |    |    +----- 星期中星期几 (0 - 7) (星期天 为0)
+|    |    |    +---------- 月份 (1 - 12) 
+|    |    +--------------- 一个月中的第几天 (1 - 31)
+|    +-------------------- 小时 (0 - 23)
++------------------------- 分钟 (0 - 59)</code></pre>
+<h2 id="查看任务列表"><a href="#查看任务列表" class="headerlink" title="查看任务列表"></a>查看任务列表</h2><pre><code>crontab -l</code></pre>
+<h3 id="To-Do-将msg写入weibo-py中"><a href="#To-Do-将msg写入weibo-py中" class="headerlink" title="To Do: 将msg写入weibo.py中"></a>To Do: 将msg写入weibo.py中</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/05/12/float%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1258,7 +1355,7 @@ nameserver 2001:67c:27e4::64</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

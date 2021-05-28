@@ -190,6 +190,103 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/07/19/%E9%85%8D%E7%BD%AEHexo-%E5%B9%B6%E4%BD%BF%E7%94%A8gitalk/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/19/%E9%85%8D%E7%BD%AEHexo-%E5%B9%B6%E4%BD%BF%E7%94%A8gitalk/" class="post-title-link" itemprop="url">配置Hexo 并使用gitalk</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-19 20:24:53" itemprop="dateCreated datePublished" datetime="2020-07-19T20:24:53+08:00">2020-07-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:18:23" itemprop="dateModified" datetime="2020-08-06T23:18:23+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装所需环境"><a href="#安装所需环境" class="headerlink" title="安装所需环境"></a>安装所需环境</h2><ul>
+<li><p>Hexo 基于 Node.js，并使用npm管理器安装，若需要安置在github上，则也需要安装git</p>
+<ul>
+<li><p>安装</p>
+</li>
+<li><p>换源</p>
+<h3 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h3><p>更换国内淘宝源(长期生效)：</p>
+<p>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用Hexo"><a href="#使用Hexo" class="headerlink" title="使用Hexo"></a>使用Hexo</h2><h3 id="Hexo概述"><a href="#Hexo概述" class="headerlink" title="Hexo概述"></a>Hexo概述</h3><p>Hexo 是一款可以通过git工具，发布静态博文的一款优秀博客系统。它最重要的特点就是<strong>轻便</strong>，<strong>轻</strong>且<strong>便</strong></p>
+<h3 id="Hexo官方文档"><a href="#Hexo官方文档" class="headerlink" title="Hexo官方文档"></a><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo官方文档</a></h3><h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><pre><code># 全局安装
+npm install -g hexo-cli</code></pre>
+<h3 id="使用Hexo-1"><a href="#使用Hexo-1" class="headerlink" title="使用Hexo"></a>使用Hexo</h3><h4 id="初始化Hexo文件夹"><a href="#初始化Hexo文件夹" class="headerlink" title="初始化Hexo文件夹"></a>初始化Hexo文件夹</h4><p>控制台中打开所要初始化的文件夹</p>
+<pre><code>hexo init</code></pre>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><p>新建xxx</p>
+<pre><code>hexo new demoTitle
+hexo new page &quot;demoPage&quot;
+hexo new tag &quot;demoTag&quot;
+hexo new category &quot;demoName&quot;</code></pre>
+<p>维护使用</p>
+<pre><code># 清除原有生成的静态博客
+hexo clean
+# 生成静态博客
+hexo g  # hexo generate
+# 部署（到github）
+hexo d  # hexo deploy
+# 本地查看 http://localhost:4000
+hexo s  # hexo server</code></pre>
+<h2 id="安装Next"><a href="#安装Next" class="headerlink" title="安装Next"></a>安装Next</h2><p>下载<a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">github项目Next</a>这里使用的是低版本，已停止维护。7.0以上自动集成gitalk，到配置文件中打开即可。<br>下载至hexo/theme中</p>
+<h2 id="配置gitalk"><a href="#配置gitalk" class="headerlink" title="配置gitalk"></a>配置gitalk</h2><p>详情见<a target="_blank" rel="noopener" href="https://www.itfanr.cc/2019/04/30/hexo-add-gitalk-comment/">此</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/07/18/ROS%E4%BB%BF%E7%9C%9F%EF%BC%88simulation%EF%BC%89-%E4%B8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1249,103 +1346,6 @@ sudo nano .bashrc
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/05/21/%E7%88%AC%E5%8F%96%E5%BE%AE%E5%8D%9A%E5%B9%B6%E5%B0%86%E6%9C%80%E6%96%B0%E4%B8%80%E6%9D%A1%E6%8E%A8%E9%80%81%E8%87%B3%E5%BE%AE%E4%BF%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/21/%E7%88%AC%E5%8F%96%E5%BE%AE%E5%8D%9A%E5%B9%B6%E5%B0%86%E6%9C%80%E6%96%B0%E4%B8%80%E6%9D%A1%E6%8E%A8%E9%80%81%E8%87%B3%E5%BE%AE%E4%BF%A1/" class="post-title-link" itemprop="url">爬取微博并将最新一条推送至微信</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-21 12:55:42" itemprop="dateCreated datePublished" datetime="2020-05-21T12:55:42+08:00">2020-05-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:06:11" itemprop="dateModified" datetime="2020-08-06T23:06:11+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>首先感谢<a target="_blank" rel="noopener" href="https://github.com/dataabc/">dataabc</a>所写的weibo-scrawler项目，非常感谢能够开源。</p>
-<ul>
-<li>部署</li>
-<li>调参<ul>
-<li>config.json</li>
-<li>msg.py</li>
-</ul>
-</li>
-<li>使用</li>
-</ul>
-<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><h2 id="clone-项目"><a href="#clone-项目" class="headerlink" title="clone 项目"></a>clone 项目</h2><pre><code>git clone https://github.com/Ermaotie/weibo-crawler.git</code></pre>
-<h2 id="安装相关module"><a href="#安装相关module" class="headerlink" title="安装相关module"></a>安装相关module</h2><pre><code>pip install -r requirement.txt</code></pre>
-<h1 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h1><h2 id="config-json"><a href="#config-json" class="headerlink" title="config.json"></a>config.json</h2><p>详细设置见<a target="_blank" rel="noopener" href="https://github.com/Ermaotie/weibo-crawler">github</a><br>这里必须将文件格式保存为json<br>若想要定期执行，请将<code>since_date</code>设置为 <strong>int</strong> 型整数</p>
-<h2 id="msg-py"><a href="#msg-py" class="headerlink" title="msg.py"></a>msg.py</h2><ol>
-<li>方糖server酱绑定微信并获取SCKEY</li>
-<li>填入SCKEY，修改文件路径为 </li>
-</ol>
-<pre><code>weibo/微博用户名/微博id.json</code></pre>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="使用crontab-定期执行"><a href="#使用crontab-定期执行" class="headerlink" title="使用crontab 定期执行"></a>使用crontab 定期执行</h2><pre><code>crontab -e
-# 编辑定时执行任务
-0 12 * * * python weibo.py # 绝对路径
-0 12 * * * python msg.py # 绝对路径
-# 每天12时0分 执行xxx
-# 注意python版本</code></pre>
-<h2 id="crontab-命令format"><a href="#crontab-命令format" class="headerlink" title="crontab 命令format"></a>crontab 命令format</h2><pre><code>*    *    *    *    *    your command
--    -    -    -    -
-|    |    |    |    |
-|    |    |    |    +----- 星期中星期几 (0 - 7) (星期天 为0)
-|    |    |    +---------- 月份 (1 - 12) 
-|    |    +--------------- 一个月中的第几天 (1 - 31)
-|    +-------------------- 小时 (0 - 23)
-+------------------------- 分钟 (0 - 59)</code></pre>
-<h2 id="查看任务列表"><a href="#查看任务列表" class="headerlink" title="查看任务列表"></a>查看任务列表</h2><pre><code>crontab -l</code></pre>
-<h3 id="To-Do-将msg写入weibo-py中"><a href="#To-Do-将msg写入weibo-py中" class="headerlink" title="To Do: 将msg写入weibo.py中"></a>To Do: 将msg写入weibo.py中</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1417,7 +1417,7 @@ sudo nano .bashrc
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

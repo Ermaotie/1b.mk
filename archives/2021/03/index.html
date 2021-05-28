@@ -22,19 +22,17 @@
     var CONFIG = {"hostname":"1b.mk","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在了解float之前，先来复习一下int的存储方式 int 原码 补码 反码以在32的计算机系统中为例，一个int占四个字节，也就是32位第一位表示正负(0正1负），后面三十一位表示数。因此，int的范围是 $-2^{32}$(100000…000) 到 $2^{32}-1$(01111…11111)float 组成 正负 第一位 数位 往后八位 数值 余下23位    float可以看作是二进制">
-<meta property="og:type" content="article">
-<meta property="og:title" content="float在计算机中的存储">
-<meta property="og:url" content="https://1b.mk/2020/05/12/float%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8/index.html">
+  <meta name="description" content="二茂铁Fe的小屋">
+<meta property="og:type" content="website">
+<meta property="og:title" content="One Bottle of Milk">
+<meta property="og:url" content="https://1b.mk/archives/2021/03/index.html">
 <meta property="og:site_name" content="One Bottle of Milk">
-<meta property="og:description" content="在了解float之前，先来复习一下int的存储方式 int 原码 补码 反码以在32的计算机系统中为例，一个int占四个字节，也就是32位第一位表示正负(0正1负），后面三十一位表示数。因此，int的范围是 $-2^{32}$(100000…000) 到 $2^{32}-1$(01111…11111)float 组成 正负 第一位 数位 往后八位 数值 余下23位    float可以看作是二进制">
+<meta property="og:description" content="二茂铁Fe的小屋">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-12T02:54:04.000Z">
-<meta property="article:modified_time" content="2020-08-06T15:05:23.520Z">
 <meta property="article:author" content="二茂铁Fe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://1b.mk/2020/05/12/float%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8/">
+<link rel="canonical" href="https://1b.mk/archives/2021/03/">
 
 
 <script id="page-configurations">
@@ -42,12 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>float在计算机中的存储 | One Bottle of Milk</title>
+  <title>归档 | One Bottle of Milk</title>
   
 
 
@@ -186,149 +184,57 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content archive">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/05/12/float%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          float在计算机中的存储
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-12 10:54:04" itemprop="dateCreated datePublished" datetime="2020-05-12T10:54:04+08:00">2020-05-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:05:23" itemprop="dateModified" datetime="2020-08-06T23:05:23+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        
+        <span class="collection-header">还行! 目前共计 40 篇日志。 继续努力。</span>
+      </div>
 
       
-        <p>在了解float之前，先来复习一下int的存储方式</p>
-<h2 id="int"><a href="#int" class="headerlink" title="int"></a>int</h2><ul>
-<li>原码</li>
-<li>补码</li>
-<li>反码<br>以在32的计算机系统中为例，<br>一个int占四个字节，也就是32位<br>第一位表示正负(0正1负），后面三十一位表示数。<br>因此，int的范围是 $-2^{32}$(100000…000) 到 $2^{32}-1$(01111…11111)<h2 id="float"><a href="#float" class="headerlink" title="float"></a>float</h2></li>
-<li>组成<ul>
-<li>正负 第一位</li>
-<li>数位 往后八位</li>
-<li>数值 余下23位</li>
-</ul>
-</li>
-</ul>
-<p>float可以看作是二进制的科学计数法，例如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">10.25</span><br><span class="line">#采用二进制表示</span><br><span class="line">1010.01</span><br><span class="line">1.01001*2**3</span><br></pre></td></tr></table></figure>
-<p>接下来会以这个例子作为介绍。</p>
-<h3 id="正负-0正1负"><a href="#正负-0正1负" class="headerlink" title="正负 0正1负"></a>正负 0正1负</h3><h3 id="数位-采取“平移”的思想来理解"><a href="#数位-采取“平移”的思想来理解" class="headerlink" title="数位 采取“平移”的思想来理解"></a>数位 采取“平移”的思想来理解</h3><p>八位二进制数均为正可表达的数的范围是0~2**9-1，我们以127为界限，也就是将127看作0，划分正负，即将指数部分划为正负两部分。</p>
-<pre><code># 1.01001*2**3
-# 指数为3
-# 127+3=130
-# 130 = 2**7+2**1
-# 数位区应写为
-# 01000010</code></pre>
-<h3 id="数值，小数部分"><a href="#数值，小数部分" class="headerlink" title="数值，小数部分"></a>数值，小数部分</h3><p>因为第一位数基本上(有例外)都是一，所以我们省去。</p>
-<pre><code># 1.01001*2**3
-# 省去变为 01001，则后面的数位由0补齐。</code></pre>
-<p>最终表达为<br>0 01000010 010010000…000<br>再来一个例子</p>
-<pre><code># 0.5
-# 0 01111110 100000...00</code></pre>
-
+    <div class="collection-year">
+      <span class="collection-header">2021</span>
     </div>
 
-    
-    
-    
-        
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-  <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2021-03-23T23:15:51+08:00"
+              content="2021-03-23">
+          03-23
+        </time>
+      </div>
 
-    <div class="social-list">
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
-            <span class="icon">
-              <i class="fab fa-weixin"></i>
-            </span>
-
-            <span class="label">WeChat</span>
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/03/23/Nodejs%E5%AD%A6%E4%B9%A0/" itemprop="url">
+            <span itemprop="name">Nodejs学习</span>
           </a>
-        </div>
+      </div>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://space.bilibili.com/291216757">
-            <span class="icon">
-              <i class="fas fa-tv"></i>
-            </span>
+    </header>
+  </article>
 
-            <span class="label">Bilibili</span>
-          </a>
-        </div>
+
     </div>
   </div>
-
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/05/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85%E5%B9%B6%E4%BD%BF%E7%94%A8v2ray%E5%AE%A2%E6%88%B7%E7%AB%AF/" rel="prev" title="树莓派安装并使用v2ray客户端">
-      <i class="fa fa-chevron-left"></i> 树莓派安装并使用v2ray客户端
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/05/21/%E7%88%AC%E5%8F%96%E5%BE%AE%E5%8D%9A%E5%B9%B6%E5%B0%86%E6%9C%80%E6%96%B0%E4%B8%80%E6%9D%A1%E6%8E%A8%E9%80%81%E8%87%B3%E5%BE%AE%E4%BF%A1/" rel="next" title="爬取微博并将最新一条推送至微信">
-      爬取微博并将最新一条推送至微信 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
   
   
+  
+
   
 
 
 
           </div>
           
-    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -375,7 +281,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#int"><span class="nav-number">1.</span> <span class="nav-text">int</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#float"><span class="nav-number">2.</span> <span class="nav-text">float</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E8%B4%9F-0%E6%AD%A31%E8%B4%9F"><span class="nav-number">2.1.</span> <span class="nav-text">正负 0正1负</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E4%BD%8D-%E9%87%87%E5%8F%96%E2%80%9C%E5%B9%B3%E7%A7%BB%E2%80%9D%E7%9A%84%E6%80%9D%E6%83%B3%E6%9D%A5%E7%90%86%E8%A7%A3"><span class="nav-number">2.2.</span> <span class="nav-text">数位 采取“平移”的思想来理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%EF%BC%8C%E5%B0%8F%E6%95%B0%E9%83%A8%E5%88%86"><span class="nav-number">2.3.</span> <span class="nav-text">数值，小数部分</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -520,25 +425,6 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
 
   
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : 'd590612609f66b66e523',
-      clientSecret: '46ef29e4b3a98cccf3339c8362c3f39e9a7baa05',
-      repo        : '1b.mk',
-      owner       : 'Ermaotie',
-      admin       : ['Ermaotie'],
-      id          : '28c8c6bd77217aa7d82c08127699e301',
-        language: 'zh-CN',
-      distractionFreeMode: true
-    });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
-</script>
 
 </body>
 </html>
