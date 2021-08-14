@@ -19,13 +19,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"1b.mk","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"blog.1b.mk","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="背包问题问题描述背包容量j一定，现有一些物品，分别对应有质量w和体积v，求背包可容纳物品重量最大的方案。  0-1背包问题列举的物品均只有一件。状态转移方程：Dp[i][j] &#x3D; max{Dp[i-1][j-item.v]+item.w, Dp[i-1][j]} 优化方案因为计算i行，只用到i-1行的数据，因此可以只用一个数组，而在更新数据时，应从j到0，避免同一物品被用多次。  完全背包问题列举">
 <meta property="og:type" content="article">
 <meta property="og:title" content="背包问题">
-<meta property="og:url" content="https://1b.mk/2020/10/08/BagProblems/index.html">
+<meta property="og:url" content="https://blog.1b.mk/2020/10/08/BagProblems/index.html">
 <meta property="og:site_name" content="One Bottle of Milk">
 <meta property="og:description" content="背包问题问题描述背包容量j一定，现有一些物品，分别对应有质量w和体积v，求背包可容纳物品重量最大的方案。  0-1背包问题列举的物品均只有一件。状态转移方程：Dp[i][j] &#x3D; max{Dp[i-1][j-item.v]+item.w, Dp[i-1][j]} 优化方案因为计算i行，只用到i-1行的数据，因此可以只用一个数组，而在更新数据时，应从j到0，避免同一物品被用多次。  完全背包问题列举">
 <meta property="og:locale" content="zh_CN">
@@ -34,7 +34,7 @@
 <meta property="article:author" content="二茂铁Fe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://1b.mk/2020/10/08/BagProblems/">
+<link rel="canonical" href="https://blog.1b.mk/2020/10/08/BagProblems/">
 
 
 <script id="page-configurations">
@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/10/08/BagProblems/">
+    <link itemprop="mainEntityOfPage" href="https://blog.1b.mk/2020/10/08/BagProblems/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.ico">

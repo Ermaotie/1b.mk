@@ -19,13 +19,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"1b.mk","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"blog.1b.mk","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="定义：launch是一个xml语法的文件 功能：方便启动多个节点，设置参数 基本构成 &lt;launch&gt; &lt;node&gt; &lt;param&gt; &lt;arg&gt; …    xml中缩进没有实际意义，但为了表达清楚各标签间关系，使用缩进。 demo: 运行”package-name”中”executable-name”的二进制文件，  ROS中注册节点名为”node-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ROS学习（四）----参数与launch">
-<meta property="og:url" content="https://1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89-%E5%8F%82%E6%95%B0%E4%B8%8Elaunch/index.html">
+<meta property="og:url" content="https://blog.1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89-%E5%8F%82%E6%95%B0%E4%B8%8Elaunch/index.html">
 <meta property="og:site_name" content="One Bottle of Milk">
 <meta property="og:description" content="定义：launch是一个xml语法的文件 功能：方便启动多个节点，设置参数 基本构成 &lt;launch&gt; &lt;node&gt; &lt;param&gt; &lt;arg&gt; …    xml中缩进没有实际意义，但为了表达清楚各标签间关系，使用缩进。 demo: 运行”package-name”中”executable-name”的二进制文件，  ROS中注册节点名为”node-">
 <meta property="og:locale" content="zh_CN">
@@ -34,7 +34,7 @@
 <meta property="article:author" content="二茂铁Fe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89-%E5%8F%82%E6%95%B0%E4%B8%8Elaunch/">
+<link rel="canonical" href="https://blog.1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89-%E5%8F%82%E6%95%B0%E4%B8%8Elaunch/">
 
 
 <script id="page-configurations">
@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89-%E5%8F%82%E6%95%B0%E4%B8%8Elaunch/">
+    <link itemprop="mainEntityOfPage" href="https://blog.1b.mk/2020/06/25/ROS%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%9B%9B%EF%BC%89-%E5%8F%82%E6%95%B0%E4%B8%8Elaunch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.ico">
