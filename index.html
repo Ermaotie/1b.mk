@@ -190,6 +190,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.1b.mk/2021/08/18/Nginx-httpTohttps-CDN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/18/Nginx-httpTohttps-CDN/" class="post-title-link" itemprop="url">Nginx+httpTohttps+CDN</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-08-18 09:51:36 / 修改时间：10:32:15" itemprop="dateCreated datePublished" datetime="2021-08-18T09:51:36+08:00">2021-08-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本博客采用的为Nginx+CloudflareCDN例</p>
+<h2 id="流程简介"><a href="#流程简介" class="headerlink" title="流程简介"></a>流程简介</h2><p>当采取CDN加速后，https模式分为三种，flexible,full,full(strict)。本文中不涉及到服务器端的认证，因此只讨论flexible与full两种模式。</p>
+<h3 id="CDN加速模式"><a href="#CDN加速模式" class="headerlink" title="CDN加速模式"></a>CDN加速模式</h3><h4 id="flexible"><a href="#flexible" class="headerlink" title="flexible"></a>flexible</h4><p>flexible模式使用较为普遍，用户到CDN为https，CDN到源服务器为http，因此源服务器可以不申请证书就开启ssl(需要在CDN页面申请)</p>
+<h4 id="full"><a href="#full" class="headerlink" title="full"></a>full</h4><p>full模式同时加密了两个路径，USER -&gt; CDN -&gt; Server</p>
+<h3 id="开启http2https"><a href="#开启http2https" class="headerlink" title="开启http2https"></a>开启http2https</h3><h4 id="便捷方案"><a href="#便捷方案" class="headerlink" title="便捷方案"></a>便捷方案</h4><p>直接在CDN后台开启强制SSL（CloudFlare路径在 边缘证书 选项卡下）</p>
+<p>缺点：开启后对整个托管的域名上所有的解析均有效</p>
+<h4 id="其他方案"><a href="#其他方案" class="headerlink" title="其他方案"></a>其他方案</h4><ol>
+<li><p>有自签SSL证书<br>Nginx对80端口直接重定向到443<br>CDN端口开启Full模式</p>
+</li>
+<li><p>无自签SSL（即使用的是CDN端的SSL<br>此时Nginx不能将所有流量全部重定向到443，因为CDN对源服务器的访问仍是http的，然后重定向到https，形成循环，所以会产生重定向次数过多</p>
+</li>
+</ol>
+<p>Nginx 按照以下写法即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if ($http_x_forwarded_proto &#x3D; &quot;http&quot;) &#123;</span><br><span class="line">      return 301 https:&#x2F;&#x2F;$server_name$request_uri;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>若你的站点全部开启SSL，那么选择便捷方案即可</li>
+<li>若你的域上有未开ssl的站点，选择其他方案1</li>
+<li>若你的域上没有自签的SSL证书，且其他站点需要使用Flexible模式，选其他方案2</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.1b.mk/2021/03/23/Nodejs%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1716,80 +1794,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.1b.mk/2021/01/12/Vue-js-%E4%B8%80%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/12/Vue-js-%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">Vue.js(一）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-01-12 15:37:58 / 修改时间：22:22:14" itemprop="dateCreated datePublished" datetime="2021-01-12T15:37:58+08:00">2021-01-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>《Vue.js 从入门到项目实战》</p>
-<p>（一） 引言</p>
-<ul>
-<li><p>发展历史<br>CGI(Common Gateway Interface)<br>动态数据与网页模板结合，送至服务端，服务器返回浏览器网页数据</p>
-</li>
-<li><p>Ajax</p>
-</li>
-<li><p>虚拟DOM</p>
-</li>
-<li><p>从MVC(Model View Controller)到MMVC(Model View Viewmodel)</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1857,7 +1865,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

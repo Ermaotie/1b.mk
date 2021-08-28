@@ -190,6 +190,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.1b.mk/2020/07/23/%E5%BD%B1%E8%A7%86%E8%A7%A3%E6%9E%90-%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0-html-js-css/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="二茂铁Fe">
+      <meta itemprop="description" content="二茂铁Fe的小屋">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Bottle of Milk">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/23/%E5%BD%B1%E8%A7%86%E8%A7%A3%E6%9E%90-%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0-html-js-css/" class="post-title-link" itemprop="url">影视解析--前端学习(html+js+css)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-23 18:06:53" itemprop="dateCreated datePublished" datetime="2020-07-23T18:06:53+08:00">2020-07-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 23:19:32" itemprop="dateModified" datetime="2020-08-06T23:19:32+08:00">2020-08-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>其实我对影视VIP的需求并不是很大，很多时候只是听到身边其他人的推荐抑或是网上很火且能吸引我的作品，才会去购买。不过朋友圈里倒是好多苦不堪言的状况，喜欢看的综艺节目总是在不同的平台上，而如果不是合租的话，一个普通大学生是不太情愿去购买多家视频网站会员的。因此，解析网站就成了一个可行的选择，当然大多数解析网站会有大量的广告。而在这里，我筛选了一些无广告或者说几乎无广告的API。<br><a target="_blank" rel="noopener" href="https://github.com/Ermaotie/MoviesParsing">Github</a><br><a target="_blank" rel="noopener" href="http://movie.1b.mk/">演示Demo</a></p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li>已有的接口<br>其实这个API才是各种影视解析网站的核心, 当然写这个有一定的难度，不过就现在，我们只要调用就可以了。</li>
+<li>Github page 或 域名及空间<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2>如果只要基本功能的实现，几行html，再加上一句js就完全搞定了。<h3 id="剖析"><a href="#剖析" class="headerlink" title="剖析"></a>剖析</h3></li>
+<li>目标url = 接口 + 输入网址</li>
+<li>跳转到目标 url<h2 id="具体优化"><a href="#具体优化" class="headerlink" title="具体优化"></a>具体优化</h2><h3 id="提高兼容性"><a href="#提高兼容性" class="headerlink" title="提高兼容性"></a>提高兼容性</h3>由于语言的多样性，而HTML又可以显示不同的语言，所以要在<head>中声明自己的doc是什么类型的，如何编码的：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># HTML4</span><br><span class="line">&lt;meta http-equiv&#x3D;&quot;Content-Type&quot; content&#x3D;&quot;text&#x2F;html; charset&#x3D;utf-8&quot;&#x2F;&gt;</span><br><span class="line"># HTML5</span><br><span class="line">&lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="页面背景优化"><a href="#页面背景优化" class="headerlink" title="页面背景优化"></a>页面背景优化</h3>最开始计划是放一张智子的图片，但是国内对Github Page不太友好，所以使用js生成漂亮的背景：<br>这里放链接吧，原作写的太好看了。<a target="_blank" rel="noopener" href="https://www.html.cn/archives/8722">点击链接</a><h4 id="需要注意的是，示例中给的放在了-lt-div-gt-下，但是放在-lt-div-gt-下会导致页面上方有一条黑边，我想是div标签的bug吧。因为是背景，所以直接选择body即可"><a href="#需要注意的是，示例中给的放在了-lt-div-gt-下，但是放在-lt-div-gt-下会导致页面上方有一条黑边，我想是div标签的bug吧。因为是背景，所以直接选择body即可" class="headerlink" title="需要注意的是，示例中给的放在了&lt;div&gt;下，但是放在&lt;div&gt;下会导致页面上方有一条黑边，我想是div标签的bug吧。因为是背景，所以直接选择body即可"></a>需要注意的是，示例中给的放在了&lt;div&gt;下，但是放在&lt;div&gt;下会导致页面上方有一条黑边，我想是div标签的bug吧。因为是背景，所以直接选择body即可</h4><h3 id="跳转按钮以及其他部件优化"><a href="#跳转按钮以及其他部件优化" class="headerlink" title="跳转按钮以及其他部件优化"></a>跳转按钮以及其他部件优化</h3>也是通过加标签class或id，再通过CSS选择器，设置对应参数。</li>
+<li>强制居中<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.main&#123;</span><br><span class="line">    text-align: center; &#x2F;*让div内部文字居中*&#x2F;</span><br><span class="line">    background-color: #fff;</span><br><span class="line">    border-radius: 20px;</span><br><span class="line">    width: 290px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    margin: auto;</span><br><span class="line">    position: absolute;</span><br><span class="line">    top: 0;</span><br><span class="line">    left: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    bottom: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><a target="_blank" rel="noopener" href="https://chinese.freecodecamp.org/forum/t/topic/292/2">按键优化</a><br>鼠标位于btn上方时文字滑动浮现，离开滑动渐隐。span标签在button里，用于承载文字。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">.button &#123;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    border-radius: 4px;</span><br><span class="line">    background-color: #f3974c;</span><br><span class="line">    border: none;</span><br><span class="line">    color: #FFFFFF;</span><br><span class="line">    text-align: center;</span><br><span class="line">    font-size: 18px;</span><br><span class="line">    padding: 10px;</span><br><span class="line">    width: 200px;</span><br><span class="line">    transition: all 0.5s;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">    margin: 5px;</span><br><span class="line">  &#125;</span><br><span class="line">  .button span &#123;</span><br><span class="line">    cursor: pointer;</span><br><span class="line">    display: inline-block;</span><br><span class="line">    position: relative;</span><br><span class="line">    transition: 0.5s;</span><br><span class="line">  &#125;</span><br><span class="line">  .button span:after &#123;</span><br><span class="line">  content: &#39;\00bb&#39;;  &#x2F;* CSS Entities. 如果用的是 HTML Entities, 请改成 &amp;#8594;*&#x2F;</span><br><span class="line">  position: absolute;</span><br><span class="line">    opacity: 0;</span><br><span class="line">    top: 0;</span><br><span class="line">    right: -20px;</span><br><span class="line">    transition: 0.5s;</span><br><span class="line">  &#125;</span><br><span class="line">  .button:hover span &#123;</span><br><span class="line">    padding-right: 25px;</span><br><span class="line">  &#125;</span><br><span class="line">  .button:hover span:after &#123;</span><br><span class="line">    opacity: 1;</span><br><span class="line">    right: 0;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li>&lt;input&gt;框优化<br>圆角及选中荧光<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#input</span><br><span class="line">&#123;</span><br><span class="line">    outline-style: none ;</span><br><span class="line">    border-width: 1px;</span><br><span class="line">    border-radius: 4px;</span><br><span class="line">&#125;</span><br><span class="line">#input:focus&#123;</span><br><span class="line">    border-color: #66afe9;</span><br><span class="line">    outline: 0;</span><br><span class="line">    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);</span><br><span class="line">    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2>又开了一个新坑，发现前端似乎也挺有意思的。在平时的日常生活中，总能发现一些给人耳目一新的一些网页的效果，很值得我们不断去学习。当然js也不止可以让网页变得好看，还可以实现更多复杂的逻辑目的。这些都等着我去学习。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.1b.mk/2020/07/19/%E9%85%8D%E7%BD%AEHexo-%E5%B9%B6%E4%BD%BF%E7%94%A8gitalk/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1038,318 +1114,10 @@ killall apt apt-get  # 结束所有 apt apt-get 进程</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.1b.mk/2020/06/11/ROS%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="二茂铁Fe">
-      <meta itemprop="description" content="二茂铁Fe的小屋">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="One Bottle of Milk">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/11/ROS%E5%9F%BA%E6%9C%AC%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">ROS基本学习（一）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-11 21:48:35" itemprop="dateCreated datePublished" datetime="2020-06-11T21:48:35+08:00">2020-06-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-06 23:08:33" itemprop="dateModified" datetime="2020-08-06T23:08:33+08:00">2020-08-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>（看手册看的我迷迷糊糊~</p>
-<h2 id="简单工作构成介绍"><a href="#简单工作构成介绍" class="headerlink" title="简单工作构成介绍"></a>简单工作构成介绍</h2><p>ROS是一个多节点的分布式工作平台，节点之间，当然就会有数据的收发。ROS中通过主节点来将各个分布的节点的数据记录，方便节点间相互联络。ROS运行的最小单位Node。</p>
-<h3 id="Node的工作方式"><a href="#Node的工作方式" class="headerlink" title="Node的工作方式"></a>Node的工作方式</h3><ol>
-<li>Topic<br> 特点：publisher发布，subscriber接收（异步完成）</li>
-<li>Service<br> 特点：client直连server，直至会话结束</li>
-</ol>
-<ul>
-<li>Package<ul>
-<li>node<ul>
-<li>subscriber</li>
-<li>publisher</li>
-<li>server</li>
-<li>client</li>
-<li>…</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="构建过程"><a href="#构建过程" class="headerlink" title="构建过程"></a>构建过程</h2><h3 id="Catkin"><a href="#Catkin" class="headerlink" title="Catkin"></a>Catkin</h3><pre><code>ROS提供了较为友好构建包的过程。</code></pre>
-<ol>
-<li>在工作空间(workspace)下执行：<br> catkin_create_pkg ${your_package_name} ${dependent_packages}</li>
-<li>对应文件夹下，写好文件例如(demo.cpp),之后再修改<strong>CMakeList.txt</strong>中对应参数，及依赖。</li>
-</ol>
-<p>示例文件:</p>
-<pre><code>cmake_minimum_required(VERSION 2.8.3)
-project(learning_launch)
-
-## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
-
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
-find_package(catkin REQUIRED)
-
-## System dependencies are found with CMake&#39;s conventions
-# find_package(Boost REQUIRED COMPONENTS system)
-
-
-## Uncomment this if the package has a setup.py. This macro ensures
-## modules and global scripts declared therein get installed
-## See http://ros.org/doc/api/catkin/html/user_guide/setup_dot_py.html
-# catkin_python_setup()
-
-################################################
-## Declare ROS messages, services and actions ##
-################################################
-
-################################################
-## 声明 ROS 消息 服务 动作 的相关文件           ##
-################################################
-
-## To declare and build messages, services or actions from within this
-## package, follow these steps:
-## * Let MSG_DEP_SET be the set of packages whose message types you use in
-##   your messages/services/actions (e.g. std_msgs, actionlib_msgs, ...).
-## * In the file package.xml:
-##   * add a build_depend tag for &quot;message_generation&quot;
-##   * add a build_depend and a exec_depend tag for each package in MSG_DEP_SET
-##   * If MSG_DEP_SET isn&#39;t empty the following dependency has been pulled in
-##     but can be declared for certainty nonetheless:
-##     * add a exec_depend tag for &quot;message_runtime&quot;
-## * In this file (CMakeLists.txt):
-##   * add &quot;message_generation&quot; and every package in MSG_DEP_SET to
-##     find_package(catkin REQUIRED COMPONENTS ...)
-##   * add &quot;message_runtime&quot; and every package in MSG_DEP_SET to
-##     catkin_package(CATKIN_DEPENDS ...)
-##   * uncomment the add_*_files sections below as needed
-##     and list every .msg/.srv/.action file to be processed
-##   * uncomment the generate_messages entry below
-##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
-
-## Generate messages in the &#39;msg&#39; folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
-
-## Generate services in the &#39;srv&#39; folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
-
-## Generate actions in the &#39;action&#39; folder
-# add_action_files(
-#   FILES
-#   Action1.action
-#   Action2.action
-# )
-
-## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
-
-################################################
-## Declare ROS dynamic reconfigure parameters ##
-################################################
-
-## To declare and build dynamic reconfigure parameters within this
-## package, follow these steps:
-## * In the file package.xml:
-##   * add a build_depend and a exec_depend tag for &quot;dynamic_reconfigure&quot;
-## * In this file (CMakeLists.txt):
-##   * add &quot;dynamic_reconfigure&quot; to
-##     find_package(catkin REQUIRED COMPONENTS ...)
-##   * uncomment the &quot;generate_dynamic_reconfigure_options&quot; section below
-##     and list every .cfg file to be processed
-
-## Generate dynamic reconfigure parameters in the &#39;cfg&#39; folder
-# generate_dynamic_reconfigure_options(
-#   cfg/DynReconf1.cfg
-#   cfg/DynReconf2.cfg
-# )
-
-###################################
-## catkin specific configuration ##
-###################################
-## The catkin_package macro generates cmake config files for your package
-## Declare things to be passed to dependent projects
-## INCLUDE_DIRS: uncomment this if your package contains header files
-## LIBRARIES: libraries you create in this project that dependent projects also need
-## CATKIN_DEPENDS: catkin_packages dependent projects also need
-## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES learning_launch
-#  CATKIN_DEPENDS other_catkin_pkg
-#  DEPENDS system_lib
-)
-
-###########
-## Build ##
-###########
-
-## Specify additional locations of header files
-## Your package locations should be listed before other locations
-include_directories(
-# include
-# $&#123;catkin_INCLUDE_DIRS&#125;
-)
-
-## Declare a C++ library
-# add_library($&#123;PROJECT_NAME&#125;
-#   src/$&#123;PROJECT_NAME&#125;/learning_launch.cpp
-# )
-
-## Add cmake target dependencies of the library
-## as an example, code may need to be generated before libraries
-## either from message generation or dynamic reconfigure
-# add_dependencies($&#123;PROJECT_NAME&#125; $&#123;$&#123;PROJECT_NAME&#125;_EXPORTED_TARGETS&#125; $&#123;catkin_EXPORTED_TARGETS&#125;)
-
-## Declare a C++ executable
-## 声明一个C++可执行文件
-## With catkin_make all packages are built within a single CMake context
-## The recommended prefix ensures that target names across packages don&#39;t collide
-# add_executable($&#123;PROJECT_NAME&#125;_node src/learning_launch_node.cpp)
-
-## Rename C++ executable without prefix
-## The above recommended prefix causes long target names, the following renames the
-## target back to the shorter version for ease of user use
-## e.g. &quot;rosrun someones_pkg node&quot; instead of &quot;rosrun someones_pkg someones_pkg_node&quot;
-# set_target_properties($&#123;PROJECT_NAME&#125;_node PROPERTIES OUTPUT_NAME node PREFIX &quot;&quot;)
-
-## Add cmake target dependencies of the executable
-## 添加cmake生成可执行文件的依赖
-## same as for the library above
-# add_dependencies($&#123;PROJECT_NAME&#125;_node $&#123;$&#123;PROJECT_NAME&#125;_EXPORTED_TARGETS&#125; 
-$&#123;catkin_EXPORTED_TARGETS&#125;)
-
-## Specify libraries to link a library or executable target against
-# target_link_libraries($&#123;PROJECT_NAME&#125;_node
-#   $&#123;catkin_LIBRARIES&#125;
-# )
-
-#############
-## Install ##
-#############
-
-# all install targets should use catkin DESTINATION variables
-# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
-
-## Mark executable scripts (Python etc.) for installation
-## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION $&#123;CATKIN_PACKAGE_BIN_DESTINATION&#125;
-# )
-
-## Mark executables and/or libraries for installation
-# install(TARGETS $&#123;PROJECT_NAME&#125; $&#123;PROJECT_NAME&#125;_node
-#   ARCHIVE DESTINATION $&#123;CATKIN_PACKAGE_LIB_DESTINATION&#125;
-#   LIBRARY DESTINATION $&#123;CATKIN_PACKAGE_LIB_DESTINATION&#125;
-#   RUNTIME DESTINATION $&#123;CATKIN_PACKAGE_BIN_DESTINATION&#125;
-# )
-
-## Mark cpp header files for installation
-# install(DIRECTORY include/$&#123;PROJECT_NAME&#125;/
-#   DESTINATION $&#123;CATKIN_PACKAGE_INCLUDE_DESTINATION&#125;
-#   FILES_MATCHING PATTERN &quot;*.h&quot;
-#   PATTERN &quot;.svn&quot; EXCLUDE
-# )
-
-## Mark other files for installation (e.g. launch and bag files, etc.)
-# install(FILES
-#   # myfile1
-#   # myfile2
-#   DESTINATION $&#123;CATKIN_PACKAGE_SHARE_DESTINATION&#125;
-# )
-
-#############
-## Testing ##
-#############
-
-## Add gtest based cpp test target and link libraries
-# catkin_add_gtest($&#123;PROJECT_NAME&#125;-test test/test_learning_launch.cpp)
-# if(TARGET $&#123;PROJECT_NAME&#125;-test)
-#   target_link_libraries($&#123;PROJECT_NAME&#125;-test $&#123;PROJECT_NAME&#125;)
-# endif()
-
-## Add folders to be run by python nosetests
-# catkin_add_nosetests(test)</code></pre>
-<ol start="3">
-<li>编译</li>
-</ol>
-<pre><code>cd $&#123;work_space&#125; # 通常为catkin_ws
-catkin_make # 自动编译未被编译的package</code></pre>
-<ol start="4">
-<li>添加环境变量</li>
-</ol>
-<pre><code># catkin_ws下
-source devel/setup.bash</code></pre>
-<p>或者在~目录下设置好自动添加(之后不需要执行第四步）</p>
-<pre><code># ~
-sudo nano .bashrc
-# 文件末添加
-# source /home/&#123;user_name&#125;/&#123;workspace&#125;/devel/setup.bash</code></pre>
-<h3 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h3><p>脑图总结</p>
-<p><a href="./images/2190550263.xmind">ROS learning.xmind</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1417,7 +1185,7 @@ sudo nano .bashrc
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
